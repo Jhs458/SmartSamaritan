@@ -2,13 +2,11 @@
 	'use strict';
 	angular.module('app')
 	.factory('UserFactory', UserFactory);
-
-
 	function UserFactory($http, $q) {
 		var o = {};
 		o.status = {};
 
-    o.register = function(user) {
+    o.registerUser = function(user) {
       var q = $q.defer();
       $http.post('/api/users/register', user).then(function(res) {
         setToken(res.data);
@@ -18,7 +16,7 @@
       return q.promise;
     };
 
-    o.login = function(user) {
+    o.loginUser = function(user) {
       var q = $q.defer();
       $http.post('/api/users/login', user).then(function(res) {
         setToken(res.data);
@@ -28,7 +26,7 @@
       return q.promise;
     };
 
-    o.logout = function() {
+    o.logoutUser = function() {
       removeToken();
       removeUser();
     };

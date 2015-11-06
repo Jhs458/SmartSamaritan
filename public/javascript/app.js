@@ -9,6 +9,10 @@
 			url: '/',
 			templateUrl: 'views/dashboard.html'
 		})
+		.state('Splash',{
+			url: '/splash',
+			templateUrl: 'views/splash.html'
+		})
 		.state('Services',{
 			url: '/services',
 			templateUrl: 'views/services.html'

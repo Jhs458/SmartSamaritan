@@ -25,6 +25,22 @@
 			return q.promise;
 		};
 
+		o.sendMsg = function(msg) {
+			var q = $q.defer();
+			$http.post('/api/msg/send', msg).then(function(res) {
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
+		o.getAllMessages = function() {
+			var q = $q.defer();
+			$http.get('/api/msg').then(function(res) {
+				q.resolve(res.data);
+				});
+				return q.promise;
+				};
+
 
 		o.createJobs = function(job){
 			console.log(job);
@@ -37,6 +53,8 @@
 
 
 
+=======
+>>>>>>> 5531a83c47d84fe08c7d51bd56422b681a5fd86c
 
 		return o;
 	}
