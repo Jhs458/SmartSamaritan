@@ -9,16 +9,74 @@
 
 <body ng-controller="GlobalController as nav">
 
-<p>shit works!</p>
-
+	<md-toolbar layout="row" class="md-toolbar-tools md-toolbar-tools-bottom" id="navBar">
+			<div flex layout-wrap>
+				<div ui-sref="Dashboard({id: nav.status._id})" style="padding: 10px; text-align: center;">
+					Smart Samaritan
+				</div>
+			</div>
+			<div flex layout-wrap>
+				<md-button ui-sref="Services">
+					View Jobs
+				</md-button>
+			</div>
+			<div flex layout-wrap>
+				<md-button ui-sref="CreateJob">
+					Create a Post
+				</md-button>
+			</div>
+			<div flex layout-wrap>
+				<md-button ui-sref="Dashboard({id: nav.status._id})">
+					Dashboard
+				</md-button>
+			</div>
+			<div flex layout-wrap>
+				<md-button ng-click="nav.toggleRight()">
+					Messages
+				</md-button>
+			</div>
+			<div flex layout-wrap>
+				<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.username;'>
+					Logout
+				</md-button>
+				<md-button type='button' ui-sref='Splash' ng-show='!nav.status.username;'><i class="zmdi zmdi-account-box-o"></i>
+					Log In
+				</md-button>
+			</div>
+		</md-toolbar>
 
 
 	<ui-view></ui-view>
-
-
-
-
-
+	<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+      <md-toolbar class="md-theme-light">
+          <h1 class="md-toolbar-tools" >Messaging</h1>
+      </md-toolbar>
+	    <md-content  layout-padding layout="column" md-scroll-y style="max-height: 68%">
+				<md-list >
+	       <md-list-item class="md-2-line" ng-repeat="m in nav.messages">
+	         <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" /> -->
+	         <div class="md-list-item-text" layout="column">
+	           <h3>{{ m.body }}</h3>
+	           <p>{{ m.created }}</p>
+	         </div>
+			  </md-list-item>
+			</md-list>
+		</md-content>
+		<md-content layout>
+			<div class="msgBox">
+				 <form ng-submit="nav.sendMsg()" >
+				 	<md-input-container>
+						<label>Message...</label>
+						<textarea rows="3" ng-model="nav.msg.body" md-maxlength="300"></textarea>
+					</md-input-container>
+					<div layout="row">
+						<md-button type="submit" class="md-raised">Send Message</md-button>
+						<md-button ng-click="nav.close()" class="md-raised" >Close</md-button>
+					</div>
+				</form>
+			</div>
+		</md-content>
+	</md-sidenav>
 
 	<!-- Ext Libs -->
 	<script src="angular/angular.min.js"></script>
@@ -36,7 +94,7 @@
 	<script src="/javascript/services/AuthInterceptor.js"></script>
 	<!-- Controllers -->
 	<script src="/javascript/controllers/DashboardController.js"></script>
-	<script src="/javascript/controllers/CreateJobsController.js"></script>
+	<script src="/javascript/controllers/CreateJobController.js"></script>
 	<script src="/javascript/controllers/GlobalController.js"></script>
 	<script src="/javascript/controllers/JobDetailsController.js"></script>
 	<script src="/javascript/controllers/JobsViewController.js"></script>

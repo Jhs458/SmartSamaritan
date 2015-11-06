@@ -12,6 +12,8 @@ require('./models/JobsModel');
 require('./models/User');
 require('./config/passport');
 
+mongoose.connect('mongodb://localhost/smartsamaritan');
+
 
 app.set('views', path.join(__dirname, 'views'));
 //set the view engine that will render HTML from the server to the client
