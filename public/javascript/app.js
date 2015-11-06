@@ -14,7 +14,7 @@
 			templateUrl: 'views/services.html'
 		})
 		.state('JobDetails',{
-			url: '/jobdetails',
+			url: '/jobdetails/:id',
 			templateUrl: 'views/jobDetails.html'
 		})
 		.state('CreateJob',{

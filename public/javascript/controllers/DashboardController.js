@@ -5,6 +5,7 @@
 
 
 	function DashboardController() {
+		console.log("What happened John!!!");
 		var vm = this;
 		vm.title = 'Welcome to our App!';
 	}

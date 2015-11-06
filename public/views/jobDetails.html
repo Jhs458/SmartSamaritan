@@ -1,3 +1,45 @@
 <div ng-controller="JobDetailsController as vm">
+<h1>This is Job Details page</h1>
+
+<div layout="row" layout-wrap>
+<div flex="25">
+
+</div>
+<div flex="">
+  <!-- <div ng-repeat='j in vm.job'> -->
+  <md-card>
+      <md-card-content>
+        <h1 class="md-title">Title: {{vm.job.title}}</h1>
+        <h2 class="md-title">Details: {{vm.job.details}}</h2>
+        <!-- <h2 class="md-title">Post By: {{nav.status.uername}}</h2> -->
+        <h1 class="md-title">Date: {{vm.job.createdDate}}</h1>
+        <h2 class="md-title">Location: {{vm.job.location.street}}, {{vm.job.location.city}}, {{vm.job.location.state}}, {{vm.job.location.zip}}</h2>
+        <h1 class="md-title">Categeory: {{vm.job.categeory}}</h1>
+        <h2 class="md-title">Currency: {{vm.job.currency}}</h2>
+
+          <label>Rating</label>
+          <md-select ng-model="vm.job.rating" ng-required="true">
+          <md-option value='5'>5 Excellent</md-option>
+          <md-option value='4'>4</md-option>
+          <md-option value='3'>3</md-option>
+          <md-option value='2'>2</md-option>
+          <md-option value='1'>1</md-option>
+         </md-select>
+        
+        <!-- <h2 class="md-title">Applicants List: {{vm.job.applicants}}</h2> -->
+        <!-- <h2 class="md-title">Chosen Doer: {{vm.job.chosenApp.name}}</h2> -->
+
+      </md-card-content>
+      <div class="md-actions" layout="row" layout-align="end center">
+        <!-- <md-button ng-click="vm.startEdit(a._id);" class="md-accent md-raised">Edit this Review</md-button> -->
+      </div>
+    </md-card>
+  <!-- </div> -->
+</div>
+
+<div flex="25">
+
+</div>
+</div>
 
 </div>
