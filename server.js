@@ -34,7 +34,7 @@ var appRoutes = require('./routes/AppRoutes');
 var comRoutes = require('./routes/ComRoutes');
 var jobsRoutes = require('./routes/JobsRoutes');
 var msgRoutes = require('./routes/MsgRoutes');
-var userRoutes = require('./routes/User');
+var userRoutes = require('./routes/UserRoutes');
 
 //on homepage load, render the index page
 app.get('/', function(req, res) {
