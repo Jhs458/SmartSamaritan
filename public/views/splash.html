@@ -1,10 +1,10 @@
 <br>
 <div ng-show="nav.isLogin">
-<div layout="row" layout-wrap>
-  <div>
-  </div>
-  <form  class="well container" ng-submit="nav.loginUser()">
-    <h1>Sign In</h1>
+  <div layout="row" layout-wrap>
+    <div>
+    </div>
+    <form  class="well container" ng-submit="nav.loginUser()">
+      <h1>Sign In</h1>
       <label >Username:</label>
       <input ng-model="nav.user.username" type="text" required placeholder="Username..." ng-required="true">
 
@@ -12,17 +12,17 @@
       <label>Password:</label>
       <input ng-model="nav.user.password" type="password" required placeholder="Password..." ng-required="true">
 
-​
-    <!-- <label style="font-family:Ariel;">Password:</label>
-    <input type="password" class="form-control" required placeholder="Password..." ng-model="nav.user.password"> -->
-​
-    <div style="text-align: center">
-      <button ng-click="nav.isLogin = false;">Register</button>
-      <button type="submit">Login</button>
-    </div>
-</form>
-<br>
-</div>
+      ​
+      <!-- <label style="font-family:Ariel;">Password:</label>
+      <input type="password" class="form-control" required placeholder="Password..." ng-model="nav.user.password"> -->
+      ​
+      <div style="text-align: center">
+        <button ng-click="nav.isLogin = false;">Register</button>
+        <button type="submit">Login</button>
+      </div>
+    </form>
+    <br>
+  </div>
 </div>
 
 ​
@@ -31,41 +31,41 @@
     <div flex="20">
     </div>
     <div flex="">
-  <form class="well container" ng-submit="nav.registerUser()">
-    <h1> Please Register... </h1>
-    <br>
+      <form class="well container" ng-submit="nav.registerUser()">
+        <h1> Please Register... </h1>
+        <br>
 
-      <label>Username:</label>
-      <input ng-model="nav.user.username" type="text" required placeholder="Username..." ng-required="true">
+        <label>Username:</label>
+        <input ng-model="nav.user.username" type="text" required placeholder="Username..." ng-required="true">
 
-​     <br>
+        ​     <br>
 
-      <label>Email:</label>
-      <input ng-model="nav.user.email" type="email" required placeholder="Email..." ng-required="true">
+        <label>Email:</label>
+        <input ng-model="nav.user.email" type="email" required placeholder="Email..." ng-required="true">
 
-      <br>
-
-
-      <label>Password:</label>
-      <input ng-model="nav.user.password" type="password" required placeholder="Password..." ng-required="true">
-
-      <br>
+        <br>
 
 
-      <label>Confirm Password:</label>
-      <input ng-model="nav.user.confirmPassword" type="password" required placeholder="Password..." ng-required="true">
-      <br>
-    <div ng-show="nav.user.password && nav.user.confirmPassword && !(nav.user.password === nav.user.confirmPassword)">Your passwords must match.</div>
-    <label>Address/Location</label>
-    <input ng-model="nav.user.location" required placeholder="Address/Location..." ng-required="true">
-    <br>
-    <div style="text-align:center">
-      <button type="submit" ng-click="nav.isLogin = true;">Submit</button>
+        <label>Password:</label>
+        <input ng-model="nav.user.password" type="password" required placeholder="Password..." ng-required="true">
+
+        <br>
+
+
+        <label>Confirm Password:</label>
+        <input ng-model="nav.user.confirmPassword" type="password" required placeholder="Password..." ng-required="true">
+        <br>
+        <div ng-show="nav.user.password && nav.user.confirmPassword && !(nav.user.password === nav.user.confirmPassword)">Your passwords must match.</div>
+        <label>Address/Location</label>
+        <input ng-model="nav.user.location" required placeholder="Address/Location..." ng-required="true">
+        <br>
+        <div style="text-align:center">
+          <button type="submit" ng-click="nav.isLogin = true;">Submit</button>
+        </div>
+      </div>
+    </form>
+    <div flex="20">
     </div>
-  </div>
-  </form>
-  <div flex="20">
-  </div>
 
-</div>
+  </div>
 </div>

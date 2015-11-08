@@ -28,10 +28,12 @@ Smart Samaritan
 </div>
 </div>
 
+
+
 <div flex="15" layout-wrap>
 <md-menu class="md-menu-toolbar" ng-show="nav.status.username">
 <md-button ng-click="$mdOpenMenu()">
-<span class="navButtonTextColor">User Name</span>
+<span class="navButtonTextColor">{{nav.status.username}}</span>
 </md-button>
 <md-menu-content>
 <md-menu-item>
@@ -67,6 +69,8 @@ Smart Samaritan
 		</md-button>
 	</div>
 </div>
+
+
 
 </md-toolbar>
 

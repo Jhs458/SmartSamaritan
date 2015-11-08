@@ -13,7 +13,7 @@
         <h1 class="md-title">Title: {{vm.job.title}}</h1>
         <h2 class="md-title">Details: {{vm.job.details}}</h2>
         <!-- <h2 class="md-title">Post By: {{nav.status.uername}}</h2> -->
-        <h1 class="md-title">Date: {{vm.job.createdDate}}</h1>
+        <h1 class="md-title">Date: {{vm.job.createdDate | date}}</h1>
         <h2 class="md-title">Location: {{vm.job.location.street}}, {{vm.job.location.city}}, {{vm.job.location.state}}, {{vm.job.location.zip}}</h2>
         <h1 class="md-title">Categeory: {{vm.job.categeory}}</h1>
         <h2 class="md-title">Currency: {{vm.job.currency}}</h2>

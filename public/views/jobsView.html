@@ -10,8 +10,8 @@
         <md-card-content>
           <h1 class="md-title">Title: {{j.title}}</h1>
           <!-- <h2 class="md-title">Details: {{j.details}}</h2> -->
-          <h1 class="md-title">Date: {{j.createdDate}}</h1>
-          <h2 class="md-title">Location: {{j.location.street}}, {{j.location.city}}, {{j.location.state}}, {{j.location.zip}}</h2>
+          <h1 class="md-title">Date: {{j.createdDate | date}}</h1>
+          <h2 class="md-title">Location: {{j.location.street}}, {{j.location.city}}, {{j.location.state}} {{j.location.zip}}</h2>
           <!-- <h2 class="md-title">City: {{j.location.city}}</h2>
           <h2 class="md-title">State: {{j.location.state}}</h2>
           <h2 class="md-title">Zipcode: {{j.location.zip}}</h2> -->
@@ -23,7 +23,7 @@
         <div class="md-actions" layout="row" layout-align="end center">
           <md-button ui-sref="JobDetails({id: j._id})" class="md-accent md-raised">See more here</md-button>
           <md-button ng-click="vm.deleteJob(j._id)" class="md-accent md-raised">Delete</md-button>
-          
+
 
         </div>
       </md-card>

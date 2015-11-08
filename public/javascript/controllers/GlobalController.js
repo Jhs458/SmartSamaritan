@@ -13,7 +13,21 @@
 
 	vm.logout = function() {
 	UserFactory.logout();
-	$state.go('Home');
+	$state.go('Splash');
+};
+
+vm.registerUser = function() {
+	UserFactory.registerUser(vm.user).then(function() {
+		$state.go('Splash');
+	});
+};
+
+vm.loginUser = function() {
+	UserFactory.loginUser(vm.user).then(function() {
+		$state.go('Services');
+		vm.user = {};
+		console.log(vm.status);
+	});
 };
 
 		vm.close = function () {
@@ -35,21 +49,6 @@
 					vm.messages = res;
 
 				});
-
-
-vm.registerUser = function() {
-	UserFactory.registerUser(vm.user).then(function() {
-		$state.go('Home');
-	});
-};
-
-vm.loginUser = function() {
-	UserFactory.loginUser(vm.user).then(function() {
-		$state.go('Services');
-		vm.user = {};
-		console.log(vm.status);
-	});
-};
 
 
   }
