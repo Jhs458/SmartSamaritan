@@ -1,3 +1,30 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 .tileBtn :hover{
   cursor: pointer;
 }
+
+/*navBar styling below*/
+#navBar {
+  color: black;
+  background-color: white;
+}
+
+#navBar:hover {
+  background-color: #F1FFFA;
+}
+
+#smartSamaritan {
+  font-size: 34px;
+  font-weight: 700;
+  text-align: center;
+  /*padding-left: 80px;*/
+}
+
+.navButtonTextColor {
+  color: black;
+}
+
+/*navBar styling above*/
