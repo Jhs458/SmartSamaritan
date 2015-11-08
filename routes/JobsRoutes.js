@@ -22,10 +22,42 @@ router.get('/',function(req,res,next){
   });
 });
 
+router.get('/search/:categeory',function(req,res,next){
+  console.log(req.params.categeory)
+  Jobs.find({categeory:req.params.categeory},function(err,result){
+    if(err) return next(err);
+    res.send(result);
+  });
+});
+
 router.post('/',function(req,res,next){
-  console.log(req.body);
+  // console.log(req.body);
   var jobPost = new Jobs(req.body);
   jobPost.save(function(err,result){
+    if(err) return next(err);
+    res.send(result);
+  });
+});
+
+router.delete('/:id', function(req, res, next) {//auth
+    Jobs.remove({_id: req.params.id}, function(err, result) {
+        if(err) return next(err);
+        res.send();
+          });
+        });
+
+router.put('/:id', function (req, res, next) {//auth
+      Jobs.update({_id: req.params.id}, req.body, function (err, result) {
+        if(err) return next(err);
+        if(!result) return next({err: "The post wasn't found for updating"});
+        res.send(result);
+      });
+    });
+
+router.post('/apply/:id', function(req, res, next) { //auth,
+  console.log("here");
+  var applicantPost = new Jobs.applicants(req.body);    //Not working
+  applicantPost.save(function(err,result){
     if(err) return next(err);
     res.send(result);
   });

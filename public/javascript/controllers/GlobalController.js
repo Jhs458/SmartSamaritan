@@ -45,8 +45,9 @@ vm.registerUser = function() {
 
 vm.loginUser = function() {
 	UserFactory.loginUser(vm.user).then(function() {
-		$state.go('Home');
+		$state.go('Services');
 		vm.user = {};
+		console.log(vm.status);
 	});
 };
 

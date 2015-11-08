@@ -3,7 +3,7 @@
 <div layout="row" layout-wrap>
   <div>
   </div>
-  <div  class="well container" ng-submit="nav.loginUser()">
+  <form  class="well container" ng-submit="nav.loginUser()">
     <h1>Sign In</h1>
       <label >Username:</label>
       <input ng-model="nav.user.username" type="text" required placeholder="Username..." ng-required="true">
@@ -20,7 +20,7 @@
       <button ng-click="nav.isLogin = false;">Register</button>
       <button type="submit">Login</button>
     </div>
-</div>
+</form>
 <br>
 </div>
 </div>

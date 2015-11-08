@@ -35,6 +35,9 @@
 					Messages
 				</md-button>
 			</div>
+			<div flex layout-wrap ng-show='nav.status.username;'>
+				 <p>User: {{nav.status.username}}</p>
+			</div>
 			<div flex layout-wrap>
 				<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.username;'>
 					Logout

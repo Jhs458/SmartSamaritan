@@ -30,7 +30,7 @@
 			templateUrl: 'views/calendar.html'
 		})
 		.state('JobsView',{
-			url: '/jobsview',
+			url: '/jobsview/:cat',
 			templateUrl: 'views/jobsView.html'
 		});
 		$urlRouterProvider.otherwise('/');

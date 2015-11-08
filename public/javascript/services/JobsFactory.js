@@ -10,7 +10,7 @@
 
 		o.getJobById = function(id){
 			var q =$q.defer();
-			console.log(id);
+			// console.log(id);
 			$http.get('/api/jobs/' + id).then(function(res){
 				q.resolve(res.data);
 			});
@@ -20,6 +20,14 @@
 		o.getJobs = function(){
 			var q = $q.defer();
 			$http.get('/api/jobs').then(function(res){
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
+		o.getJobsByCat = function(cat){
+			var q = $q.defer();
+			$http.get('/api/jobs/search/' + cat).then(function(res){
 				q.resolve(res.data);
 			});
 			return q.promise;
@@ -51,10 +59,30 @@
 			return q.promise;
 		};
 
+		o.deleteJob = function(id) {
+			var q = $q.defer();
+			$http.delete('/api/jobs/' + id).then(function(res) {
+				q.resolve();
+			});
+			return q.promise;
+		};
 
+		o.updateJob = function(z, id) {
+			var q = $q.defer();
+			$http.put('/api/jobs/' + id.id, z).then(function (res) {
+				q.resolve(res.data);
+					});
+				return q.promise;
+				};
 
-=======
->>>>>>> 5531a83c47d84fe08c7d51bd56422b681a5fd86c
+		o.applyJob = function(a, id) {
+			var q = $q.defer();
+			$http.post('/api/jobs/apply/' + id.id, a).then(function (res) {
+				q.resolve(res.data);
+					});
+				return q.promise;
+				};
+
 
 		return o;
 	}

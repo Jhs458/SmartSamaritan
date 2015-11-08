@@ -7,16 +7,35 @@
 		var vm = this;
 
 
-		// if(!$stateParams.id) $state.go('Dashboard');//This means, is this Id exists, run the function inside.
-	console.log($stateParams.id);
- JobsFactory.getJobById($stateParams.id).then(function(res){
-	 console.log(res);
+ 	JobsFactory.getJobById($stateParams.id).then(function(res){
+				vm.job = res;
+				var date = vm.job.createdDate; // Method .toLocalDateString turns the date into a method and cannot populate the date-
+        vm.job.createdDate = new Date();// picker in the edit so I had to turn the string back into a date for it to work.
+				vm.job.createdDate.setTime(Date.parse(date)); // http://stackoverflow.com/questions/32469737/angular-material-datepicker-date-tolocaledatestring-is-not-a-function
+ 			});
 
-	vm.job = res;
- });
+	vm.deleteJob = function(id){
+			JobsFactory.deleteJob(id).then(function() {
+					$state.go('Services');
+							})
+						}
 
+	vm.updateJob = function(z) {
+			JobsFactory.updateJob(z, {id:$stateParams.id}).then(function(res) {
+				JobsFactory.getJobById($stateParams.id).then(function(res){
+							vm.job = res;
+			 			});
+			});
+		};
 
-
+		vm.applyJob = function(a){
+			console.log(a);
+			JobsFactory.applyJob(a, {id:$stateParams.id}).then(function(res) {
+				JobsFactory.getJobById($stateParams.id).then(function(res){
+							vm.job = res;
+			 			});
+			});
+		}
 
 
   }
