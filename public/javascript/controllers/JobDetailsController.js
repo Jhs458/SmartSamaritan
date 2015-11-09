@@ -29,14 +29,18 @@
 		};
 
 		vm.applyJob = function(a){
-			console.log(a);
 			JobsFactory.applyJob(a, {id:$stateParams.id}).then(function(res) {
-				JobsFactory.getJobById($stateParams.id).then(function(res){
+				// JobsFactory.applyToJobModel(a, {id:$stateParams.id}).then(function(res) {
+					JobsFactory.getJobById($stateParams.id).then(function(res){
 							vm.job = res;
 			 			});
+					// });
 			});
 		}
 
+		JobsFactory.getApplicants($stateParams.id).then(function(res){
+					vm.applicants = res;
+				});
 
   }
 })();

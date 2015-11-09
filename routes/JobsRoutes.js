@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Jobs = mongoose.model('Jobs');
+var Applicants = mongoose.model('Applicants');
 var jwt = require('express-jwt');
 var passport = require('passport');
 
@@ -54,13 +55,26 @@ router.put('/:id', function (req, res, next) {//auth
       });
     });
 
-router.post('/apply/:id', function(req, res, next) { //auth,
-  console.log("here");
-  var applicantPost = new Jobs.applicants(req.body);    //Not working
-  applicantPost.save(function(err,result){
-    if(err) return next(err);
-    res.send(result);
-  });
-});
+// router.post('/apply/:id', function(req, res, next) { //auth,
+//   console.log("here");
+//   console.log(req.body);
+//   Jobs.findOne({_id:req.params.id},function(err,result){
+//     result.applicants = req.body;
+//     console.log(result);
+//       res.send(result.applicants);
+//   });
+
+  // var jobPost = Jobs.applicants = req.body;
+  // jobPost.save(function(err,result){
+  //   if(err) return next(err);
+  //   res.send(result);
+  // });
+  // Jobs.findOne({_id:req.params.id},function(err,result){
+  //   applicants.push(req.body)
+  //   if(err) return next(err);
+  //   if(!result) return next("Could not find that job!");
+  //   res.send(result);
+  // });
+//});
 
 module.exports = router;
