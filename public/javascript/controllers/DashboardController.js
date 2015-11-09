@@ -2,11 +2,17 @@
 	'use strict';
 	angular.module('app')
 	.controller('DashboardController', DashboardController);
-
-
-	function DashboardController() {
-		console.log("What happened John!!!");
+	function DashboardController($stateParams, UserFactory, $state) {
 		var vm = this;
-		vm.title = 'Welcome to our App!';
+		vm.status = UserFactory.status;
+
+		UserFactory.getAllByUser(vm.status._id).then(function(res){
+			vm.userArray = res;
+		});
+
+		vm.goToJob = function(id){
+			$state.go('JobDetails', {id:id}, {location: true});
+		};
+
 	}
 })();

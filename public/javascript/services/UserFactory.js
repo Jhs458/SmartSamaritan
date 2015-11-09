@@ -82,6 +82,14 @@
 
 		if (getToken()) setUser();
 
+		o.getAllByUser = function(id) {
+			var q = $q.defer();
+			$http.get('/api/users/dashboard/' + id).then(function(res) {
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
 
 
 

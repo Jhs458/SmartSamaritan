@@ -18,8 +18,8 @@
 	vm.deleteJob = function(id){
 			JobsFactory.deleteJob(id).then(function() {
 					$state.go('Services');
-							})
-						}
+				});
+						};
 
 	vm.updateJob = function(z) {
 			JobsFactory.updateJob(z, {id:$stateParams.id}).then(function(res) {
@@ -39,7 +39,7 @@
 			 			});
 					// });
 			});
-		}
+		};
 
 		JobsFactory.getApplicants($stateParams.id).then(function(res){
 					vm.applicants = res;
