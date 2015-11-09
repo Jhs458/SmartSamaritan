@@ -5,13 +5,18 @@ var Jobs = mongoose.model('Jobs');
 var Applicants = mongoose.model('Applicants');
 var jwt = require('express-jwt');
 var passport = require('passport');
+var jwt = require('express-jwt');
+var auth = jwt({
+  userProperty: "payload", //req.payload._id in the Route
+  secret: "SuperSmart" //matches the secret in model
+   });
 
 
 
 router.get('/:id',function(req,res,next){
-  Jobs.findOne({_id:req.params.id},function(err,result){
-    if(err) return next(err);
-    if(!result) return next("Could not find that job!");
+  Jobs.findOne({_id: req.params.id}).populate('applicants').exec( function(err, result){
+    if(err) {return next(err);}
+    if(!result) {return next({err: "Error finding job by ID."});}
     res.send(result);
   });
 });
@@ -31,9 +36,13 @@ router.get('/search/:categeory',function(req,res,next){
   });
 });
 
-router.post('/',function(req,res,next){
-  // console.log(req.body);
+router.post('/', auth, function(req, res, next){
+  console.log(req.body, 1);
+  console.log(req.payload._id, 2);
+  // console.log(req.pauload.id, 3);
   var jobPost = new Jobs(req.body);
+  jobPost.createdBy = req.payload._id;
+  jobPost.date = new Date();
   jobPost.save(function(err,result){
     if(err) return next(err);
     res.send(result);

@@ -4,16 +4,30 @@ var mongoose = require('mongoose');
 var Applicants = mongoose.model('Applicants');
 var Jobs = mongoose.model('Jobs');
 var User = mongoose.model('User');
+var jwt = require('express-jwt');
+var auth = jwt({
+  userProperty: "payload", //req.payload._id in the Route
+  secret: "SuperSmart" //matches the secret in model
+   });
 
-router.post('/apply/:id', function(req,res,next){
+router.post('/apply/:id', auth, function(req,res,next){
   var appPost = new Applicants();
-  appPost.applicant = req.body._id;
-  appPost.username = req.body.username;
+  console.log(req.body, 1);
+  console.log(req.payload, 2);
+  appPost.applicant = req.payload._id;
+  appPost.username = req.payload.username;
   appPost.created = new Date();
   appPost.jobId = req.params.id;
-  appPost.save(function(err,result){
+  appPost.save(function(err, result){
     if(err) return next(err);
-    res.send(result);
+
+    Jobs.findOne({_id:req.params.id},function(err, result){
+    result.applicants.push(req.payload._id);
+    result.save(function(err, result) {
+      res.send(result.applicants);
+    });
+    console.log(result, 6);
+  });
   });
 });
 
