@@ -91,6 +91,14 @@
 			return q.promise;
 		};
 
+		o.deleteApplicant = function(id) {
+			var q = $q.defer();
+			$http.delete('/api/app/delete/' + id._id).then(function(res) {
+				q.resolve();
+			});
+			return q.promise;
+		};
+
 		// o.applyToJobModel = function(a, id) {
 		// 	var q = $q.defer();
 		// 	$http.post('/api/app/apply/' + id.id, a).then(function (res) {

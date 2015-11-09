@@ -58,23 +58,13 @@ router.put('/:id', function (req, res, next) {//auth
 // router.post('/apply/:id', function(req, res, next) { //auth,
 //   console.log("here");
 //   console.log(req.body);
-//   Jobs.findOne({_id:req.params.id},function(err,result){
-//     result.applicants = req.body;
+//   Jobs.findOne({_id:req.params.id},function(err,result){            //Might work - Jeremy Helped
+//     result.applicants.push(req.body._id);
+//     result.save
 //     console.log(result);
 //       res.send(result.applicants);
 //   });
 
-  // var jobPost = Jobs.applicants = req.body;
-  // jobPost.save(function(err,result){
-  //   if(err) return next(err);
-  //   res.send(result);
-  // });
-  // Jobs.findOne({_id:req.params.id},function(err,result){
-  //   applicants.push(req.body)
-  //   if(err) return next(err);
-  //   if(!result) return next("Could not find that job!");
-  //   res.send(result);
-  // });
-//});
+
 
 module.exports = router;

@@ -42,5 +42,13 @@
 					vm.applicants = res;
 				});
 
+		vm.deleteApplicant = function(a){
+			JobsFactory.deleteApplicant(a).then(function() {
+				JobsFactory.getApplicants($stateParams.id).then(function(res){
+							vm.applicants = res;
+						});
+				});
+						};
+
   }
 })();

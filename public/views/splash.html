@@ -31,10 +31,26 @@
           <label class="md-hue-1">Email</label>
           <input ng-model="nav.user.email" type="email" ng-required="true">
         </md-input-container>
+
+        <!-- experiment -->
+        <div layout='row'>
+          <div ng-password-strength="nav.user.password;" strength="passStrength" inner-class="meter"></div>
+          <!-- inner-class="progress-bar" inner-class-prefix="progress-bar-" -->
+        <div flex style="padding-top:12px;">Current password strength is <strong>{{nav.passStrength}}</strong>% </div>
+        <md-button flex ng-click="showHints = !showHints">Password Hints</md-button>
+        </div>
+
+        <div ng-show='showHints'>
+          <p>Like this, Like that</p>
+        </div>
+
         <md-input-container>
           <label class="md-hue-1">Password</label>
-          <input ng-model="nav.user.password" type="password" ng-required="true">
+          <input flex ng-model="nav.user.password" type="password" ng-required="true" ng-password-strength="nav.user.password" strength="nav.passStrength">
+          <!-- inner-class="progress-bar" inner-class-prefix="progress-bar-" -->
         </md-input-container>
+
+
         <md-input-container>
           <label class="md-hue-1"> Confirm Password</label>
           <input ng-model="nav.user.confirmPassword" type="password" ng-required="true">
