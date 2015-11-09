@@ -12,7 +12,8 @@
 				var date = vm.job.createdDate; // Method .toLocalDateString turns the date into a method and cannot populate the date-
         vm.job.createdDate = new Date();// picker in the edit so I had to turn the string back into a date for it to work.
 				vm.job.createdDate.setTime(Date.parse(date)); // http://stackoverflow.com/questions/32469737/angular-material-datepicker-date-tolocaledatestring-is-not-a-function
- 			});
+				// vm.getComments();
+			});
 
 	vm.deleteJob = function(id){
 			JobsFactory.deleteJob(id).then(function() {
@@ -27,6 +28,8 @@
 			 			});
 			});
 		};
+
+
 
 		vm.applyJob = function(a){
 			JobsFactory.applyJob(a, {id:$stateParams.id}).then(function(res) {

@@ -8,8 +8,10 @@
 		vm.job = {};
 
 		vm.addJobs = function(){
-			JobsFactory.createJobs(vm.job).then(function(){
+			JobsFactory.createJobs(vm.job).then(function(res) {
 				$state.go('JobsView', {cat: "allCategeories"});
+			}, function(res) {
+					vm.job = res;
 			});
 		};
 

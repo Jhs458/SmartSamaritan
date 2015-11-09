@@ -53,7 +53,7 @@
 		o.createJobs = function(job){
 			console.log(job);
 			var q  = $q.defer();
-			$http.post('/api/jobs',job).then(function(){
+			$http.post('/api/jobs', job).then(function(){
 				q.resolve();
 			});
 			return q.promise;
