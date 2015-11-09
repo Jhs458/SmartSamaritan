@@ -27,6 +27,7 @@ app.set('view options', {
 	layout: false
 });
 
+passport.initialize();
 //middleware that allows for us to parse JSON and UTF-8 from the body of an HTTP request
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());

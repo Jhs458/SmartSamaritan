@@ -5,49 +5,74 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/angular-material/angular-material.css" >
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body ng-controller="GlobalController as nav">
 
-	<md-toolbar layout="row" class="md-toolbar-tools md-toolbar-tools-bottom" id="navBar">
-			<div flex layout-wrap>
-				<div ui-sref="Dashboard({id: nav.status._id})" style="padding: 10px; text-align: center;">
-					Smart Samaritan
-				</div>
-			</div>
-			<div flex layout-wrap>
-				<md-button ui-sref="Services">
-					View Jobs
-				</md-button>
-			</div>
-			<div flex layout-wrap>
-				<md-button ui-sref="CreateJob">
-					Create a Post
-				</md-button>
-			</div>
-			<div flex layout-wrap>
-				<md-button ui-sref="Dashboard({id: nav.status._id})">
-					Dashboard
-				</md-button>
-			</div>
-			<div flex layout-wrap>
-				<md-button ng-click="nav.toggleRight()">
-					Messages
-				</md-button>
-			</div>
-			<div flex layout-wrap ng-show='nav.status.username;'>
-				 <p>User: {{nav.status.username}}</p>
-			</div>
-			<div flex layout-wrap>
-				<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.username;'>
-					Logout
-				</md-button>
-				<md-button type='button' ui-sref='Splash' ng-show='!nav.status.username;'><i class="zmdi zmdi-account-box-o"></i>
-					Log In
-				</md-button>
-			</div>
-		</md-toolbar>
+	<md-subheader style="background-color: #F1FFFA">
+</md-subheader>
 
+
+<md-toolbar class="md-toolbar-tools md-toolbar-tools-bottom" id="navBar">
+
+<div flex="25" layout-wrap>
+<md-button ui-sref="Services" ng-show="nav.status.username">
+<span class="navButtonTextColor">Browse Jobs</span>
+</md-button>
+</div>
+
+<div flex="50" layout-wrap>
+<div ui-sref="Dashboard({id: nav.status._id})" id="smartSamaritan">
+Smart Samaritan
+</div>
+</div>
+
+
+
+<div flex="15" layout-wrap>
+<md-menu class="md-menu-toolbar" ng-show="nav.status.username">
+<md-button ng-click="$mdOpenMenu()">
+<span class="navButtonTextColor">{{nav.status.username}}</span>
+</md-button>
+<md-menu-content>
+<md-menu-item>
+<md-button ui-sref="Dashboard({id: nav.status._id})">
+ 	<span class="navButtonTextColor">Dashboard</span>
+ 	</md-button>
+</md-menu-item>
+<md-menu-divider></md-menu-divider>
+<md-menu-item>
+<md-button ui-sref="CreateJob">
+ 	<span class="navButtonTextColor">Create a Post</span>
+ 	</md-button>
+</md-menu-item>
+<md-menu-divider></md-menu-divider>
+<md-menu-item>
+<md-button ng-click='nav.logout()'>
+<span class="navButtonTextColor">Logout</span>
+</md-button>
+</md-menu-item>
+</md-menu-content>
+</div>
+
+<div flex="10" layout-wrap layout-align="center end">
+	<div ng-show="!nav.status.username">
+		<md-button ui-sref="Splash">
+		<span class="navButtonTextColor">Log In</span>
+		</md-button>
+	</div>
+
+	<div ng-show="nav.status.username">
+		<md-button ng-click="nav.toggleRight()">
+		<span class="navButtonTextColor">Messages</span>
+		</md-button>
+	</div>
+</div>
+
+
+
+</md-toolbar>
 
 
 	<ui-view></ui-view>

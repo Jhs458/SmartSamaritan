@@ -24,7 +24,7 @@ router.get('/',function(req,res,next){
 });
 
 router.get('/search/:categeory',function(req,res,next){
-  console.log(req.params.categeory)
+  console.log(req.params.categeory);
   Jobs.find({categeory:req.params.categeory},function(err,result){
     if(err) return next(err);
     res.send(result);
