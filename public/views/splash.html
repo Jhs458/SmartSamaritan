@@ -1,71 +1,56 @@
-<br>
-<div ng-show="nav.isLogin">
-  <div layout="row" layout-wrap>
-    <div>
-    </div>
-    <form  class="well container" ng-submit="nav.loginUser()">
-      <h1>Sign In</h1>
-      <label >Username:</label>
-      <input ng-model="nav.user.username" type="text" required placeholder="Username..." ng-required="true">
-
-
-      <label>Password:</label>
-      <input ng-model="nav.user.password" type="password" required placeholder="Password..." ng-required="true">
-
-      ​
-      <!-- <label style="font-family:Ariel;">Password:</label>
-      <input type="password" class="form-control" required placeholder="Password..." ng-model="nav.user.password"> -->
-      ​
-      <div style="text-align: center">
-        <button ng-click="nav.isLogin = false;">Register</button>
-        <button type="submit">Login</button>
-      </div>
-    </form>
-    <br>
+<div layout="row" style="padding-top: 40px;">
+  <div flex="25">
   </div>
-</div>
-
-​
-<div ng-show="!nav.isLogin">
-  <div layout="row" layout-wrap>
-    <div flex="20">
-    </div>
-    <div flex="">
-      <form class="well container" ng-submit="nav.registerUser()">
-        <h1> Please Register... </h1>
-        <br>
-
-        <label>Username:</label>
-        <input ng-model="nav.user.username" type="text" required placeholder="Username..." ng-required="true">
-
-        ​     <br>
-
-        <label>Email:</label>
-        <input ng-model="nav.user.email" type="email" required placeholder="Email..." ng-required="true">
-
-        <br>
-
-
-        <label>Password:</label>
-        <input ng-model="nav.user.password" type="password" required placeholder="Password..." ng-required="true">
-
-        <br>
-
-
-        <label>Confirm Password:</label>
-        <input ng-model="nav.user.confirmPassword" type="password" required placeholder="Password..." ng-required="true">
-        <br>
-        <div ng-show="nav.user.password && nav.user.confirmPassword && !(nav.user.password === nav.user.confirmPassword)">Your passwords must match.</div>
-        <label>Address/Location</label>
-        <input ng-model="nav.user.location" required placeholder="Address/Location..." ng-required="true">
-        <br>
-        <div style="text-align:center">
-          <button type="submit" ng-click="nav.isLogin = true;">Submit</button>
+  <div flex="50" layout-padding class="loginDiv" ng-show="nav.isLogin">
+    <div layout="column">
+      <form ng-submit="nav.loginUser()">
+        <md-input-container>
+          <label class="md-hue-1">Username</label>
+          <input ng-model="nav.user.username" type="text" ng-required="true">
+        </md-input-container>
+        <md-input-container>
+          <label class="md-hue-1">Password</label>
+          <input ng-model="nav.user.password" type="text" ng-required="true">
+        </md-input-container>
+        <div style="text-align: center">
+          <md-button class="loginButton" type="submit">Log in</md-button>
+          <md-divider></md-divider>
+          <md-button class="loginButton" ng-click="nav.isLogin = false;">Sign Up</md-button>
         </div>
-      </div>
-    </form>
-    <div flex="20">
+      </form>
     </div>
-
+  </div>
+  <div flex="50" layout-padding class="loginDiv" ng-show="!nav.isLogin">
+    <div layout="column">
+      <form ng-submit="nav.registerUser()">
+        <md-input-container>
+          <label class="md-hue-1">Username</label>
+          <input ng-model="nav.user.username" ng-required="true">
+        </md-input-container>
+        <md-input-container>
+          <label class="md-hue-1">Email</label>
+          <input ng-model="nav.user.email" type="email" ng-required="true">
+        </md-input-container>
+        <md-input-container>
+          <label class="md-hue-1">Password</label>
+          <input ng-model="nav.user.password" type="password" ng-required="true">
+        </md-input-container>
+        <md-input-container>
+          <label class="md-hue-1"> Confirm Password</label>
+          <input ng-model="nav.user.confirmPassword" type="password" ng-required="true">
+        </md-input-container>
+        <div ng-show="nav.user.password && nav.user.confirmPassword && !(nav.user.password === nav.user.confirmPassword)">Your passwords must match.</div>
+        <md-input-container>
+          <label class="md-hue-1">Location</label>
+          <input ng-model="nav.user.location" type="text" ng-required="true">
+        </md-input-container>
+        <div style="text-align: center">
+          <md-button type="submit" class="loginButton" ng-click="nav.isLogin = true;">Sign Up</md-button>
+          <md-divider></md-divider>
+          <p>Already A Member?</p>
+          <md-button class="loginButton" ng-click="nav.isLogin = true;">Log in</md-button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
