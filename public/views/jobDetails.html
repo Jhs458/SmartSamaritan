@@ -83,7 +83,7 @@
 
       <div ng-repeat='a in vm.job.applicants' layout='row'>
         <h3 flex>{{a.username}}</h3>
-        <md-button flex ng-click="vm.deleteApplicant(a)" class="md-raised md-warn" style="max-width: 25px">X</md-button>
+        <md-button ng-show="a.applicant==nav.status.id" flex ng-click="vm.deleteApplicant(a)" class="md-raised md-warn" style="max-width: 25px">X</md-button>
       </div>
 
 
@@ -100,10 +100,14 @@
         <!-- <h2 class="md-title">Chosen Doer: {{vm.job.chosenApp.name}}</h2> -->
 
       </md-card-content>
-      <div class="md-actions" layout="row" layout-align="end center">
-        <md-button ng-click="vm.deleteJob(vm.job._id)" class="md-accent md-raised">Delete</md-button>
-        <md-button ng-click="editJob = !editJob" class="md-accent md-raised">Edit</md-button>
-        <md-button ng-click="vm.applyJob(vm.job);" class="md-accent md-raised">Apply</md-button>
+      <div class="md-actions" layout="row" layout-align="center center">
+        <div ng-if="vm.userType.isCreator">
+          <md-button ng-click="vm.deleteJob(vm.job._id)" class="md-accent md-raised">Delete</md-button>
+          <md-button ng-click="editJob = !editJob" class="md-accent md-raised">Edit</md-button>
+        </div>
+        <div ng-if="vm.userType.isNobody">
+          <md-button ng-click="vm.applyJob(vm.job);" class="md-accent md-raised">Apply</md-button>
+        </div>
       </div>
     </md-card>
   </div>
