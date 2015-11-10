@@ -99,6 +99,15 @@
 			return q.promise;
 		};
 
+
+		o.chooseApplicant = function(id){
+			var q = $q.defer();
+			$http.get('/api/jobs/' + id).then(function(res){
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
 		// o.applyToJobModel = function(a, id) {
 		// 	var q = $q.defer();
 		// 	$http.post('/api/app/apply/' + id.id, a).then(function (res) {

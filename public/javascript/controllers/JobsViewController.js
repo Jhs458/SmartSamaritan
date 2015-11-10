@@ -55,16 +55,15 @@
 					};
 
 //Marker
-				// 	vm.marker = {
-				// 						latitude: place[0].geometry.location.lat(),
-				// 						longitude: place[0].geometry.location.lng(),
-				// };
-
-				vm.markers = [
-					{
+					vm.marker = {
 										latitude: place[0].geometry.location.lat(),
 										longitude: place[0].geometry.location.lng(),
-				},
+				};
+
+
+//Markers
+				vm.options = {scrollwheel:false};
+				vm.markers = [
         ['London Eye, London', 51.503454,-0.119562],
         ['Palace of Westminster, London', 51.499633,-0.124755]
     ];
@@ -101,7 +100,7 @@
 
 
 //Circle
-				vm.options = {scrollwheel:false};
+
 				vm.circles = [
             {
                 id: 1,

@@ -12,6 +12,8 @@
           <!-- <h2 class="md-title">Details: {{j.details}}</h2> -->
           <h1 class="md-title">Date: {{j.createdDate | date}}</h1>
           <h2 class="md-title">Location: {{j.location.street}}, {{j.location.city}}, {{j.location.state}} {{j.location.zip}}</h2>
+
+          <h3 flex>{{a.username}}</h3>
           <!-- <h2 class="md-title">City: {{j.location.city}}</h2>
           <h2 class="md-title">State: {{j.location.state}}</h2>
           <h2 class="md-title">Zipcode: {{j.location.zip}}</h2> -->
@@ -61,11 +63,13 @@
           <ui-gmap-marker options="{ draggable: true , icon: 'http://furtaev.ru/preview/user_on_map_2_small.png'}" idKey='1' coords='vm.map.center'>
         </ui-gmap-marker>
 
+        <ui-gmap-markers models='Markers' coords="'self'" icon="'icon'">
+        </ui-gmap-markers>
+
         <ui-gmap-circle ng-repeat="c in vm.circles track by c.id" center="vm.map.center" stroke="c.stroke" fill="c.fill" radius="c.radius"
                 visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable" clickable="c.clickable" control="c.control">
               </ui-gmap-circle>
 
-        <!-- <ui-gmap-markers model='randomMarkers' coords='self' icon='icon'>
-        </ui-gmap-markers> -->
+
       </ui-gmap-google-map>
 </div>
