@@ -53,12 +53,12 @@
 
 		vm.updateJob = function(z) {
 			if(vm.userType.isCreator) {
-			JobsFactory.updateJob(z, {id:$stateParams.id}).then(function(res) {
-				JobsFactory.getJobById($stateParams.id).then(function(res){
-					vm.job = res;
+				JobsFactory.updateJob(z, {id:$stateParams.id}).then(function(res) {
+					JobsFactory.getJobById($stateParams.id).then(function(res){
+						vm.job = res;
+					});
 				});
-			});
-		}
+			}
 		};
 
 		vm.applyJob = function(a){
@@ -69,11 +69,9 @@
 			});
 		};
 
-		vm.deleteApplicant = function(a){
-			JobsFactory.deleteApplicant(a).then(function() {
-				JobsFactory.getApplicants($stateParams.id).then(function(res){
-					vm.applicants = res;
-				});
+		vm.deleteApplicant = function(jobID, appID, index){
+			JobsFactory.deleteApplicant(jobID, appID).then(function() {
+				vm.job.applicants.splice(index, 1);
 			});
 		};
 

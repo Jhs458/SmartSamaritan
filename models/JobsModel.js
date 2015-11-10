@@ -16,7 +16,7 @@ var JobsSchema = new mongoose.Schema({
   //  {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
    applicant: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
    username: { type: mongoose.Schema.Types.String, ref: 'User'},
-   created: Date  
+   created: Date
   }]
 });
 

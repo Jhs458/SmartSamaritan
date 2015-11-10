@@ -81,21 +81,29 @@
 			return q.promise;
 		};
 
-		o.getApplicants = function(id){
-			var q =$q.defer();
-			$http.get('/api/app/' + id).then(function(res){
-				q.resolve(res.data);
-			});
-			return q.promise;
-		};
+		// o.getApplicants = function(id){
+		// 	var q =$q.defer();
+		// 	$http.get('/api/app/' + id).then(function(res){
+		// 		q.resolve(res.data);
+		// 	});
+		// 	return q.promise;
+		// };
 
-		o.deleteApplicant = function(id) {
+		o.deleteApplicant = function(jobID, appID) {
 			var q = $q.defer();
-			$http.delete('/api/jobs/apply/' + id._id).then(function(res) {
+			$http.put('/api/jobs/apply', {jobID: jobID, appID: appID}).then(function(res) {
 				q.resolve();
 			});
 			return q.promise;
 		};
+
+		// o.deleteApplicant = function(id) {
+		// 	var q = $q.defer();
+		// 	$http.delete('/api/jobs/apply/' + id._id).then(function(res) {
+		// 		q.resolve();
+		// 	});
+		// 	return q.promise;
+		// };
 
 		return o;
 	}
