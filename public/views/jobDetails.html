@@ -81,8 +81,9 @@
 
       <h1>Applicants:</h1>
 
-      <div ng-repeat='a in vm.applicants'>
-        <h3>{{a.username}}</h3>
+      <div ng-repeat='a in vm.job.applicants' layout='row'>
+        <h3 flex>{{a.username}}</h3>
+        <md-button flex ng-click="vm.deleteApplicant(a)" class="md-raised md-warn" style="max-width: 25px">X</md-button>
       </div>
 
 
@@ -102,8 +103,7 @@
       <div class="md-actions" layout="row" layout-align="end center">
         <md-button ng-click="vm.deleteJob(vm.job._id)" class="md-accent md-raised">Delete</md-button>
         <md-button ng-click="editJob = !editJob" class="md-accent md-raised">Edit</md-button>
-        <md-button ng-click="vm.applyJob();" class="md-accent md-raised">Apply</md-button>
-        <!-- <md-button ng-click="vm.startEdit(a._id);" class="md-accent md-raised">Edit this Review</md-button> -->
+        <md-button ng-click="vm.applyJob(vm.job);" class="md-accent md-raised">Apply</md-button>
       </div>
     </md-card>
   </div>

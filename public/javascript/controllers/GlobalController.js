@@ -10,7 +10,7 @@
 		vm.status = UserFactory.status;
 		vm.msg = {};
 
-		
+
 		vm.logout = function() {
 			UserFactory.logout();
 			$state.go('Splash');

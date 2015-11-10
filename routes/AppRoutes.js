@@ -39,6 +39,13 @@ router.get('/:id',function(req,res,next){
   });
 });
 
+router.delete('/delete/:id', function(req, res, next) {//auth
+  Applicants.remove({_id: req.params.id}, function(err, result) {
+    if(err) return next(err);
+    res.send();
+      });
+    });
+
 var passport = require('passport');
 
 module.exports = router;

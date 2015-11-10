@@ -32,8 +32,7 @@ router.get('/dashboard/:id', function(req, res, next){
     sendBack.posting = result;
 
   Jobs.find()
-  .where('applicants').equals(req.params.id)
-  // .populate('broughtBy')
+  .where('applicants.applicant').equals(req.params.id)
   .exec(function(err, result){
     if(err) return next(err);
     if(!result) return next('Could not find request');

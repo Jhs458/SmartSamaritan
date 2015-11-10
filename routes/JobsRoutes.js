@@ -14,7 +14,8 @@ var auth = jwt({
 
 
 router.get('/:id',function(req,res,next){
-  Jobs.findOne({_id: req.params.id}).populate('applicants').exec( function(err, result){
+  // Jobs.findOne({_id: req.params.id}).populate('applicants').exec( function(err, result){
+  Jobs.findOne({_id: req.params.id}, function(err, result){
     if(err) {return next(err);}
     if(!result) {return next({err: "Error finding job by ID."});}
     res.send(result);
@@ -64,26 +65,29 @@ router.put('/:id', function (req, res, next) {//auth
       });
     });
 
-// router.post('/apply/:id', function(req, res, next) { //auth,
-//   console.log("here");
-//   console.log(req.body);
-//   Jobs.findOne({_id:req.params.id},function(err,result){
-//     result.applicants = req.body;
-//     console.log(result);
-//       res.send(result.applicants);
-//   });
+    router.put('/apply/:id', auth, function(req, res, next) { //auth,
 
-  // var jobPost = Jobs.applicants = req.body;
-  // jobPost.save(function(err,result){
-  //   if(err) return next(err);
-  //   res.send(result);
-  // });
-  // Jobs.findOne({_id:req.params.id},function(err,result){
-  //   applicants.push(req.body)
-  //   if(err) return next(err);
-  //   if(!result) return next("Could not find that job!");
-  //   res.send(result);
-  // });
-//});
+      appPost = {};
+      appPost.applicant = req.payload._id;
+      appPost.username = req.payload.username;
+      appPost.created = new Date();
+
+      Jobs.findOne({_id:req.params.id},function(err, result){
+        result.applicants.push(appPost);
+        result.save(function(err, result) {
+          res.send(result);
+        });
+        console.log(result, 6);
+      });
+      });
+
+      // router.delete('/apply/:id', auth, function(req, res, next) {//auth
+      //   Jobs.remove({"applicants": req.payload._id}, function(err, result) {
+      //     if(err) return next(err);
+      //     res.send();
+      //       });
+      //     });
+
+
 
 module.exports = router;

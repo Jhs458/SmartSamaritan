@@ -30,8 +30,42 @@
     </div>
   </div>
 
+  <!-- <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="642" height="443" src="https://maps.google.com/maps?hl=en&q=&ie=UTF8&t=roadmap&z=6&iwloc=B&output=embed"><div><small><a href="http://embedgooglemaps.com">embedgooglemaps.com</a></small></div><div><small><a href="http://www.premiumlinkgenerator.com/">visit this website</a></small></div></iframe> -->
+
   <div flex="25">
 
   </div>
 </div>
+
+
+
+<!-- google map -->
+          <!-- <label class="col-md-2 control-label">Job Location</label>
+            <div class="col-md-10" id="gmapsearchbox"> -->
+              <!-- <script type="text/ng-template" id="searchbox.tpl.html"> -->
+                <!-- <input id='address' class='nameinput' type="text" placeholder="Search Box">
+              </script>
+            </div> -->
+          <!-- Google Maps____ -->
+          <!-- parentdiv="searchBox.parentdiv" -->
+
+          <!-- <a ng-click='vm.getLocation()' class="btn btn-lg">Get location</a> -->
+          <script type="text/ng-template" id="searchbox.tpl.html">
+                  <input class='form-control' type="text" placeholder="Search Box">
+              </script>
+              <h1>{{vm.map.center}}</h1>
+
+          <ui-gmap-google-map id='map' center='vm.map.center' zoom='vm.map.zoom' draggable="true">
+          <ui-gmap-search-box template="vm.searchbox.template" events="vm.searchbox.events">
+          </ui-gmap-search-box>
+          <ui-gmap-marker options="{ draggable: true , icon: 'http://furtaev.ru/preview/user_on_map_2_small.png'}" idKey='1' coords='vm.map.center'>
+        </ui-gmap-marker>
+
+        <ui-gmap-circle ng-repeat="c in vm.circles track by c.id" center="vm.map.center" stroke="c.stroke" fill="c.fill" radius="c.radius"
+                visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable" clickable="c.clickable" control="c.control">
+              </ui-gmap-circle>
+
+        <!-- <ui-gmap-markers model='randomMarkers' coords='self' icon='icon'>
+        </ui-gmap-markers> -->
+      </ui-gmap-google-map>
 </div>
