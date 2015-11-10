@@ -1,4 +1,29 @@
 <div ng-controller="DashboardController as vm">
-	<h1>{{vm.title}}</h1>
-	<h1>Dashboard Page</h1>
+
+	<div layout="row" layout-padding style="padding:40px">
+		<div flex="50">
+		</div>
+		<div flex="50">
+			<div layout="column">
+				<div flex>
+					<h3 style="text-align: center; background-color: #DEE5E5">You Posted:</h3>
+					<ul ng-repeat="c in vm.userArray.posting">
+						<li style="list-style-type: none;">
+							<md-button style="font-size: 24px;" ng-click="vm.goToJob(c._id)">{{c.title}}</md-button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div layout="column">
+				<div flex>
+					<h3 style="text-align: center; background-color: #DEE5E5">You Applied To:</h3>
+					<ul ng-repeat="r in vm.userArray.applying">
+						<li style="list-style-type: none;">
+							<md-button style="font-size: 24px;" ng-click="vm.goToJob(r._id)">{{r.title}}</md-button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
