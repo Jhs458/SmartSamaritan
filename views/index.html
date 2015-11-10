@@ -5,123 +5,141 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="/angular-material/angular-material.css" >
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
-	<!-- Google map -->
 
-	<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/> -->
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/css/foundation.css" ng-if="mode === 'foundation'">
+
 </head>
 
 <body ng-controller="GlobalController as nav">
 
-	<md-toolbar layout="row" class="md-toolbar-tools md-toolbar-tools-bottom" id="navBar">
-			<div flex layout-wrap>
-				<div ui-sref="Dashboard({id: nav.status._id})" style="padding: 10px; text-align: center;">
-					Smart Samaritan
+	<md-subheader style="background-color: #F1FFFA; width:100%;">
+	</md-subheader>
+	<md-toolbar class="md-toolbar-tools md-toolbar-tools-bottom" id="navBar">
+		<div flex="25" layout-wrap>
+			<md-button ui-sref="Services" ng-show="nav.status.username">
+				<span class="navButtonTextColor">Browse Jobs</span>
+			</md-button>
+		</div>
+		<div flex="50" layout-wrap>
+			<div ui-sref="Dashboard({id: nav.status._id})" id="smartSamaritan">
+				Smart Samaritan
+			</div>
+		</div>
+		<div flex="15" layout-wrap>
+			<md-menu class="md-menu-toolbar" ng-show="nav.status.username">
+				<md-button ng-click="$mdOpenMenu()">
+					<span class="navButtonTextColor">{{nav.status.username}}</span>
+				</md-button>
+				<md-menu-content>
+					<md-menu-item>
+						<md-button ui-sref="Dashboard({id: nav.status._id})">
+							<span class="navButtonTextColor">Dashboard</span>
+						</md-button>
+					</md-menu-item>
+					<md-menu-divider></md-menu-divider>
+					<md-menu-item>
+						<md-button ui-sref="CreateJob">
+							<span class="navButtonTextColor">Create a Post</span>
+						</md-button>
+					</md-menu-item>
+					<md-menu-divider></md-menu-divider>
+					<md-menu-item>
+						<md-button ng-click='nav.logout()'>
+							<span class="navButtonTextColor">Logout</span>
+						</md-button>
+					</md-menu-item>
+				</md-menu-content>
+			</div>
+			<div flex="10" layout-wrap layout-align="center end">
+				<div ng-show="!nav.status.username">
+					<md-button ui-sref="Splash">
+						<span class="navButtonTextColor">Log In</span>
+					</md-button>
 				</div>
-			</div>
-			<div flex layout-wrap>
-				<md-button ui-sref="Services">
-					View Jobs
-				</md-button>
-			</div>
-			<div flex layout-wrap>
-				<md-button ui-sref="CreateJob">
-					Create a Post
-				</md-button>
-			</div>
-			<div flex layout-wrap>
-				<md-button ui-sref="Dashboard({id: nav.status._id})">
-					Dashboard
-				</md-button>
-			</div>
-			<div flex layout-wrap>
-				<md-button ng-click="nav.toggleRight()">
-					Messages
-				</md-button>
-			</div>
-			<div flex layout-wrap>
-				<md-button type='button' ng-click='nav.logout()' ng-show='nav.status.username;'>
-					Logout
-				</md-button>
-				<md-button type='button' ui-sref='Splash' ng-show='!nav.status.username;'><i class="zmdi zmdi-account-box-o"></i>
-					Log In
-				</md-button>
+				<div ng-show="nav.status.username">
+					<md-button ng-click="nav.toggleRight()">
+						<span class="navButtonTextColor">Messages</span>
+					</md-button>
+				</div>
 			</div>
 		</md-toolbar>
 
-
-
-	<ui-view></ui-view>
-	<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
-      <md-toolbar class="md-theme-light">
-          <h1 class="md-toolbar-tools" >Messaging</h1>
-      </md-toolbar>
-	    <md-content  layout-padding layout="column" md-scroll-y style="max-height: 68%">
+		<ui-view></ui-view>
+		<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+			<md-toolbar class="md-theme-light">
+				<h1 class="md-toolbar-tools" >Messaging</h1>
+			</md-toolbar>
+			<md-content  layout-padding layout="column" md-scroll-y style="max-height: 68%">
 				<md-list >
-	       <md-list-item class="md-2-line" ng-repeat="m in nav.messages">
-	         <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" /> -->
-	         <div class="md-list-item-text" layout="column">
-	           <h3>{{ m.body }}</h3>
-	           <p>{{ m.created }}</p>
-	         </div>
-			  </md-list-item>
-			</md-list>
-		</md-content>
-		<md-content layout>
-			<div class="msgBox">
-				 <form ng-submit="nav.sendMsg()" >
-				 	<md-input-container>
-						<label>Message...</label>
-						<textarea rows="3" ng-model="nav.msg.body" md-maxlength="300"></textarea>
-					</md-input-container>
-					<div layout="row">
-						<md-button type="submit" class="md-raised">Send Message</md-button>
-						<md-button ng-click="nav.close()" class="md-raised" >Close</md-button>
-					</div>
-				</form>
-			</div>
-		</md-content>
-	</md-sidenav>
-
-	<!-- Ext Libs -->
-	<script src="angular/angular.min.js"></script>
-	<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
-
-
-	<!-- Material -->
-	<script src="/angular-material/angular-material.min.js"></script>
-	<script src="/angular-aria/angular-aria.min.js"></script>
-	<script src="/angular-animate/angular-animate.min.js"></script>
-	<!-- Global Src -->
-	<script src="/javascript/app.js"></script>
-
-	<!-- google map -->
-	<script src='http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en&v=3.20'></script>
-	<script src='lodash/lodash.js'></script>
-	<!--<script src='/path/to/angular[.min].js'></script>-->
-	<script src='angular-simple-logger/dist/angular-simple-logger.js'></script>
-	<script src='angular-google-maps/dist/angular-google-maps.js'></script>
-
-	<!-- <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
-
-
-	<!-- Factories -->
-	<script src="/javascript/services/DashboardFactory.js"></script>
-	<script src="/javascript/services/UserFactory.js"></script>
-	<script src="/javascript/services/JobsFactory.js"></script>
-	<script src="/javascript/services/AuthInterceptor.js"></script>
-	<!-- Controllers -->
-	<script src="/javascript/controllers/DashboardController.js"></script>
-	<script src="/javascript/controllers/CreateJobController.js"></script>
-	<script src="/javascript/controllers/GlobalController.js"></script>
-	<script src="/javascript/controllers/JobDetailsController.js"></script>
-	<script src="/javascript/controllers/JobsViewController.js"></script>
-	<script src="/javascript/controllers/ServicesController.js"></script>
-	<script src="/javascript/controllers/CalendarController.js"></script>
+					<md-list-item class="md-2-line" ng-repeat="m in nav.messages">
+						<!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" /> -->
+						<div class="md-list-item-text" layout="column">
+							<h3>{{ m.body }}</h3>
+							<p>{{ m.created }}</p>
+						</div>
+					</md-list-item>
+				</md-list>
+			</md-content>
+			<md-content layout>
+				<div class="msgBox">
+					<form ng-submit="nav.sendMsg()" >
+						<md-input-container>
+							<label>Message...</label>
+							<textarea rows="3" ng-model="nav.msg.body" md-maxlength="300"></textarea>
+						</md-input-container>
+						<div layout="row">
+							<md-button type="submit" class="md-raised">Send Message</md-button>
+							<md-button ng-click="nav.close()" class="md-raised" >Close</md-button>
+						</div>
+					</form>
+				</div>
+			</md-content>
+		</md-sidenav>
 
 
 
 
-</body>
-</html>
+
+
+
+
+		<!-- Ext Libs -->
+		<script src="angular/angular.min.js"></script>
+		<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
+		<!-- Material -->
+		<script src="/angular-material/angular-material.min.js"></script>
+		<script src="/angular-aria/angular-aria.min.js"></script>
+		<script src="/angular-animate/angular-animate.min.js"></script>
+		<!-- Password Strength -->
+		<script src="/lodash/lodash.js"></script>
+		<script src="/ng-password-strength/dist/scripts/ng-password-strength.min.js"></script>
+		<!-- Global Src -->
+		<script src="/javascript/app.js"></script>
+
+		<!-- google map -->
+		<script src='http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en&v=3.20'></script>
+		<script src='lodash/lodash.js'></script>
+		<!--<script src='/path/to/angular[.min].js'></script>-->
+		<script src='angular-simple-logger/dist/angular-simple-logger.js'></script>
+		<script src='angular-google-maps/dist/angular-google-maps.js'></script>
+		<!-- Factories -->
+		<script src="/javascript/services/DashboardFactory.js"></script>
+		<script src="/javascript/services/UserFactory.js"></script>
+		<script src="/javascript/services/JobsFactory.js"></script>
+		<script src="/javascript/services/AuthInterceptor.js"></script>
+		<!-- Controllers -->
+		<script src="/javascript/controllers/DashboardController.js"></script>
+		<script src="/javascript/controllers/CreateJobController.js"></script>
+		<script src="/javascript/controllers/GlobalController.js"></script>
+		<script src="/javascript/controllers/JobDetailsController.js"></script>
+		<script src="/javascript/controllers/JobsViewController.js"></script>
+		<script src="/javascript/controllers/ServicesController.js"></script>
+		<script src="/javascript/controllers/CalendarController.js"></script>
+
+
+
+
+
+	</body>
+	</html>

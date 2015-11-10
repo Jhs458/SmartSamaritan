@@ -36,17 +36,23 @@
 
         <md-input-container md-no-float>
           <label>Zip</label>
-          <input ng-model="vm.job.location.zip" type="text" placeholder="Zipcode..." ng-required="true">
+          <input ng-model="vm.job.location.zip" type="number" placeholder="Zipcode..." ng-required="true">
         </md-input-container>
 
         <md-input-container md-no-float>
-          <label>Categeory</label>
-          <input ng-model="vm.job.categeory" type="text" placeholder="Job categeory..." ng-required="true">
+          <label>Category</label>
+            <md-select ng-model="vm.job.categeory">
+              <md-option value="mechanical">Mechanical</md-option>
+              <md-option value="electronic">Electronic</md-option>
+              <md-option value="pets">Pets</md-option>
+              <md-option value="physicalLabor">Physical Labor</md-option>
+              <md-option value="misc">Misc</md-option>
+            </md-select>
         </md-input-container>
 
         <md-input-container md-no-float>
           <label>Currency</label>
-          <input ng-model="vm.job.currency" type="text" placeholder="Job currency..." ng-required="true">
+          <input ng-model="vm.job.currency" type="number" placeholder="Job currency..." ng-required="true">
         </md-input-container>
         <div>
           <md-button class="md-accent md-raised " ng-click="vm.addJobs();">Post</md-button>

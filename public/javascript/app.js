@@ -1,6 +1,6 @@
 (function() {
 	'use strict';
-	angular.module('app', ['ui.router', 'ngMaterial', 'uiGmapgoogle-maps'])  //'uiGmapgoogle-maps'
+	angular.module('app', ['ui.router', 'ngMaterial', 'ngPasswordStrength', 'uiGmapgoogle-maps'])
 	.config(Config);
 
 	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -30,7 +30,7 @@
 			templateUrl: 'views/calendar.html'
 		})
 		.state('JobsView',{
-			url: '/jobsview',
+			url: '/jobsview/:cat',
 			templateUrl: 'views/jobsView.html'
 		});
 		$urlRouterProvider.otherwise('/');

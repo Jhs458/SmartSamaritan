@@ -26,7 +26,7 @@
       return q.promise;
     };
 
-    o.logoutUser = function() {
+    o.logout = function() {
       removeToken();
       removeUser();
     };
@@ -35,6 +35,7 @@
       var user = JSON.parse(urlBase64Decode(getToken().split('.')[1]));
       o.status.username = user.username;
       o.status._id = user._id;
+			o.status.id = user._id;
     }
 
     function removeUser() {
@@ -78,6 +79,9 @@
       }
       return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
     }
+
+		if (getToken()) setUser();
+
 
 
 

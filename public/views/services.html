@@ -1,3 +1,32 @@
 <div ng-controller="ServicesController as vm">
 
+  <md-grid-list md-cols-gt-sm="3" md-cols-sm="3" md-row-height-gt-md="1:1" md-row-height="5:3"
+        md-row-height="250px" style="margin: 15px;" md-gutter-gt-md="20px" md-gutter-gt-sm="8px" md-gutter="4px" >
+
+        <md-grid-tile class="tileBtn" style="background: rgba(0, 0, 0, 0.67);" ng-click="vm.viewAllCat()">
+          <md-grid-tile-header><h3>See All</h3></md-grid-tile-header>
+                          <h1>Tile One</h1>
+        </md-grid-tile>
+        <md-grid-tile class="tileBtn" style="background: rgba(0, 0, 0, 0.67);" ng-click="vm.viewMechanical()">
+          <md-grid-tile-header><h3>Mechanical</h3></md-grid-tile-header>
+                          <h1>Tile Two</h1>
+        </md-grid-tile>
+        <md-grid-tile class="tileBtn" style="background: rgba(0, 0, 0, 0.67);" ng-click="vm.viewElectrical()">
+          <md-grid-tile-header><h3>Electronics</h3></md-grid-tile-header>
+                          <h1>Tile Three</h1>
+        </md-grid-tile>
+        <md-grid-tile class="tileBtn" style="background: rgba(0, 0, 0, 0.67);" ng-click="vm.viewPets()">
+          <md-grid-tile-header><h3>Pets</h3></md-grid-tile-header>
+                          <h1>Tile Four</h1>
+        </md-grid-tile>
+        <md-grid-tile class="tileBtn" style="background: rgba(0, 0, 0, 0.67);" ng-click="vm.viewPhysicalLabor()">
+          <md-grid-tile-header><h3>Physical Labor</h3></md-grid-tile-header>
+                          <h1>Tile Five</h1>
+        </md-grid-tile>
+        <md-grid-tile class="tileBtn" style="background: rgba(0, 0, 0, 0.67);" ng-click="vm.viewMisc()">
+          <md-grid-tile-header><h3>Misc</h3></md-grid-tile-header>
+                          <h1>Tile Six</h1>
+        </md-grid-tile>
+    </md-grid-list>
+
 </div>
