@@ -18,20 +18,11 @@
 			});
 		}
 
-		vm.deleteJob = function(id){
-			JobsFactory.deleteJob(id).then(function() {
-				if($stateParams.cat == "allCategeories"){		//Instead of forwarding a user to a different state this repopulates the screen
-					JobsFactory.getJobs().then(function(res){		//with the new data which is everything minus what was just deleted
-						vm.jobs = res;															//Exact same if statement as above
-					});
-				}
-				else{
-					JobsFactory.getJobsByCat($stateParams.cat).then(function(res){
-						vm.jobs = res;
-					});
-				}
-			});
-		};
+vm.isApplicant =  function(applicants, userID) {
+	for(var i = 0; i < applicants.length; i++) {
+		return applicants[i].applicant === userID; 
+	}
+};
 
 //Google map
 		vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };

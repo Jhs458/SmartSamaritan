@@ -8,15 +8,9 @@
     <div ng-repeat='j in vm.jobs'>
     <md-card>
         <md-card-content>
-          <div ng-repeat="a in j.applicants">
-            <div ng-show="nav.status.id==a.applicant" class="appliedCheckView">
+            <div ng-show="vm.isApplicant(j.applicants, nav.status.id)" class="appliedCheckView">
               <i class="zmdi zmdi-check-circle"></i> You Have Applied!
-            </div>
           </div>
-          <div ng-show="nav.status.id==j.applicants.applicant">
-            HI
-          </div>
-          {{j.applicants.applicant}}
           <h1 class="md-title">Title: {{j.title}}</h1>
           <!-- <h2 class="md-title">Details: {{j.details}}</h2> -->
           <h1 class="md-title">Date: {{j.createdDate | date}}</h1>
