@@ -72,6 +72,8 @@
 		vm.deleteApplicant = function(jobID, appID, index){
 			JobsFactory.deleteApplicant(jobID, appID).then(function() {
 				vm.job.applicants.splice(index, 1);
+				vm.userType.isApplicant = false;
+				vm.userType.isNobody = true;
 			});
 		};
 

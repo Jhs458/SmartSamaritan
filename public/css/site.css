@@ -56,4 +56,14 @@ p {
 .jobPostHeader h2 {
   padding-top: 10px;
 }
+.appliedCheck {
+  color: #73956F;
+  font-size: 40px;
+  text-align: center;
+}
 /*Create Job Above*/
+.appliedCheckView {
+  color: #73956F;
+  font-size: 20px;
+  text-align: center;
+}

@@ -53,7 +53,7 @@ router.delete('/:id', function(req, res, next) {//auth
 
 router.put('/apply', function(req, res, next) {//auth
   console.log(req.body);
-  Jobs.update({_id: req.body.jobID}, {$pull: {applicants: {_id: req.body.appID}}}, 
+  Jobs.update({_id: req.body.jobID}, {$pull: {applicants: {_id: req.body.appID}}},
     function(err, result) {
     if(err) return next(err);
     res.send();

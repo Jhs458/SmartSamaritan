@@ -9,6 +9,9 @@
       <div >
         <md-card>
           <md-card-content>
+            <div ng-show="vm.userType.isApplicant" class="appliedCheck">
+              <i class="zmdi zmdi-check-circle"></i> You Have Applied!
+            </div>
             <div ng-show="!editJob">
               <h1 class="md-title">Title: {{vm.job.title}}</h1>
               <h2 class="md-title">Details: {{vm.job.details}}</h2>
@@ -18,12 +21,17 @@
               <h1 class="md-title">Categeory: {{vm.job.categeory}}</h1>
               <h2 class="md-title">Currency: {{vm.job.currency}}</h2>
             </div>
-
-            <h1>Applicants:</h1>
-
-            <div ng-repeat='a in vm.job.applicants' layout='row'>
-              <h3 flex>{{a.username}}</h3>
+            <div ng-show="vm.userType.isCreator">
+              <h2>Applicants:</h2>
+              <div ng-repeat='a in vm.job.applicants' layout='row'>
+                <h3 flex>{{a.username}}</h3>
+              </div>
               <md-button ng-show="a.applicant==nav.status.id" flex ng-click="vm.deleteApplicant(vm.job._id, a._id, $index)" class="md-raised md-warn" style="max-width: 25px">X</md-button>
+            </div>
+            <div ng-show="vm.userType.isApplicant">
+              <div ng-repeat='a in vm.job.applicants' layout='row' layout-align="center center">
+                <md-button ng-show="a.applicant==nav.status.id" flex ng-click="vm.deleteApplicant(vm.job._id, a._id, $index)" class="md-raised" style="background-color:#B0D0D3;">Remove Your Application</md-button>
+              </div>
             </div>
 
 
@@ -41,13 +49,13 @@
 
           <div class="md-actions" layout="row" layout-align="center center">
             <div ng-hide="editJob">
-              <md-button ng-show="vm.userType.isCreator" ng-click="editJob = !editJob" class="md-accent md-raised">Edit</md-button>
-              <md-button ng-show="vm.userType.isCreator" ng-click="vm.deleteJob(vm.job._id)" class="md-accent md-raised">Delete</md-button>
-            </div>
+            <md-button ng-show="vm.userType.isCreator" ng-click="editJob = !editJob" class="md-accent md-raised">Edit</md-button>
+            <md-button ng-show="vm.userType.isCreator" ng-click="vm.deleteJob(vm.job._id)" class="md-accent md-raised">Delete</md-button>
+          </div>
             <md-button ng-if="vm.userType.isNobody" ng-click="vm.applyJob(vm.job);" class="md-accent md-raised">Apply</md-button>
           </div>
 
-          <!-- ========= In Line Editing ========= -->
+      <!-- ========= In Line Editing ========= -->
 
           <div>
             <form ng-submit='vm.updateJob(vm.job)' ng-show="editJob">
