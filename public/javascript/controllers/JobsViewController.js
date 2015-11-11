@@ -17,7 +17,6 @@
 			});
 		}
 
-
 		vm.deleteJob = function(id){
 			JobsFactory.deleteJob(id).then(function() {
 				if($stateParams.cat == "allCategeories"){		//Instead of forwarding a user to a different state this repopulates the screen

@@ -54,12 +54,12 @@
 
 		vm.updateJob = function(z) {
 			if(vm.userType.isCreator) {
-			JobsFactory.updateJob(z, {id:$stateParams.id}).then(function(res) {
-				JobsFactory.getJobById($stateParams.id).then(function(res){
-					vm.job = res;
+				JobsFactory.updateJob(z, {id:$stateParams.id}).then(function(res) {
+					JobsFactory.getJobById($stateParams.id).then(function(res){
+						vm.job = res;
+					});
 				});
-			});
-		}
+			}
 		};
 
 		vm.applyJob = function(a){
@@ -75,19 +75,21 @@
 				});
 
 
-		vm.deleteApplicant = function(a){
-			JobsFactory.deleteApplicant(a).then(function() {
-				JobsFactory.getApplicants($stateParams.id).then(function(res){
-					vm.applicants = res;
-				});
+		vm.deleteApplicant = function(jobID, appID, index){
+			JobsFactory.deleteApplicant(jobID, appID).then(function() {
+				vm.job.applicants.splice(index, 1);
 			});
 		};
 
 
 		vm.chooseApplicant = function(a){
-			console.log(a,$stateParams.id);
-			JobsFactory.chooseApplicant(a, {id:$stateParams.id}).then(function(res){
-				$state.go('JobsView');
+			// alert('Your sure to choose this person?');
+			console.log(a);
+			JobsFactory.chooseApplicant(a, $stateParams.id).then(function(res){
+				vm.userType.isApplicant = false;
+				vm.userType.isCreator = true;
+				vm.userType.isNobody = false;
+				//$state.go('Services');
 			});
 		};
 

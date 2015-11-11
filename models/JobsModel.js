@@ -10,14 +10,15 @@ var JobsSchema = new mongoose.Schema({
  details: String,
  // status: [{type:String, enum: ['pending','inProgress', 'completed']}],
  rating: Number,
- chosenApp: {name: String, id: String},
+ chosenApp: [{type: mongoose.Schema.Types.String, ref: 'User'}],
  applicants: [{
   //  { type: String }
   //  {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
    applicant: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
    username: { type: mongoose.Schema.Types.String, ref: 'User'},
-   created: Date  
-  }]
+   created: Date
+ }]
+
 });
 
 // var ApplicantsSchema = new mongoose.Schema({

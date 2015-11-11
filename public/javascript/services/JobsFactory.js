@@ -89,31 +89,27 @@
 			return q.promise;
 		};
 
-		o.deleteApplicant = function(id) {
+		o.deleteApplicant = function(jobID, appID) {
 			var q = $q.defer();
-			$http.delete('/api/jobs/apply/' + id._id).then(function(res) {
+			$http.put('/api/jobs/apply', {jobID: jobID, appID: appID}).then(function(res) {
 				q.resolve();
 			});
 			return q.promise;
 		};
 
 
-
-		o.chooseApplicant = function(id){
+		o.chooseApplicant = function(a, stateParamsId){
+			console.log(stateParamsId);
+			console.log(a.applicant);
+			var userIdToPush = a.applicant;
 			var q = $q.defer();
-			$http.get('/api/jobs/' + id).then(function(res){
+			$http.put('/api/jobs/choose/', {userIdToPush, stateParamsId}).then(function(res){
 				q.resolve(res.data);
 			});
 			return q.promise;
 		};
 
-		// o.applyToJobModel = function(a, id) {
-		// 	var q = $q.defer();
-		// 	$http.post('/api/app/apply/' + id.id, a).then(function (res) {
-		// 		q.resolve(res.data);
-		// 			});
-		// 		return q.promise;
-		// 		};
+
 
 		return o;
 	}

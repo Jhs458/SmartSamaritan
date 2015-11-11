@@ -26,8 +26,6 @@
 			UserFactory.loginUser(vm.user).then(function() {
 				$state.go('Dashboard');
 				vm.user = {};
-				nav.user.username= null;
-				console.log(vm.status);
 			});
 		};
 
