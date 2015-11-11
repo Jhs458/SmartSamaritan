@@ -3,50 +3,57 @@
   width:50%;
   height:30px;
 }
-
 body {
   font-family: 'Lato', sans-serif;
 }
-
 .tileBtn :hover{
   cursor: pointer;
 }
-
 /*navBar styling below*/
 #navBar {
   color: black;
   background-color: white;
 }
-
 #navBar:hover {
   background-color: #F1FFFA;
 }
-
 #smartSamaritan {
   font-size: 34px;
   font-weight: 700;
   text-align: center;
   /*padding-left: 80px;*/
 }
-
 .navButtonTextColor {
   color: black;
   font-size: 16px;
 }
-
 /*navBar styling above*/
 /*splash page styling below*/
 .loginButton{
   font-size: 16px;
 }
-
 p {
   color: #605768;
 }
-
 .loginDiv {
   background-color: #DEE5E5;
   border-radius: 10px;
   margin-bottom: 40px;
 }
 /*splash page styling above*/
+/*Create Job below*/
+.createJobForm {
+  margin-bottom: 40px;
+  border-radius: 10px;
+}
+.jobPostHeader {
+  background-color: #DEE5E5;
+  height: 60px;
+  text-align: center;
+  border-radius: 10px 10px 0px 0px;
+  color: #605768;
+}
+.jobPostHeader h2 {
+  padding-top: 10px;
+}
+/*Create Job Above*/

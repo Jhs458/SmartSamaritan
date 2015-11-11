@@ -1,46 +1,15 @@
 <div ng-controller="CreateJobController as vm">
-<h1>This is Create Jobs Page</h1>
-
-<div layout="row" layout-wrap>
-    <div flex="10">
-
+  <div layout="row">
+    <div flex="20">
     </div>
-    <div flex="">
-      <md-content layout-padding class="autoScroll">
-        <md-input-container>
-          <label class="md-hue-1">Title</label>
-          <input ng-model="vm.job.title" type="text" placeholder="Job title..." ng-required="true">
-        </md-input-container>
-        <md-input-container md-no-float>
-          <label>Details</label>
-          <input ng-model="vm.job.details" type="text" placeholder="Job details..." ng-required="true">
-        </md-input-container>
-
-          <label>Date</label>
-          <md-datepicker ng-model="vm.job.createdDate" md-placeholder="Enter date"></md-datepicker>
-
-        <md-input-container md-no-float>
-          <label>Street</label>
-          <input ng-model="vm.job.location.street" type="text" placeholder="Street..." ng-required="true">
-        </md-input-container>
-
-        <md-input-container md-no-float>
-          <label>City</label>
-          <input ng-model="vm.job.location.city" type="text" placeholder="City..." ng-required="true">
-        </md-input-container>
-
-        <md-input-container md-no-float>
-          <label>State</label>
-          <input ng-model="vm.job.location.state" type="text" placeholder="State..." ng-required="true">
-        </md-input-container>
-
-        <md-input-container md-no-float>
-          <label>Zip</label>
-          <input ng-model="vm.job.location.zip" type="number" placeholder="Zipcode..." ng-required="true">
-        </md-input-container>
-
-        <md-input-container md-no-float>
-          <label>Category</label>
+    <div flex="60" class="createJobForm">
+      <div layout="column" layout-padding>
+        <md-content layout-padding class="autoScroll">
+          <div class="jobPostHeader">
+            <h2>Post Your Job:</h2>
+          </div>
+          <md-input-container flex="60">
+            <label>Category</label>
             <md-select ng-model="vm.job.categeory">
               <md-option value="mechanical">Mechanical</md-option>
               <md-option value="electronic">Electronic</md-option>
@@ -48,21 +17,59 @@
               <md-option value="physicalLabor">Physical Labor</md-option>
               <md-option value="misc">Misc</md-option>
             </md-select>
-        </md-input-container>
-
-        <md-input-container md-no-float>
-          <label>Currency</label>
-          <input ng-model="vm.job.currency" type="number" placeholder="Job currency..." ng-required="true">
-        </md-input-container>
-        <div>
-          <md-button class="md-accent md-raised " ng-click="vm.addJobs();">Post</md-button>
-          <md-button class="md-accent md-raised " ui-sref="Dashboard">Cancel</md-button>
-        </div>
-      </md-content>
-
+          </md-input-container>
+          <div layout="row">
+            <md-input-container flex="60">
+              <label class="md-hue-1">Title</label>
+              <input ng-model="vm.job.title" type="text" placeholder="Job title..." ng-required="true">
+            </md-input-container>
+            <div flex="40">
+              <label>Date</label>
+              <md-datepicker ng-model="vm.job.createdDate" md-placeholder="Enter date"></md-datepicker>
+            </div>
+          </div>
+          <md-input-container>
+            <label>Details</label>
+            <input ng-model="vm.job.details" type="text" placeholder="Job details..." ng-required="true">
+          </md-input-container>
+          <md-input-container>
+            <label>Street</label>
+            <input ng-model="vm.job.location.street" type="text" placeholder="Street..." ng-required="true">
+          </md-input-container>
+          <div layout="row">
+            <md-input-container flex>
+              <label>City</label>
+              <input ng-model="vm.job.location.city" type="text" placeholder="City..." ng-required="true">
+            </md-input-container>
+            <md-input-container flex>
+              <label>State</label>
+              <md-select ng-model="vm.job.location.state" >
+                <md-option ng-repeat="state in vm.states" value="{{state.abbrev}}">
+                  {{state.abbrev}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container flex>
+              <label>Zip</label>
+              <input ng-model="vm.job.location.zip" placeholder="Zipcode..." required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+            </md-input-container>
+          </div>
+          <md-input-container flex="60">
+            <label>Points Offered</label>
+            <md-select ng-model="vm.job.currency" placeholder="Points Offered..." ng-required="true">
+              <md-option value="5">5</md-option>
+              <md-option value="10">10</md-option>
+              <md-option value="20">20</md-option>
+              <md-option value="50">50</md-option>
+              <md-option value="100">100</md-option>
+            </md-select>
+          </md-input-container>
+          <div layout="row" layout-align="center center">
+            <md-button style="background-color: #605768;" class="md-accent md-raised " ng-click="vm.addJobs();">Post</md-button>
+            <md-button style="background-color: #605768;" class="md-accent md-raised " ui-sref="Dashboard">Cancel</md-button>
+          </div>
+        </md-content>
+      </div>
+    </div>
   </div>
-<div flex="10">
-</div>
-</div>
-
 </div>
