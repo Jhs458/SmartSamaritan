@@ -20,7 +20,9 @@
 
 vm.isApplicant =  function(applicants, userID) {
 	for(var i = 0; i < applicants.length; i++) {
-		return applicants[i].applicant === userID; 
+		if (applicants[i].applicant === userID) {
+			return true;
+		}
 	}
 };
 

@@ -67,3 +67,10 @@ p {
   font-size: 20px;
   text-align: center;
 }
+
+.jobViewCard:hover {
+  background-color: #DEE5E5;
+ -moz-box-shadow:    0 0 20px #605768;
+ -webkit-box-shadow: 0 0 20px #605768;
+ box-shadow:         0 0 20px #605768;
+}
