@@ -12,8 +12,13 @@
           <label class="md-hue-1">Password</label>
           <input ng-model="nav.user.password" type="text" ng-required="true">
         </md-input-container>
+
+        <p ng-show='emailReset'>Please check your email to reset password.<p>
+
         <div style="text-align: center">
           <md-button class="loginButton" type="submit">Log in</md-button>
+          <br>
+           <md-button type="button" class="md-flat" style="text-align:center" ng-click="nav.forgot(); emailReset = !emailReset" class="btn btn-primary">Forgot Password</md-button>
           <md-divider></md-divider>
           <md-button class="loginButton" ng-click="nav.isLogin = false;">Sign Up</md-button>
         </div>

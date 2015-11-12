@@ -32,6 +32,10 @@
 		.state('JobsView',{
 			url: '/jobsview/:cat',
 			templateUrl: 'views/jobsView.html'
+		})
+		.state('PassReset',{
+			url: '/passreset/:id',
+			templateUrl: 'views/passReset.html'
 		});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');
