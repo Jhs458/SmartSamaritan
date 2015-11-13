@@ -3,7 +3,7 @@
 	angular.module('app')
 	.controller('GlobalController', GlobalController);
 
-	function GlobalController(UserFactory, $mdSidenav, $state, JobsFactory, $stateParams) {
+	function GlobalController(UserFactory, $mdSidenav, $state, JobsFactory, $stateParams, jwtHelper) {
 		var vm = this;
 		vm.isLogin = true;
 		vm.user = {};
@@ -61,7 +61,10 @@
     	} ;
 
 			vm.resetPassword = function() {
-    		vm.user.id = $stateParams.id ;
+				var tokenPayload = jwtHelper.decodeToken($stateParams.info);
+				// console.log(tokenPayload);
+				// console.log(tokenPayload.user.id);
+				vm.user.id = tokenPayload.user.id;
     		UserFactory.resetPassword(vm.user).then(function(res) {
     			$state.go('Splash');
     		}) ;

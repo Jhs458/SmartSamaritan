@@ -6,6 +6,7 @@ var jwt = require('express-jwt');
 var passport = require('passport') ;
 var nodemailer = require('nodemailer') ;
 var flash = require('express-flash') ;
+var jwt2 = require("jsonwebtoken");
 
 var async = require("async");
 var crypto = require('crypto') ;
@@ -133,9 +134,21 @@ router.post('/forgot', function(req, res, next) {
 			return res.send("Error: No account with that email address.") ;
 		}
 
+		var passwordSecret = 'SuperSmart';
+		var date = new Date().getTime();
+		var fiveMinutesInMilliseconds = 1000 * 600;
+		date += fiveMinutesInMilliseconds;
+		resetPassToken = jwt2.sign({
+		expirationDate: date,
+		user: {
+		 id: user._id,
+		 name: user.username
+	 }
+ }, passwordSecret);
+
+
 		host = req.get('host') ;
-		link = 'http://' + host + '/#/passreset/' + user._id;
-		console.log(link, 'link');
+		link = 'http://' + host + '/#/passreset/' + resetPassToken;
 
 		mailOptions = {
 			to: user.email,
