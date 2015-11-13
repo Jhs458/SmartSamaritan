@@ -28,6 +28,8 @@ UserSchema.methods.createToken = function() {
  return jwt.sign({
    _id: this._id,
    username: this.username,
+   location: this.location,
+   email: this.email
 
  }, "SuperSmart"); //Add Passcode here
 };

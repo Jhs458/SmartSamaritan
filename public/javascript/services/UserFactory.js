@@ -38,6 +38,8 @@
       o.status.username = user.username;
       o.status._id = user._id;
 			o.status.id = user._id;
+			o.status.location = user.location;
+			o.status.email = user.email;
     }
 
     function removeUser() {

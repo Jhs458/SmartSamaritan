@@ -1,4 +1,8 @@
-.angular-google-map-container { height: 400px; width:800px;}
+.angular-google-map-container {
+  height: 520px;
+  width:520px;
+  margin-top: 8px;
+}
 .form-control{
   width:50%;
   height:30px;
@@ -59,13 +63,14 @@ p {
 .appliedCheck {
   color: #73956F;
   font-size: 40px;
-  text-align: center;
 }
 /*Create Job Above*/
+/*jobsView Below*/
 .appliedCheckView {
   color: #73956F;
   font-size: 20px;
   text-align: center;
+  background-color: #DEE5E5;
 }
 
 .jobViewCard:hover {
@@ -74,3 +79,24 @@ p {
  -webkit-box-shadow: 0 0 20px #605768;
  box-shadow:         0 0 20px #605768;
 }
+
+.jobViewCard {
+  margin-left: 30px;
+}
+
+.jobViewCard h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #08415C;
+}
+.jobViewCard h3 {
+  text-align: center;
+}
+
+.viewTitle {
+  font-size: 34px;
+  text-align: center;
+  color: #605768;
+}
+/*.jobsViewAbove*/

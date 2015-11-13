@@ -3,9 +3,8 @@
 	angular.module('app')
 	.controller('ServicesController', ServicesController);
 
-	function ServicesController(UserFactory, $mdSidenav, $state) {
+	function ServicesController(UserFactory, JobsFactory, $stateParams, $mdSidenav, $state) {
 		var vm = this;
-
 
 		vm.viewAllCat = function(){
 			$state.go("JobsView", {cat: "allCategeories"});
