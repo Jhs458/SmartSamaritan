@@ -20,7 +20,8 @@ var JobsSchema = new mongoose.Schema({
    applicant: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
    username: { type: mongoose.Schema.Types.String, ref: 'User'},
    created: Date
- }]
+ }],
+ isCompleted: { type: Boolean, default: false }
 
 });
 
