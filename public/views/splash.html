@@ -12,8 +12,13 @@
           <label class="md-hue-1">Password</label>
           <input ng-model="nav.user.password" type="password" ng-required="true">
         </md-input-container>
+
+        <p ng-show='emailReset'>Please check your email to reset password.<p>
+
         <div style="text-align: center">
           <md-button class="loginButton" type="submit">Log in</md-button>
+          <br>
+           <md-button type="button" class="md-flat" style="text-align:center" ng-click="nav.forgot(); emailReset = !emailReset" class="btn btn-primary">Forgot Password</md-button>
           <md-divider></md-divider>
           <md-button class="loginButton" ng-click="nav.isLogin = false;">Sign Up</md-button>
         </div>
@@ -31,35 +36,52 @@
           <label class="md-hue-1">Email</label>
           <input ng-model="nav.user.email" type="email" ng-required="true">
         </md-input-container>
-
-        <!-- experiment -->
-        <div layout='row'>
-          <div ng-password-strength="nav.user.password;" strength="passStrength" inner-class="meter"></div>
-          <!-- inner-class="progress-bar" inner-class-prefix="progress-bar-" -->
-        <div flex style="padding-top:12px;">Current password strength is <strong>{{nav.passStrength}}</strong>% </div>
-        <md-button flex ng-click="showHints = !showHints">Password Hints</md-button>
-        </div>
-
-        <div ng-show='showHints'>
-          <p>Like this, Like that</p>
-        </div>
-
         <md-input-container>
           <label class="md-hue-1">Password</label>
           <input flex ng-model="nav.user.password" type="password" ng-required="true" ng-password-strength="nav.user.password" strength="nav.passStrength">
           <!-- inner-class="progress-bar" inner-class-prefix="progress-bar-" -->
         </md-input-container>
 
-
         <md-input-container>
           <label class="md-hue-1"> Confirm Password</label>
           <input ng-model="nav.user.confirmPassword" type="password" ng-required="true">
         </md-input-container>
         <div ng-show="nav.user.password && nav.user.confirmPassword && !(nav.user.password === nav.user.confirmPassword)">Your passwords must match.</div>
+        <!-- experiment -->
+        <div layout='row'>
+          <div ng-password-strength="nav.user.password;" strength="passStrength" inner-class="meter"></div>
+          <!-- inner-class="progress-bar" inner-class-prefix="progress-bar-" -->
+          <div flex style="padding-top:12px;">Current password strength is <strong>{{nav.passStrength}}</strong>% </div>
+          <md-button flex ng-click="showHints = !showHints">Password Hints</md-button>
+        </div>
+
+        <div ng-show='showHints'>
+          <p>Like this, Like that</p>
+        </div>
+
+        <p>Your Address:</p>
         <md-input-container>
-          <label class="md-hue-1">Location</label>
-          <input ng-model="nav.user.location" type="text" ng-required="true">
+          <label>Street</label>
+          <input ng-model="nav.user.location.street" type="text" placeholder="Street..." ng-required="true">
         </md-input-container>
+        <div layout="row">
+          <md-input-container flex>
+            <label>City</label>
+            <input ng-model="nav.user.location.city" type="text" placeholder="City..." ng-required="true">
+          </md-input-container>
+          <md-input-container flex>
+            <label>State</label>
+            <md-select ng-model="nav.user.location.state" >
+              <md-option ng-repeat="state in nav.states" value="{{state.abbrev}}">
+                {{state.abbrev}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container flex>
+            <label>Zip</label>
+            <input ng-model="nav.user.location.zip" placeholder="Zipcode..." required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+          </md-input-container>
+        </div>
         <div style="text-align: center">
           <md-button type="submit" class="loginButton" ng-click="nav.isLogin = true;">Sign Up</md-button>
           <md-divider></md-divider>

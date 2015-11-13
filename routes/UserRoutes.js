@@ -6,15 +6,15 @@ var Jobs = mongoose.model('Jobs');
 var Applicants = mongoose.model('Applicants');
 var passport = require('passport');
 
-router.post('/register', function(req, res, next) {
-  var user = new User(req.body);
-  user.setPassword(req.body.password);
-  user.save(function(err, result) {
-    if(err) return next(err);
-    if(!result) return next('There was an issue registering that user.');
-    res.send(result.createToken());
-  });
-});
+// router.post('/register', function(req, res, next) {
+//   var user = new User(req.body);
+//   user.setPassword(req.body.password);
+//   user.save(function(err, result) {
+//     if(err) return next(err);
+//     if(!result) return next('There was an issue registering that user.');
+//     res.send(result.createToken());
+//   });
+// });
 
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user) {

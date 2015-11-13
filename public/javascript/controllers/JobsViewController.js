@@ -8,7 +8,8 @@
 
 		if($stateParams.cat == "allCategeories"){				//This if statement is necessary to see all catereogies since the url for categeories
 			JobsFactory.getJobs().then(function(res){				//requires :cat on the end of it to be identified. Because of which they make
-				vm.jobs = res;																	//Seperate calls to the server
+				vm.jobs = res;
+				console.log(res);															//Seperate calls to the server
 			});
 		}
 		else{
@@ -16,6 +17,7 @@
 				vm.jobs = res;
 			});
 		}
+
 
 		vm.deleteJob = function(id){
 			JobsFactory.deleteJob(id).then(function() {
@@ -31,6 +33,15 @@
 				}
 			});
 		};
+
+vm.isApplicant =  function(applicants, userID) {
+	for(var i = 0; i < applicants.length; i++) {
+		if (applicants[i].applicant === userID) {
+			return true;
+		}
+	}
+};
+
 
 //Google map
 		vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };

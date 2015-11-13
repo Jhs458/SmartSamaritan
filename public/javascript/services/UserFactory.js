@@ -5,16 +5,18 @@
 	function UserFactory($http, $q) {
 		var o = {};
 		o.status = {};
+		var token = '';
 
     o.registerUser = function(user) {
       var q = $q.defer();
-      $http.post('/api/users/register', user).then(function(res) {
-        setToken(res.data);
-        setUser();
+      $http.post('/api/reset/register', user).then(function(res) {
+				//setToken(res.data);
+        //setUser();
         q.resolve(res.data);
       });
       return q.promise;
     };
+
 
     o.loginUser = function(user) {
       var q = $q.defer();
@@ -55,30 +57,39 @@
       return localStorage.removeItem('token');
     }
 
-    function urlBase64Decode(str) {
-      var output = str.replace(/-/g, '+').replace(/_/g, '/');
-      switch (output.length % 4) {
-        case 0:
-          {
-            break;
-          }
-        case 2:
-          {
-            output += '==';
-            break;
-          }
-        case 3:
-          {
-            output += '=';
-            break;
-          }
-        default:
-          {
-            throw 'Illegal base64url string!';
-          }
-      }
-      return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
-    }
+		function urlBase64Decode(token) {
+       // token = getToken();
+       if(token ===  undefined){
+         // return false;
+         console.log("token is undefined");
+         return;
+       }
+       else {
+       var output = token.replace(/-/g, '+').replace(/_/g, '/');
+       switch (output.length % 4) {
+         case 0:
+           {
+             break;
+           }
+         case 2:
+           {
+             output += '==';
+             break;
+           }
+         case 3:
+           {
+             output += '=';
+             break;
+           }
+         default:
+           {
+             throw 'Illegal base64url string!';
+           }
+       }
+
+       return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
+     }
+     }
 
 		if (getToken()) setUser();
 
@@ -90,9 +101,37 @@
 			return q.promise;
 		};
 
-		
 
 
+
+
+		function getAuth() {
+		var auth = {
+		headers: {
+			Authorization: "Bearer " +
+			localStorage.getItem("token")
+			}
+		};
+		return auth ;
+		}
+
+		o.forgot = function(user) {
+		var q = $q.defer() ;
+			$http.post('/api/reset/forgot', user).success(function(res) {
+				q.resolve() ;
+			});
+		return q.promise ;
+			};
+
+
+		o.resetPassword = function(editedUser) {
+    var q = $q.defer() ;
+    $http.put('/api/reset/resetPassword/' , editedUser).success(
+      function(res) {
+        q.resolve(res) ;
+      }) ;
+    return q.promise ;
+  	};
 
 
 		return o;

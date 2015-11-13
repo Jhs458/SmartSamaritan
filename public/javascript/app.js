@@ -1,6 +1,6 @@
 (function() {
 	'use strict';
-	angular.module('app', ['ui.router', 'ngMaterial', 'ngPasswordStrength', 'uiGmapgoogle-maps'])
+	angular.module('app', ['ui.router', 'ngMaterial', 'ngPasswordStrength', 'uiGmapgoogle-maps', 'angular-jwt'])
 	.config(Config);
 
 	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -32,6 +32,10 @@
 		.state('JobsView',{
 			url: '/jobsview/:cat',
 			templateUrl: 'views/jobsView.html'
+		})
+		.state('PassReset',{
+			url: '/passreset/:info',
+			templateUrl: 'views/passReset.html'
 		});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');

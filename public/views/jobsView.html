@@ -1,69 +1,28 @@
 <div ng-controller="JobsViewController as vm">
   <h1>This is Jobsview page</h1>
   <div layout="row" layout-wrap>
-  <div flex="25">
-
-  </div>
-  <div flex="">
-    <div ng-repeat='j in vm.jobs'>
-    <md-card>
-        <md-card-content>
-          <h1 class="md-title">Title: {{j.title}}</h1>
-          <!-- <h2 class="md-title">Details: {{j.details}}</h2> -->
-          <h1 class="md-title">Date: {{j.createdDate | date}}</h1>
-          <h2 class="md-title">Location: {{j.location.street}}, {{j.location.city}}, {{j.location.state}} {{j.location.zip}}</h2>
-
-          <h3 flex>{{a.username}}</h3>
-          <!-- <h2 class="md-title">City: {{j.location.city}}</h2>
-          <h2 class="md-title">State: {{j.location.state}}</h2>
-          <h2 class="md-title">Zipcode: {{j.location.zip}}</h2> -->
-
-          <!-- <h1 class="md-title">Categeory: {{j.categeory}}</h1> -->
-          <!-- <h2 class="md-title">Currency: {{j.currency}}</h2> -->
-          <!-- <h2 class="md-title">Review: {{a.description}}</h2> -->
-        </md-card-content>
-        <div class="md-actions" layout="row" layout-align="end center">
-          <md-button ui-sref="JobDetails({id: j._id})" class="md-accent md-raised">See more here</md-button>
-          <md-button ng-click="vm.deleteJob(j._id)" class="md-accent md-raised">Delete</md-button>
-
-
-        </div>
-      </md-card>
+    <div flex="25">
+    </div>
+    <div flex>
+        <md-card class="jobViewCard" ng-repeat='j in vm.jobs'<a ui-sref="JobDetails({id: j._id})"></a>
+          <md-card-content>
+            <div ng-show="vm.isApplicant(j.applicants, nav.status.id)" class="appliedCheckView">
+              <i class="zmdi zmdi-check-circle"></i> You Have Applied!
+            </div>
+            <h2 class="md-title">Title: {{j.title}}</h2>
+            <h3 class="md-title">Date: {{j.createdDate | date}}</h3>
+            <h3 class="md-title">Location: {{j.location.street}}, {{j.location.city}}, {{j.location.state}} {{j.location.zip}}</h3>
+            <h3 class="md-title">Currency: {{j.currency}}</h3>
+          </md-card-content>
+        </md-card>
+    </div>
+    <div flex="25">
     </div>
   </div>
 
-  <!-- <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="642" height="443" src="https://maps.google.com/maps?hl=en&q=&ie=UTF8&t=roadmap&z=6&iwloc=B&output=embed"><div><small><a href="http://embedgooglemaps.com">embedgooglemaps.com</a></small></div><div><small><a href="http://www.premiumlinkgenerator.com/">visit this website</a></small></div></iframe> -->
-
-  <div flex="25">
-
-  </div>
-</div>
 
 
-
-<!-- google map -->
-          <!-- <label class="col-md-2 control-label">Job Location</label>
-            <div class="col-md-10" id="gmapsearchbox"> -->
-              <!-- <script type="text/ng-template" id="searchbox.tpl.html"> -->
-                <!-- <input id='address' class='nameinput' type="text" placeholder="Search Box">
-              </script>
-            </div> -->
-          <!-- Google Maps____ -->
-          <!-- parentdiv="searchBox.parentdiv" -->
-
-          <!-- <a ng-click='vm.getLocation()' class="btn btn-lg">Get location</a> -->
-          <script type="text/ng-template" id="searchbox.tpl.html">
-                  <input class='form-control' type="text" placeholder="Search Box">
-              </script>
-              <h1>{{vm.map.center}}</h1>
-
-          <ui-gmap-google-map id='map' center='vm.map.center' zoom='vm.map.zoom' draggable="true">
-          <ui-gmap-search-box template="vm.searchbox.template" events="vm.searchbox.events">
-          </ui-gmap-search-box>
-          <ui-gmap-marker options="{ draggable: true , icon: 'http://furtaev.ru/preview/user_on_map_2_small.png'}" idKey='1' coords='vm.map.center'>
-        </ui-gmap-marker>
-
-        <ui-gmap-markers models='Markers' coords="'self'" icon="'icon'">
+        <!-- <ui-gmap-markers models='Markers' coords="'self'" icon="'icon'">
         </ui-gmap-markers>
 
         <ui-gmap-circle ng-repeat="c in vm.circles track by c.id" center="vm.map.center" stroke="c.stroke" fill="c.fill" radius="c.radius"
@@ -71,5 +30,37 @@
               </ui-gmap-circle>
 
 
-      </ui-gmap-google-map>
+      </ui-gmap-google-map> -->
+
+
+  <!-- google map -->
+  <!-- <label class="col-md-2 control-label">Job Location</label>
+  <div class="col-md-10" id="gmapsearchbox"> -->
+  <!-- <script type="text/ng-template" id="searchbox.tpl.html"> -->
+  <!-- <input id='address' class='nameinput' type="text" placeholder="Search Box">
+</script>
+</div> -->
+<!-- Google Maps____ -->
+<!-- parentdiv="searchBox.parentdiv" -->
+
+<!-- <a ng-click='vm.getLocation()' class="btn btn-lg">Get location</a> -->
+<script type="text/ng-template" id="searchbox.tpl.html">
+<input class='form-control' type="text" placeholder="Search Box">
+</script>
+<h1>{{vm.map.center}}</h1>
+
+<ui-gmap-google-map id='map' center='vm.map.center' zoom='vm.map.zoom' draggable="true">
+  <ui-gmap-search-box template="vm.searchbox.template" events="vm.searchbox.events">
+  </ui-gmap-search-box>
+  <ui-gmap-marker options="{ draggable: true , icon: 'http://furtaev.ru/preview/user_on_map_2_small.png'}" idKey='1' coords='vm.map.center'>
+  </ui-gmap-marker>
+
+  <ui-gmap-circle ng-repeat="c in vm.circles track by c.id" center="vm.map.center" stroke="c.stroke" fill="c.fill" radius="c.radius"
+  visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable" clickable="c.clickable" control="c.control">
+</ui-gmap-circle>
+
+<!-- <ui-gmap-markers model='randomMarkers' coords='self' icon='icon'>
+</ui-gmap-markers> -->
+</ui-gmap-google-map>
+
 </div>
