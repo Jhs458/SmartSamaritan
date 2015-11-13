@@ -15,10 +15,10 @@ var auth = jwt({
 
 
 router.put('/choose/', auth, function(req,res){  //auth
-  console.log(req.body)
-  console.log(req.body.stateParamsId)
+  console.log(req.body);
+  console.log(req.body.stateParamsId);
 User.findOne({_id: req.body.userIdToPush}, function(err, userInfo){
-  console.log(userInfo)
+  console.log(userInfo);
   Jobs.findOne({_id: req.body.stateParamsId},function(err,result){
     console.log('jobroutes21');
   result.chosenApp.push(userInfo.username);
@@ -69,6 +69,22 @@ router.post('/', auth, function(req, res, next){
   });
 });
 
+// router.get('/calendar/:id',function(req,res,next){
+//   Jobs.findOne({},function(err,result){
+//     if(err) return next(err);
+//     res.send(result);
+//   });
+// });
+
+router.post('/calendar',auth,function(req,res,next){
+  console.log(req.body,"jobRoutes73");
+  var title = req.body.title;
+  var date = req.body.createdDate;
+  var currency = req.body.currency;
+  console.log(title,date,currency);
+
+});
+
 router.delete('/:id', function(req, res, next) {//auth
   Jobs.remove({_id: req.params.id}, function(err, result) {
     if(err) return next(err);
@@ -79,6 +95,16 @@ router.delete('/:id', function(req, res, next) {//auth
 router.put('/apply', function(req, res, next) {//auth
   console.log(req.body);
   Jobs.update({_id: req.body.jobID}, {$pull: {applicants: {_id: req.body.appID}}},
+    function(err, result) {
+    if(err) return next(err);
+    res.send();
+  });
+});
+
+
+router.put('/accept', function(req, res, next) {//auth
+  console.log(req.body, "90jobroutes");
+  Jobs.update({_id: req.body.jobId}, {$pull: {chosenApp: req.body.c}},
     function(err, result) {
     if(err) return next(err);
     res.send();

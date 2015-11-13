@@ -24,6 +24,15 @@
 			return q.promise;
 		};
 
+		o.calendarPosts = function(id){
+			var q =$q.defer();
+			console.log(id);
+			$http.get('/api/jobs/calendar/' + id).then(function(res){
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
 		o.getJobsByCat = function(cat){
 			var q = $q.defer();
 			$http.get('/api/jobs/search/' + cat).then(function(res){
@@ -105,6 +114,25 @@
 			var q = $q.defer();
 			$http.put('/api/jobs/choose/', {userIdToPush, stateParamsId}).then(function(res){
 				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
+		// o.appAccept = function(jobID){
+		// 	console.log(jobID);
+		// 	var q = $q.defer();
+		// 	$http.post('/api/jobs/calendar',calendarID).then(function(res){
+		// 		q.resolve(res.data);
+		// 	});
+		// 	return q.promise;
+		// };
+
+		o.appDecline = function(c, jobId){
+			console.log(c);
+			console.log(jobId);
+			var q =$q.defer();
+			$http.put('/api/jobs/accept', {c, jobId}).then(function(res){
+				q.resolve();
 			});
 			return q.promise;
 		};

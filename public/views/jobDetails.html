@@ -24,13 +24,15 @@
 
             <div ng-repeat='a in vm.job.applicants' layout='row'>
               <!-- <h3 flex>{{a.username}}</h3> -->
-              <md-button ng-click='vm.chooseApplicant(a)' flex class='md-raised md-primary' style='max-width:25px'>{{a.username}}</md-button>
+              <md-button ng-click='vm.chooseApplicant(a)' ng-disabled='vm.job.chosenApp.length > 0' flex class='md-raised md-primary' style='max-width:25px'>{{a.username}}</md-button>
               <md-button ng-show="a.applicant==nav.status.id" flex ng-click="vm.deleteApplicant(vm.job._id, a._id, $index)" class="md-raised md-warn" style="max-width: 25px">X</md-button>
             </div>
-            <h1>You choosed: </h1>
+            <h1>Poster choosed: </h1>
             <div ng-repeat='c in vm.job.chosenApp' layout='row'>
               <h3>{{c}}</h3>
+              <md-button ng-click='vm.appAccept(c)' ng-disabled='c!=nav.status.username' flex style='max-width:25px' class='md-raised md-primary'>Confirm</md-button>
             </div>
+
 
 
             <!-- <label>Rating</label>

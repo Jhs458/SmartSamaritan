@@ -9,7 +9,7 @@
 					<h3 style="text-align: center; background-color: #DEE5E5">You Posted:</h3>
 					<ul ng-repeat="c in vm.userArray.posting">
 						<li style="list-style-type: none;">
-							<md-button style="font-size: 24px;" ng-click="vm.goToJob(c._id)">{{c.title}}</md-button>
+							<md-button style="font-size: 24px;" ng-click="vm.goToJob(c._id)" ng-class="{'md-accent md-raised md-hue-1':c.chosenApp.length > 0}">{{c.title}}</md-button>
 						</li>
 					</ul>
 				</div>
