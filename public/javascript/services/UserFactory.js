@@ -135,6 +135,13 @@
     return q.promise ;
   	};
 
+		o.jobExp = function(e){
+			var q = $q.defer();
+			$http.put('/api/users/jobExp/' + e).then(function(res){
+				q.resolve();
+			});
+			return q.promise;
+		};
 
 		return o;
 	}

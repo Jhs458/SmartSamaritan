@@ -40,10 +40,18 @@ router.get('/dashboard/:id', function(req, res, next){
     res.send(sendBack);
     console.log(sendBack);
   });
-
-
+});
 });
 
+router.put('/jobExp/:id', function(req, res, next) {//auth
+  console.log('jobExp route')
+  console.log(req.params);
+  User.update({_id: req.params.id}, {$inc: {experience: 2}},
+    function(err, result) {
+    if(err) return next(err);
+    res.send();
+  });
 });
+
 
 module.exports = router;

@@ -8,7 +8,7 @@ email: {required: true, unique: true, type:String, lowercase: true, trim: true},
 passwordHash: String,
 salt: String,
 review: String,
-experience: Number,
+experience: {type: Number},
 location: {street: String, city: String, state: String, zip: Number},
 jobs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Jobs'}],
 messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Messages'}]
