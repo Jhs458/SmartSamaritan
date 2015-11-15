@@ -15,7 +15,7 @@ facebook: {
 passwordHash: String,
 salt: String,
 review: String,
-experience: Number,
+experience: {type: Number},
 location: {street: String, city: String, state: String, zip: Number},
 jobs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Jobs'}],
 messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Messages'}]
@@ -35,6 +35,8 @@ UserSchema.methods.createToken = function() {
  return jwt.sign({
    _id: this._id,
    username: this.username,
+   location: this.location,
+   email: this.email
 
  }, "SuperSmart"); //Add Passcode here
 };

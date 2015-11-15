@@ -4,7 +4,7 @@
 	.factory('DashboardFactory', DashboardFactory);
 	function DashboardFactory($http, $q) {
 		var o = {};
-		
+
 
 		return o;
 	}

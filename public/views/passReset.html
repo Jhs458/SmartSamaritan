@@ -1,0 +1,17 @@
+<form ng-submit="nav.resetPassword()" >
+
+<h2>Please Choose your new password here</h2>
+
+    <md-input-container>
+		<label>Password</label>
+		<input type="text" placeholder="Password..." required ng-model="nav.user.password" />
+  </md-input-container>
+
+    <md-input-container>
+		<label>Confirm Password</label>
+		<input type="text" placeholder="Confirm Password..." required ng-model="nav.user.confirmPass" />
+  </md-input-container>
+
+		<button type="submit" ng-disabled="!nav.user.password || !nav.user.confirmPass" class="md-flat">Submit</button>
+
+</form>

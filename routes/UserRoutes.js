@@ -7,15 +7,15 @@ var Applicants = mongoose.model('Applicants');
 var passport = require('passport');
 var jwt = require('express-jwt');
 
-router.post('/register', function(req, res, next) {
-  var user = new User(req.body);
-  user.setPassword(req.body.password);
-  user.save(function(err, result) {
-    if(err) return next(err);
-    if(!result) return next('There was an issue registering that user.');
-    res.send(result.createToken());
-  });
-});
+// router.post('/register', function(req, res, next) {
+//   var user = new User(req.body);
+//   user.setPassword(req.body.password);
+//   user.save(function(err, result) {
+//     if(err) return next(err);
+//     if(!result) return next('There was an issue registering that user.');
+//     res.send(result.createToken());
+//   });
+// });
 
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user) {
@@ -41,13 +41,21 @@ router.get('/dashboard/:id', function(req, res, next){
     res.send(sendBack);
     console.log(sendBack);
   });
-
-
+});
 });
 
+router.put('/jobExp/:id', function(req, res, next) {//auth
+  console.log('jobExp route')
+  console.log(req.params);
+  User.update({_id: req.params.id}, {$inc: {experience: 2}},
+    function(err, result) {
+    if(err) return next(err);
+    res.send();
+  });
 });
 
 
+<<<<<<< HEAD
 
 // =====================================
   // FACEBOOK ROUTES =====================
@@ -88,4 +96,6 @@ function isLoggedIn(req, res, next) {
 
 
 
+=======
+>>>>>>> 1937620b786852e6b72cf4401808d799b7ed54c5
 module.exports = router;

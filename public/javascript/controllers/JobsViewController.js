@@ -18,11 +18,30 @@
 			});
 		}
 
+
+		vm.deleteJob = function(id){
+			JobsFactory.deleteJob(id).then(function() {
+				if($stateParams.cat == "allCategeories"){		//Instead of forwarding a user to a different state this repopulates the screen
+					JobsFactory.getJobs().then(function(res){		//with the new data which is everything minus what was just deleted
+						vm.jobs = res;															//Exact same if statement as above
+					});
+				}
+				else{
+					JobsFactory.getJobsByCat($stateParams.cat).then(function(res){
+						vm.jobs = res;
+					});
+				}
+			});
+		};
+
 vm.isApplicant =  function(applicants, userID) {
 	for(var i = 0; i < applicants.length; i++) {
-		return applicants[i].applicant === userID; 
+		if (applicants[i].applicant === userID) {
+			return true;
+		}
 	}
 };
+
 
 //Google map
 		vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
@@ -46,53 +65,52 @@ vm.isApplicant =  function(applicants, userID) {
 					};
 
 //Marker
-				// 	vm.marker = {
-				// 						latitude: place[0].geometry.location.lat(),
-				// 						longitude: place[0].geometry.location.lng(),
-				// };
-
-				vm.markers = [
-					{
+					vm.marker = {
 										latitude: place[0].geometry.location.lat(),
 										longitude: place[0].geometry.location.lng(),
-				},
-        ['London Eye, London', 51.503454,-0.119562],
-        ['Palace of Westminster, London', 51.499633,-0.124755]
-    ];
+				};
 
-		function initializeMaps() {
-			var myOptions = {
-				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				mapTypeControl: false
-			};
-			var map = new google.maps.Map(document.getElementById("map"),myOptions);
-			var infowindow = new google.maps.InfoWindow();
-			var marker, i;
-			var bounds = new google.maps.LatLngBounds();
 
-			for (i = 0; i < markers.length; i++) {
-				var pos = new google.maps.LatLng(markers[i][1], markers[i][2]);
-				bounds.extend(pos);
-				marker = new google.maps.Marker({
-					position: pos,
-					map: map
-				});
-				google.maps.event.addListener(marker, 'click', (function(marker, i) {
-					return function() {
-						infowindow.setContent(markers[i][0]);
-						infowindow.open(map, marker);
-					};
-				})(marker, i));
-			}
-			map.fitBounds(bounds);
-		}
+//Markers
+		// 		vm.options = {scrollwheel:false};
+		// 		vm.markers = [
+    //     ['London Eye, London', 51.503454,-0.119562],
+    //     ['Palace of Westminster, London', 51.499633,-0.124755]
+    // ];
+		//
+		// function initializeMaps() {
+		// 	var myOptions = {
+		// 		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		// 		mapTypeControl: false
+		// 	};
+		// 	var map = new google.maps.Map(document.getElementById("map"),myOptions);
+		// 	var infowindow = new google.maps.InfoWindow();
+		// 	var marker, i;
+		// 	var bounds = new google.maps.LatLngBounds();
+		//
+		// 	for (i = 0; i < markers.length; i++) {
+		// 		var pos = new google.maps.LatLng(markers[i][1], markers[i][2]);
+		// 		bounds.extend(pos);
+		// 		marker = new google.maps.Marker({
+		// 			position: pos,
+		// 			map: map
+		// 		});
+		// 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
+		// 			return function() {
+		// 				infowindow.setContent(markers[i][0]);
+		// 				infowindow.open(map, marker);
+		// 			};
+		// 		})(marker, i));
+		// 	}
+		// 	map.fitBounds(bounds);
+		// }
 
 
 
 
 
 //Circle
-				vm.options = {scrollwheel:false};
+
 				vm.circles = [
             {
                 id: 1,

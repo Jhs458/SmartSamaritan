@@ -8,6 +8,7 @@
 		vm.status = UserFactory.status;
 		vm.userType = {};
 
+
 		JobsFactory.getJobById($stateParams.id).then(function(res){
 			vm.job = res;
 			vm.determineUser(vm.job, UserFactory.status._id);
@@ -51,6 +52,7 @@
 			}
 		};
 
+
 		vm.updateJob = function(z) {
 			if(vm.userType.isCreator) {
 				JobsFactory.updateJob(z, {id:$stateParams.id}).then(function(res) {
@@ -62,12 +64,17 @@
 		};
 
 		vm.applyJob = function(a){
+			console.log(a);
 			JobsFactory.applyJob(a, {id:$stateParams.id}).then(function(res) {
 				vm.job = res;
 				vm.userType.isApplicant = true;
 				vm.userType.isNobody = false;
 			});
 		};
+			JobsFactory.getApplicants($stateParams.id).then(function(res){
+					vm.applicants = res;
+				});
+
 
 		vm.deleteApplicant = function(jobID, appID, index){
 			JobsFactory.deleteApplicant(jobID, appID).then(function() {
@@ -77,5 +84,49 @@
 			});
 		};
 
+
+		vm.chooseApplicant = function(a){
+			if(confirm('You sure to choose this person?')===true){
+			console.log(a);
+			JobsFactory.chooseApplicant(a, $stateParams.id).then(function(res){
+				vm.userType.isApplicant = false;
+				vm.userType.isCreator = true;
+				vm.userType.isNobody = false;
+				window.location.reload();
+				//$state.go('Services');
+			});
+		}
+			else{
+				return;
+			}
+		};
+
+
+		vm.appAccept = function(c,index){
+			if(confirm('You sure to accept this job?')===true){
+				console.log($stateParams.id);
+					$state.go('Calendar');  //$stateParams
+		}
+			else{
+				JobsFactory.appDecline(c, $stateParams.id).then(function(){
+					console.log(c);
+					// vm.job.applicants.splice(index[1], 1);
+					vm.job.chosenApp.splice(index,1);
+				}) ;
+			}
+		};
+
+
+
+
+		vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
+		'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
+		'WY').split(' ').map(function(state) {
+			return {abbrev: state};
+		});
+
+
 	}
+
+
 })();

@@ -1,7 +1,21 @@
 <div ng-controller="DashboardController as vm">
-
 	<div layout="row" layout-padding style="padding:40px">
 		<div flex="50">
+			<md-card flex="80">
+				<md-card-content layout="row">
+					<div flex="40" style="text-align:center; color:#73956F">
+						<i style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
+						<br>
+						<md-button class="md-raised" name="button">Image Uploader</md-button>
+					</div>
+					<div flex="60" style="text-align:center;">
+						<h2>{{nav.status.username | uppercase}}</h2>
+						<h3>{{nav.status.email}}</h3>
+						<h3>{{nav.status.location.street}}</h3>
+						<h3>{{nav.status.location.city}} {{nav.status.location.state}}, {{nav.status.location.zip}}</h3>
+					</div>
+				</md-card-content>
+			</md-card>
 		</div>
 		<div flex="50">
 			<div layout="column">

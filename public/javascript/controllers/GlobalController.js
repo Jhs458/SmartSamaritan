@@ -3,7 +3,7 @@
 	angular.module('app')
 	.controller('GlobalController', GlobalController);
 
-	function GlobalController(UserFactory, $mdSidenav, $state, JobsFactory) {
+	function GlobalController(UserFactory, $mdSidenav, $state, JobsFactory, $stateParams, jwtHelper) {
 		var vm = this;
 		vm.isLogin = true;
 		vm.user = {};
@@ -18,7 +18,7 @@
 
 		vm.registerUser = function() {
 			UserFactory.registerUser(vm.user).then(function() {
-				$state.go('Dashboard');
+				$state.go('Splash');
 			});
 		};
 
@@ -53,6 +53,22 @@
 		'WY').split(' ').map(function(state) {
 			return {abbrev: state};
 		});
+
+		vm.forgot = function() {
+    		UserFactory.forgot(vm.user).then(function() {
+    			// alert('Please check your email to change reset password.')
+    		}) ;
+    	} ;
+
+			vm.resetPassword = function() {
+				var tokenPayload = jwtHelper.decodeToken($stateParams.info);
+				// console.log(tokenPayload);
+				// console.log(tokenPayload.user.id);
+				vm.user.id = tokenPayload.user.id;
+    		UserFactory.resetPassword(vm.user).then(function(res) {
+    			$state.go('Splash');
+    		}) ;
+    	} ;
 
 	}
 })();

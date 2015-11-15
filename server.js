@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var port = process.env.PORT || 3000;
 var passport = require("passport");
+var session = require('express-session');
 var mongoose = require('mongoose');
 require('./models/AppModel');
 require('./models/ComModel');
@@ -33,6 +34,10 @@ passport.initialize();
 //middleware that allows for us to parse JSON and UTF-8 from the body of an HTTP request
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+// app.use(session({ secret: 'mysecret' })); //add for GithubStrategy
+app.use(session({ secret: 'IhaveAsecret',cookie: { secure: false } }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Route Links
 var appRoutes = require('./routes/AppRoutes');
@@ -40,6 +45,7 @@ var comRoutes = require('./routes/ComRoutes');
 var jobsRoutes = require('./routes/JobsRoutes');
 var msgRoutes = require('./routes/MsgRoutes');
 var userRoutes = require('./routes/UserRoutes');
+var resetRoutes = require('./routes/ResetPassRoute');
 
 //on homepage load, render the index page
 app.get('/', function(req, res) {
@@ -52,6 +58,7 @@ app.use('/api/com', comRoutes);
 app.use('/api/jobs', jobsRoutes);
 app.use('/api/msg', msgRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/reset', resetRoutes);
 
 var server = app.listen(port, function() {
 	var host = server.address().address;
