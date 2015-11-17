@@ -1,33 +1,45 @@
 <div layout="row" style="padding-top: 40px;">
   <div flex="25">
   </div>
-  <div flex="50" layout-padding class="loginDiv" ng-show="nav.isLogin">
+
+  <!-- login -->
+  <div flex="50" layout-padding class="loginDiv" ng-show="!isLogin">
     <div layout="column">
+
+      <p ng-show='nowReg'>You're now registered, please login below</p>
+
       <form ng-submit="nav.loginUser()">
         <md-input-container>
           <label class="md-hue-1">Username</label>
-          <input ng-model="nav.user.username" type="text" ng-required="true">
+          <input ng-model="nav.user.username" type="text">
         </md-input-container>
         <md-input-container>
           <label class="md-hue-1">Password</label>
-          <input ng-model="nav.user.password" type="password" ng-required="true">
+          <input ng-model="nav.user.password" type="password">
         </md-input-container>
 
         <p ng-show='emailReset'>Please check your email to reset password.<p>
 
         <div style="text-align: center">
           <md-button class="loginButton" type="submit">Log in</md-button>
+        </form>
           <br>
            <md-button type="button" class="md-flat" style="text-align:center" ng-click="nav.forgot(); emailReset = !emailReset" class="btn btn-primary">Forgot Password</md-button>
           <md-divider></md-divider>
-          <md-button class="loginButton" ng-click="nav.isLogin = false;">Sign Up</md-button>
-        </div>
-      </form>
-      <form class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="true"></div>
-    </form>
+          <md-button class="loginButton" type="button" ng-click="isLogin = !isLogin;">Sign Up</md-button>
+        <br>
+
+    <!-- Facebook -->
+        <a href="/api/users/auth/facebook"><img src="https://palfbapps.com/apps/group/login_with_facebook.png" alt="FaceBook Button" height='50px' /></a>
+      </div>
+
   </div>
-  <div flex="50" layout-padding class="loginDiv" ng-show="!nav.isLogin">
+</div>
+
+  <!-- registration -->
+  <div flex="50" layout-padding class="loginDiv" ng-show="isLogin">
     <div layout="column">
+
       <form ng-submit="nav.registerUser()">
         <md-input-container>
           <label class="md-hue-1">Username</label>
@@ -48,6 +60,7 @@
           <input ng-model="nav.user.confirmPassword" type="password" ng-required="true">
         </md-input-container>
         <div ng-show="nav.user.password && nav.user.confirmPassword && !(nav.user.password === nav.user.confirmPassword)">Your passwords must match.</div>
+
         <!-- experiment -->
         <div layout='row'>
           <div ng-password-strength="nav.user.password;" strength="passStrength" inner-class="meter"></div>
@@ -83,13 +96,17 @@
             <input ng-model="nav.user.location.zip" placeholder="Zipcode..." required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
           </md-input-container>
         </div>
+
         <div style="text-align: center">
-          <md-button type="submit" class="loginButton" ng-click="nav.isLogin = true;">Sign Up</md-button>
+          <md-button type="submit" class="loginButton" ng-click="isLogin = !isLogin; nowReg = !nowReg;">Sign Up</md-button>
+        </form>
           <md-divider></md-divider>
           <p>Already A Member?</p>
-          <md-button class="loginButton" ng-click="nav.isLogin = true;">Log in</md-button>
+          <md-button class="loginButton" ng-click="isLogin = !isLogin;">Log in</md-button>
         </div>
-      </form>
+
+    </div>
+  </div>
 
     </div>
   </div>

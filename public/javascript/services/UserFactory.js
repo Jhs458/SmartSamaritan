@@ -4,6 +4,8 @@
 	.factory('UserFactory', UserFactory);
 	function UserFactory($http, $q) {
 		var o = {};
+		o.setUser = setUser;
+		o.setToken = setToken;
 		o.status = {};
 		var token = '';
 
@@ -102,9 +104,6 @@
 			});
 			return q.promise;
 		};
-
-
-
 
 
 		function getAuth() {
