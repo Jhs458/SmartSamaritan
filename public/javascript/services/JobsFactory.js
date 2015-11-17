@@ -16,6 +16,15 @@
 			return q.promise;
 		};
 
+		o.getJobByCanlendar = function(c,jobID){
+			console.log(c,jobID);
+			var q=$q.defer();
+			$http.put('/api/jobs/confirm/', {jobID: jobID}).then(function(res){
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
 		o.getJobs = function(){
 			var q = $q.defer();
 			$http.get('/api/jobs').then(function(res){
@@ -132,6 +141,14 @@
 			console.log(jobId);
 			var q =$q.defer();
 			$http.put('/api/jobs/accept', {c, jobId}).then(function(res){
+				q.resolve();
+			});
+			return q.promise;
+		};
+
+		o.jobCompleted = function(b){
+			var q  =$q.defer();
+			$http.post('/api/jobs/dashboard',b).then(function(){
 				q.resolve();
 			});
 			return q.promise;

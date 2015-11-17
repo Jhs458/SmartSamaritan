@@ -105,7 +105,11 @@
 		vm.appAccept = function(c,index){
 			if(confirm('You sure to accept this job?')===true){
 				console.log($stateParams.id);
-					$state.go('Calendar');  //$stateParams
+				JobsFactory.getJobByCanlendar(c,$stateParams.id).then(function(res){
+
+				});
+					$state.go('Calendar');
+					  //$stateParams
 		}
 			else{
 				JobsFactory.appDecline(c, $stateParams.id).then(function(){

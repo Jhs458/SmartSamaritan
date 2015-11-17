@@ -85,6 +85,10 @@ router.post('/calendar',auth,function(req,res,next){
 
 });
 
+router.post('/dashboard', auth, function(req,res,next){
+  console.log(req.body);
+});
+
 router.delete('/:id', function(req, res, next) {//auth
   Jobs.remove({_id: req.params.id}, function(err, result) {
     if(err) return next(err);
@@ -105,6 +109,15 @@ router.put('/apply', function(req, res, next) {//auth
 router.put('/accept', function(req, res, next) {//auth
   console.log(req.body, "90jobroutes");
   Jobs.update({_id: req.body.jobId}, {$pull: {chosenApp: req.body.c}},
+    function(err, result) {
+    if(err) return next(err);
+    res.send();
+  });
+});
+
+router.put('/confirm', function(req, res, next) {//auth
+  console.log(req.body.jobID, "119jobroutes");
+  Jobs.update({_id: req.body.jobID}, {$set: {isConfirmed:true}},
     function(err, result) {
     if(err) return next(err);
     res.send();
@@ -134,6 +147,8 @@ router.put('/apply/:id', auth, function(req, res, next) { //auth,
         console.log(result, 6);
         });
       });
+
+
 
 
 
