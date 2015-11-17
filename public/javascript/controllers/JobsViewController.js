@@ -6,6 +6,10 @@
 	function JobsViewController(JobsFactory, $mdSidenav, $state, $stateParams) {
 		var vm = this;
 
+		vm.viewAllCat = function(){
+			$state.go("JobsView", {cat: "allCategeories"});
+		};
+
 		if($stateParams.cat == "allCategeories"){				//This if statement is necessary to see all catereogies since the url for categeories
 			JobsFactory.getJobs().then(function(res){				//requires :cat on the end of it to be identified. Because of which they make
 				vm.jobs = res;
