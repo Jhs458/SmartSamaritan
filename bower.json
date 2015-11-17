@@ -18,7 +18,6 @@
     "angular-ui-router": "~0.2.15",
     "angular-material": "~0.11.4",
     "angular-google-maps": "~2.2.1",
-    "passport-facebook": "~2.0.0",
-    "angular-upload": "~1.0.12"
+    "passport-facebook": "~2.0.0"
   }
 }

@@ -127,6 +127,17 @@
 			return q.promise;
 		};
 
+<<<<<<< HEAD
+=======
+		// o.appAccept = function(jobID){
+		// 	console.log(jobID);
+		// 	var q = $q.defer();
+		// 	$http.post('/api/jobs/calendar',calendarID).then(function(res){
+		// 		q.resolve(res.data);
+		// 	});
+		// 	return q.promise;
+		// };
+>>>>>>> parent of bb6d0af... added services styling, a button to view all if there were no entries in the category, and changed some more depth to user states
 
 		o.appDecline = function(c, jobId){
 			console.log(c);

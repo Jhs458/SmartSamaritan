@@ -7,7 +7,6 @@
 		var vm = this;
 		vm.status = UserFactory.status;
 		vm.userType = {};
-		vm.handshake = false;
 
 
 		JobsFactory.getJobById($stateParams.id).then(function(res){
@@ -106,11 +105,15 @@
 		vm.appAccept = function(c,index){
 			if(confirm('You sure to accept this job?')===true){
 				console.log($stateParams.id);
+<<<<<<< HEAD
 				JobsFactory.getJobByCanlendar(c,$stateParams.id).then(function(res){
 
 				});
 					$state.go('Calendar');
 					  //$stateParams
+=======
+					$state.go('Calendar');  //$stateParams
+>>>>>>> parent of bb6d0af... added services styling, a button to view all if there were no entries in the category, and changed some more depth to user states
 		}
 			else{
 				JobsFactory.appDecline(c, $stateParams.id).then(function(){

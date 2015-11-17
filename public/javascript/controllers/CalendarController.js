@@ -33,7 +33,11 @@
 		// }
 
 		vm.appAccept = function(c){
+<<<<<<< HEAD
 			for(var i=0; i<c.applicants.length; i++){						//loops through applicants
+=======
+			for(var i=0; i<c.applicants.length; i++){						//loops through applicants 
+>>>>>>> parent of bb6d0af... added services styling, a button to view all if there were no entries in the category, and changed some more depth to user states
 				if(c.applicants[i].username == c.chosenApp[0]){		//pulls the chosenUsers id from applicants
 					UserFactory.jobExp(c.applicants[i].applicant);	// +2 to experience
 				}
