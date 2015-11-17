@@ -127,8 +127,7 @@
 			return q.promise;
 		};
 
-<<<<<<< HEAD
-=======
+
 		// o.appAccept = function(jobID){
 		// 	console.log(jobID);
 		// 	var q = $q.defer();
@@ -137,7 +136,6 @@
 		// 	});
 		// 	return q.promise;
 		// };
->>>>>>> parent of bb6d0af... added services styling, a button to view all if there were no entries in the category, and changed some more depth to user states
 
 		o.appDecline = function(c, jobId){
 			console.log(c);

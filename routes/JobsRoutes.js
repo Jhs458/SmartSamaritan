@@ -69,16 +69,15 @@ router.post('/', auth, function(req, res, next){
   });
 });
 
-<<<<<<< HEAD
+
 router.post('/dashboard', auth, function(req,res,next){
   console.log(req.body);
-=======
 // router.get('/calendar/:id',function(req,res,next){
 //   Jobs.findOne({},function(err,result){
 //     if(err) return next(err);
 //     res.send(result);
 //   });
-// });
+});
 
 router.post('/calendar',auth,function(req,res,next){
   console.log(req.body,"jobRoutes73");
@@ -86,8 +85,6 @@ router.post('/calendar',auth,function(req,res,next){
   var date = req.body.createdDate;
   var currency = req.body.currency;
   console.log(title,date,currency);
-
->>>>>>> parent of bb6d0af... added services styling, a button to view all if there were no entries in the category, and changed some more depth to user states
 });
 
 router.delete('/:id', function(req, res, next) {//auth
