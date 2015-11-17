@@ -1,3 +1,4 @@
+
 .angular-google-map-container {
   height: 520px;
   width:520px;
@@ -99,4 +100,37 @@ p {
   text-align: center;
   color: #605768;
 }
+.noJobs {
+  font-size: 24px;
+  text-align: center;
+  padding-left: 60px;
+  color: #08415C;
+}
+.viewButton {
+  margin-left: 200px;
+}
 /*.jobsViewAbove*/
+/*services view below*/
+.buttonsDiv {
+  margin: 40px 100px 40px 100px;
+}
+
+.tileBtn {
+  font-size: 24px;
+  padding: 20px;
+  margin: 10px;
+  border-right: 1px solid #DFD9E2;
+  border-bottom: 1px solid #DFD9E2;
+  /*width: 80%;*/
+}
+.tileBtn1 {
+ color: #73956F;
+ font-weight: 700;
+}
+
+.tileBtn2, .tileBtn6, .tileBtn4 {
+  color: #08415C;
+}
+.tileBtn3, .tileBtn5 {
+  color: #605768;
+}

@@ -17,12 +17,6 @@
               <h1 class="md-title">Categeory: {{vm.job.categeory}}</h1>
               <h2 class="md-title">Currency: {{vm.job.currency}}</h2>
             </div>
-
-
-
-
-
-
             <!-- <label>Rating</label>
             <md-select ng-model="vm.job.rating" ng-required="true">
             <md-option value='5'>5 Excellent</md-option>
@@ -34,12 +28,12 @@
 
           <!-- <h2 class="md-title">Applicants List: {{vm.job.applicants}}</h2> -->
           <!-- <h2 class="md-title">Chosen Doer: {{vm.job.chosenApp.name}}</h2> -->
-
-
             <div ng-show="vm.userType.isCreator">
+              <div ng-show="vm.job.chosenApp.length === 0">
               <div ng-show="!editJob">
-                <h1>Applicants:</h1>
-                <h4>Choose an applicant by clicking the name.</h4>
+                <h2>Applicants:</h2>
+                <h4 ng-show="vm.job.applicants.length === 0">No Current Applicants</h4>
+                <h4 ng-show="vm.job.applicants.length > 0">Choose an applicant by clicking the name.</h4>
                 <div ng-repeat='a in vm.job.applicants' layout='row'>
                   <md-button ng-click='vm.chooseApplicant(a)' ng-disabled='vm.job.chosenApp.length > 0' flex class='md-raised md-primary' style='max-width:25px'>{{a.username}}</md-button>
               </div>
@@ -50,10 +44,16 @@
               <md-button ng-show="a.applicant==nav.status.id" flex ng-click="vm.deleteApplicant(vm.job._id, a._id, $index)" class="md-raised" style="background-color:#B0D0D3;">Remove Your Application</md-button>
             </div>
           </div>
-          <h1>Poster choosed: </h1>
-          <div ng-repeat='c in vm.job.chosenApp' layout='row'>
-            <h3>{{c}}</h3>
-            <md-button ng-click='vm.appAccept(c)' ng-disabled='c!=nav.status.username' flex style='max-width:25px' class='md-raised md-primary'>Confirm</md-button>
+          </div>
+
+          <div ng-show='vm.job.chosenApp.length > 0'>
+            <h1>Chosen Applicant: </h1>
+            <div ng-repeat='c in vm.job.chosenApp' layout='row'>
+              <h3>{{c}}</h3>
+              <div ng-show="vm.userType.isApplicant">
+                <md-button ng-click='vm.appAccept(c)' ng-disabled='c!=nav.status.username' flex style='max-width:25px' class='md-raised md-primary'>Confirm</md-button>
+              </div>
+            </div>
           </div>
 
 

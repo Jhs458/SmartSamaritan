@@ -4,6 +4,10 @@
   </div>
   <div layout="row" layout-wrap>
     <div flex="50">
+      <div flex="80" ng-show="vm.jobs.length === 0">
+        <p class="noJobs">No current jobs in this category. Please check back.</p>
+        <md-button class="md-raised viewButton" ng-click="vm.viewAllCat()">View All</md-button>
+      </div>
         <md-card flex="90" class="jobViewCard" ng-repeat='j in vm.jobs'<a ui-sref="JobDetails({id: j._id})"></a>
           <md-card-content>
             <div ng-show="vm.isApplicant(j.applicants, nav.status.id)" class="appliedCheckView">

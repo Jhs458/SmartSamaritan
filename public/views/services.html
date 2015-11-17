@@ -1,36 +1,24 @@
 <div ng-controller="ServicesController as vm">
   <div layout-padding class="viewTitle">
-      View By Category
+      View Jobs By Category
   </div>
-  <div layout="row"  layout-align="center center">
-    <div flex="80">
-    <md-grid-list md-cols-gt-sm="3" md-cols-sm="3" md-row-height-gt-md="1:1" md-row-height="5:3"
-          md-row-height="250px" style="margin: 15px;" md-gutter-gt-md="20px" md-gutter-gt-sm="8px" md-gutter="4px" >
-          <md-grid-tile class="tileBtn" ng-click="vm.viewAllCat()">
-            <md-grid-tile-header><h3>See All</h3></md-grid-tile-header>
-                            <h1>Tile One</h1>
-          </md-grid-tile>
-          <md-grid-tile class="tileBtn" ng-click="vm.viewMechanical()">
-            <md-grid-tile-header><h3>Mechanical</h3></md-grid-tile-header>
-                            <h1>Tile Two</h1>
-          </md-grid-tile>
-          <md-grid-tile class="tileBtn" ng-click="vm.viewElectrical()">
-            <md-grid-tile-header><h3>Electronics</h3></md-grid-tile-header>
-                            <h1>Tile Three</h1>
-          </md-grid-tile>
-          <md-grid-tile class="tileBtn" ng-click="vm.viewPets()">
-            <md-grid-tile-header><h3>Pets</h3></md-grid-tile-header>
-                            <h1>Tile Four</h1>
-          </md-grid-tile>
-          <md-grid-tile class="tileBtn" ng-click="vm.viewPhysicalLabor()">
-            <md-grid-tile-header><h3>Physical Labor</h3></md-grid-tile-header>
-                            <h1>Tile Five</h1>
-          </md-grid-tile>
-          <md-grid-tile class="tileBtn" ng-click="vm.viewMisc()">
-            <md-grid-tile-header><h3>Misc</h3></md-grid-tile-header>
-                            <h1>Tile Six</h1>
-          </md-grid-tile>
-      </md-grid-list>
+  <div layout="row" class="buttonsDiv" layout-align="center center">
+    <div layout="column" flex="40">
+          <md-button class="tileBtn tileBtn1" ng-click="vm.viewAllCat()"><i class="zmdi zmdi-looks"></i>
+View All</md-button>
+          <md-button class="tileBtn tileBtn2" ng-click="vm.viewMechanical()"><i class="zmdi zmdi-car-wash"></i>
+Mechanical</md-button>
+          <md-button class="tileBtn tileBtn3" ng-click="vm.viewElectrical()"><i class="zmdi zmdi-flash"></i>
+Electrical</md-button>
     </div>
+    <div layout="column" flex="40">
+          <md-button class="tileBtn tileBtn4" ng-click="vm.viewPets()"><i class="zmdi zmdi-toys"></i>
+Pets</md-button>
+          <md-button class="tileBtn tileBtn5" ng-click="vm.viewPhysicalLabor()"><i class="zmdi zmdi-roller"></i>
+Physical Labor</md-button>
+          <md-button class="tileBtn tileBtn6" ng-click="vm.viewMisc()"><i class="zmdi zmdi-flower-alt"></i>
+Miscellaneous</md-button>
+    </div>
+
   </div>
 </div>

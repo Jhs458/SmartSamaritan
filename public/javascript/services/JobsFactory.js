@@ -118,14 +118,14 @@
 			return q.promise;
 		};
 
-		// o.appAccept = function(jobID){
-		// 	console.log(jobID);
-		// 	var q = $q.defer();
-		// 	$http.post('/api/jobs/calendar',calendarID).then(function(res){
-		// 		q.resolve(res.data);
-		// 	});
-		// 	return q.promise;
-		// };
+		o.appAccept = function(jobID){
+			console.log(jobID, 4);
+			var q = $q.defer();
+			$http.post('/api/jobs/funky', jobID).then(function(res){
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
 
 		o.appDecline = function(c, jobId){
 			console.log(c);

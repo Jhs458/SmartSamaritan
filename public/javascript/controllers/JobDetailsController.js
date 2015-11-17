@@ -7,6 +7,7 @@
 		var vm = this;
 		vm.status = UserFactory.status;
 		vm.userType = {};
+		vm.handshake = false;
 
 
 		JobsFactory.getJobById($stateParams.id).then(function(res){
@@ -102,10 +103,15 @@
 		};
 
 
-		vm.appAccept = function(c,index){
-			if(confirm('You sure to accept this job?')===true){
-				console.log($stateParams.id);
-					$state.go('Calendar');  //$stateParams
+		vm.appAccept = function(c, index){
+			if(confirm('Are you sure you would like to accept this job?')===true){
+				console.log($stateParams.id, 5);
+				console.log(c, index, 7);
+				JobsFactory.appAccept(c, $stateParams.id).then(function(res) {
+					vm.accepted = res;
+					vm.handshake = true;
+				});
+					// $state.go('Calendar');  //$stateParams
 		}
 			else{
 				JobsFactory.appDecline(c, $stateParams.id).then(function(){

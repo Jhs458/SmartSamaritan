@@ -55,23 +55,6 @@ router.put('/jobExp/:id', function(req, res, next) {//auth
 });
 
 
-<<<<<<< HEAD
-
-// =====================================
-  // FACEBOOK ROUTES =====================
-  // =====================================
-  // route for facebook authentication and login
-  router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-
-  // handle the callback after facebook has authenticated the user
-  router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: "/splash" }), function(req, res) {
-  	if(req.user) {
-  		var token = { token : req.user.generateJWT() } ;
-  		res.redirect('/#/auth/token' + token.token) ;
-  	} else {
-  		res.send("you are not authenticated") ;
-  	}
-  })
 
   // route for logging out
   router.get('/logout', function(req, res) {
@@ -96,6 +79,4 @@ function isLoggedIn(req, res, next) {
 
 
 
-=======
->>>>>>> 1937620b786852e6b72cf4401808d799b7ed54c5
 module.exports = router;

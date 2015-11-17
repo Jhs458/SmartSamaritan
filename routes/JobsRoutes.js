@@ -76,7 +76,7 @@ router.post('/', auth, function(req, res, next){
 //   });
 // });
 
-router.post('/calendar',auth,function(req,res,next){
+router.post('/funky',auth,function(req,res,next){
   console.log(req.body,"jobRoutes73");
   var title = req.body.title;
   var date = req.body.createdDate;
