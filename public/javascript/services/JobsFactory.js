@@ -16,6 +16,15 @@
 			return q.promise;
 		};
 
+		o.getJobByCanlendar = function(c,jobID){
+			console.log(c,jobID);
+			var q=$q.defer();
+			$http.put('/api/jobs/confirm/', {jobID: jobID}).then(function(res){
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
 		o.getJobs = function(){
 			var q = $q.defer();
 			$http.get('/api/jobs').then(function(res){
@@ -118,6 +127,8 @@
 			return q.promise;
 		};
 
+<<<<<<< HEAD
+=======
 		// o.appAccept = function(jobID){
 		// 	console.log(jobID);
 		// 	var q = $q.defer();
@@ -126,12 +137,21 @@
 		// 	});
 		// 	return q.promise;
 		// };
+>>>>>>> parent of bb6d0af... added services styling, a button to view all if there were no entries in the category, and changed some more depth to user states
 
 		o.appDecline = function(c, jobId){
 			console.log(c);
 			console.log(jobId);
 			var q =$q.defer();
 			$http.put('/api/jobs/accept', {c, jobId}).then(function(res){
+				q.resolve();
+			});
+			return q.promise;
+		};
+
+		o.jobCompleted = function(b){
+			var q  =$q.defer();
+			$http.post('/api/jobs/dashboard',b).then(function(){
 				q.resolve();
 			});
 			return q.promise;

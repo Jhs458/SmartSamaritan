@@ -21,8 +21,8 @@ var JobsSchema = new mongoose.Schema({
    username: { type: mongoose.Schema.Types.String, ref: 'User'},
    created: Date
  }],
- isCompleted: { type: Boolean, default: false }
-
+ isCompleted: { type: Boolean, default: false },
+ isConfirmed:{type:Boolean, default:false}
 });
 
 mongoose.model('Jobs', JobsSchema);
