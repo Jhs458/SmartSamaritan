@@ -10,6 +10,7 @@
 		vm.status = UserFactory.status;
 		vm.msg = {};
 
+		console.log(vm.status);
 
 		vm.logout = function() {
 			UserFactory.logout();
@@ -68,6 +69,9 @@
     			$state.go('Splash');
     		}) ;
     	} ;
+
+
+
 
 	}
 })();

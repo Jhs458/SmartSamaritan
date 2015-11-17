@@ -42,6 +42,8 @@
 			o.status.id = user._id;
 			o.status.location = user.location;
 			o.status.email = user.email;
+			o.status.facebook = user.facebook.photo;
+			o.status.exp = user.experience;
     }
 
     function removeUser() {

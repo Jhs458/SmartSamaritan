@@ -40,7 +40,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
       clientID: configAuth.facebookAuth.clientID,
       clientSecret: configAuth.facebookAuth.clientSecret,
       callbackURL: configAuth.facebookAuth.callbackURL,
-      profileFields: ['emails', 'name'],
+      profileFields: ['emails', 'name', 'photos'],
 
   },
 
@@ -70,6 +70,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
                   newUser.username  = profile.name.givenName + profile.name.familyName; // look at the passport user profile to see how names are returned
                   newUser.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
                   newUser.experience = 0;
+                  newUser.facebook.photo = profile.photos[0].value;
 
                   // save our user to the database
                   newUser.save(function(err) {

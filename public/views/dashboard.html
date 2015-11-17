@@ -4,7 +4,12 @@
 			<md-card flex="80">
 				<md-card-content layout="row">
 					<div flex="40" style="text-align:center; color:#73956F">
-						<i style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
+
+						<i ng-if='!nav.status.facebook' style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
+						<div ng-if='nav.status.facebook'>
+						<img ng-src="{{nav.status.facebook}}" alt="" height="100px" />
+					</div>
+
 						<br>
 						<md-button class="md-raised" name="button">Image Uploader</md-button>
 					</div>

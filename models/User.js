@@ -34,7 +34,9 @@ UserSchema.methods.createToken = function() {
    _id: this._id,
    username: this.username,
    location: this.location,
-   email: this.email
+   email: this.email,
+	 facebook: this.facebook,
+	 experience: this.experience
 
  }, "SuperSmart"); //Add Passcode here
 };
