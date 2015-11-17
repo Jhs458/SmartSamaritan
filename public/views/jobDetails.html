@@ -34,14 +34,8 @@
 
           <!-- <h2 class="md-title">Applicants List: {{vm.job.applicants}}</h2> -->
           <!-- <h2 class="md-title">Chosen Doer: {{vm.job.chosenApp.name}}</h2> -->
-<<<<<<< HEAD
           <div ng-show="vm.userType.isCreator">
             <div ng-show="vm.job.chosenApp.length === 0">
-=======
-
-
-            <div ng-show="vm.userType.isCreator">
->>>>>>> parent of bb6d0af... added services styling, a button to view all if there were no entries in the category, and changed some more depth to user states
               <div ng-show="!editJob">
                 <h1>Applicants:</h1>
                 <h4>Choose an applicant by clicking the name.</h4>
@@ -59,10 +53,9 @@
               </div>
             </div>
             </div>
-<<<<<<< HEAD
 
           <div ng-show='vm.job.chosenApp.length > 0'>
-            <h1>Chosen Applicant: </h1>
+            <h1>Poster choosed: </h1>
             <div ng-repeat='chooser in vm.job.chosenApp' layout='row'>
               <h3>{{chooser}}</h3>
               <div ng-show="vm.userType.isApplicant">
@@ -71,14 +64,12 @@
                 </div>
               </div>
             </div>
-=======
           </div>
-          <h1>Poster choosed: </h1>
+          <!-- <h1>Poster choosed: </h1>
           <div ng-repeat='c in vm.job.chosenApp' layout='row'>
             <h3>{{c}}</h3>
             <md-button ng-click='vm.appAccept(c)' ng-disabled='c!=nav.status.username' flex style='max-width:25px' class='md-raised md-primary'>Confirm</md-button>
->>>>>>> parent of bb6d0af... added services styling, a button to view all if there were no entries in the category, and changed some more depth to user states
-          </div>
+          </div> -->
 
           <!-- 'c != nav.status.username || c.job.isConfirmed'  -->
 

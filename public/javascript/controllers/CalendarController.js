@@ -15,7 +15,7 @@
 	// 	});
 	// }
 	// 	else{
-			JobsFactory.getJobById($stateParams.id).then(function(res){
+			JobsFactory.getJobs().then(function(res){
 				vm.calendarPosts = res;
 				console.log(res);
 			});

@@ -26,7 +26,7 @@
 			templateUrl: 'views/createJob.html'
 		})
 		.state('Calendar',{
-			url: '/calendar/:id',
+			url: '/calendar',
 			templateUrl: 'views/calendar.html'
 		})
 		.state('JobsView',{

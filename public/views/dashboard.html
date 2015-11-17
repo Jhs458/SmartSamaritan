@@ -1,10 +1,13 @@
 <div ng-controller="DashboardController as vm">
-	<div layout="row" layout-padding style="padding:40px">
+	<div layout="row" style='margin-left:90px;'>
+	<img height="40" width="40" src='https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/441/aiga_cashier-512.png'><h3> {{nav.status.currency}}</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<img height='40' width="40" src='http://images.wikia.com/farmville/images/b/b4/XP-icon.png'><h3> {{nav.status.exp}}</h3>
+</div>
+	<div layout="row" layout-padding style="padding:20px">
 		<div flex="50">
 			<md-card flex="80">
 				<md-card-content layout="row">
 					<div flex="40" style="text-align:center; color:#73956F">
-
 						<i ng-if='!nav.status.photo' style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
 						<div ng-if='nav.status.photo'>
 						<img ng-src="{{nav.status.photo}}" alt="" height="100px" />
