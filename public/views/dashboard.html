@@ -23,7 +23,12 @@
 					<h3 style="text-align: center; background-color: #DEE5E5">You Posted:</h3>
 					<ul ng-repeat="c in vm.userArray.posting">
 						<li style="list-style-type: none;">
-							<md-button style="font-size: 24px;" ng-click="vm.goToJob(c._id)">{{c.title}}</md-button>
+							<div layout=row>
+							<div ng-show="c.isConfirmed===true" class="appliedCheck">
+	              <i class="zmdi zmdi-check-circle"></i>
+	            </div>
+							<md-button style="font-size: 24px;" ng-click="vm.goToJob(c._id)" ng-class="{'md-accent md-raised md-hue-1':c.chosenApp.length > 0}">{{c.title}}</md-button>
+							</div>
 						</li>
 					</ul>
 				</div>
@@ -33,7 +38,12 @@
 					<h3 style="text-align: center; background-color: #DEE5E5">You Applied To:</h3>
 					<ul ng-repeat="r in vm.userArray.applying">
 						<li style="list-style-type: none;">
-							<md-button style="font-size: 24px;" ng-click="vm.goToJob(r._id)">{{r.title}}</md-button>
+							<div layout=row>
+							<div ng-show="r.isConfirmed===true" class="appliedCheck">
+	              <i class="zmdi zmdi-check-circle"></i>
+	            </div>
+							<md-button style="font-size: 24px;" ng-click="vm.goToJob(r._id)" ng-class="{'md-accent md-raised md-hue-1':r.chosenApp.length > 0}">{{r.title}}</md-button>
+							</div>
 						</li>
 					</ul>
 				</div>

@@ -56,6 +56,22 @@ router.put('/jobExp/:id', function(req, res, next) {//auth
 
 
 
+// =====================================
+  // FACEBOOK ROUTES =====================
+  // =====================================
+  // route for facebook authentication and login
+  router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+  // handle the callback after facebook has authenticated the user
+  router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: "/splash" }), function(req, res) {
+  	if(req.user) {
+  		var token = { token : req.user.generateJWT() } ;
+  		res.redirect('/#/auth/token' + token.token) ;
+  	} else {
+  		res.send("you are not authenticated") ;
+  	}
+  })
+
   // route for logging out
   router.get('/logout', function(req, res) {
       req.logout();
@@ -73,10 +89,5 @@ function isLoggedIn(req, res, next) {
   // if they aren't redirect them to the home page
   res.redirect('/');
 }
-
-
-
-
-
 
 module.exports = router;

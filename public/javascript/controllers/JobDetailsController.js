@@ -103,15 +103,14 @@
 		};
 
 
-		vm.appAccept = function(c, index){
-			if(confirm('Are you sure you would like to accept this job?')===true){
-				console.log($stateParams.id, 5);
-				console.log(c, index, 7);
-				JobsFactory.appAccept(c, $stateParams.id).then(function(res) {
-					vm.accepted = res;
-					vm.handshake = true;
+		vm.appAccept = function(c,index){
+			if(confirm('You sure to accept this job?')===true){
+				console.log($stateParams.id);
+				JobsFactory.getJobByCanlendar(c,$stateParams.id).then(function(res){
+
 				});
-					// $state.go('Calendar');  //$stateParams
+					$state.go('Calendar');
+					  //$stateParams
 		}
 			else{
 				JobsFactory.appDecline(c, $stateParams.id).then(function(){
