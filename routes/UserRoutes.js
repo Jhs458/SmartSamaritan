@@ -54,6 +54,22 @@ router.put('/jobExp/:id', function(req, res, next) {//auth
   });
 });
 
+console.log("userroutes57");
+
+router.put('/jobCurrency', function(req,res,next){
+  console.log(req.body.posterID, "posterid58");
+  console.log(req.body.appID, "posterid58");
+  console.log(req.body.currency, "posterid58");
+  User.update({_id: req.body.posterID},{$inc:{currency: - req.body.currency}},
+  function(err, result) {
+    if(err) return next(err);
+  User.update({_id: req.body.appID},{$inc:{currency: req.body.currency}},
+  function(err, result) {
+    if(err) return next(err);
+    res.send();
+    });
+  });
+});
 
 
 

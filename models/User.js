@@ -16,6 +16,7 @@ passwordHash: String,
 salt: String,
 review: String,
 experience: {type: Number},
+currency:{type:Number},
 location: {street: String, city: String, state: String, zip: Number},
 jobs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Jobs'}],
 messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Messages'}]

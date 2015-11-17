@@ -45,6 +45,7 @@ router.post('/register', function (req, res) {
 
 	//Set Experience
 	user.experience = 0;
+	user.currency = 200;
 	// save user to collection
 	user.save(function(err, result) {
 		if(err) console.log(err) ;

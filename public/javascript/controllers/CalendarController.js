@@ -40,6 +40,15 @@
 			}
 		};
 
+		vm.jobCurrency = function(c){
+			console.log(c);
+			for(var i=0; i < c.applicants.length; i++){						//loops through applicants
+				if(c.applicants[i].username == c.chosenApp[0]){		//pulls the chosenUsers id from applicants
+					UserFactory.jobCurrency(c.createdBy, c.applicants[i].applicant,c.currency);	// +2 to experience
+				}
+			}
+		};
+
 
   }
 
