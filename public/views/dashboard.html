@@ -1,18 +1,14 @@
 <div ng-controller="DashboardController as vm">
 	<div layout="row" style='margin-left:90px;'>
-	<img height="40" width="40" src='https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/441/aiga_cashier-512.png'><h3> {{nav.status.currency}}</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<img height='40' width="40" src='http://images.wikia.com/farmville/images/b/b4/XP-icon.png'><h3> {{nav.status.exp}}</h3>
-</div>
-	<div layout="row" layout-padding style="padding:20px">
+		<img height="40" width="40" src='https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/441/aiga_cashier-512.png'><h3> {{nav.status.currency}}</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<img height='40' width="40" src='http://images.wikia.com/farmville/images/b/b4/XP-icon.png'><h3> {{nav.status.exp}}</h3>
+	</div>
+	<div layout="row" layout-padding style="padding:40px">
 		<div flex="50">
 			<md-card flex="80">
 				<md-card-content layout="row">
 					<div flex="40" style="text-align:center; color:#73956F">
-						<i ng-if='!nav.status.photo' style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
-						<div ng-if='nav.status.photo'>
-						<img ng-src="{{nav.status.photo}}" alt="" height="100px" />
-					</div>
-
+						<i style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
 						<br>
 						<md-button class="md-raised" name="button">Image Uploader</md-button>
 					</div>
@@ -32,10 +28,14 @@
 					<ul ng-repeat="c in vm.userArray.posting">
 						<li style="list-style-type: none;">
 							<div layout=row>
-							<div ng-show="c.isConfirmed===true" class="appliedCheck">
-	              <i class="zmdi zmdi-check-circle"></i>
-	            </div>
-							<md-button style="font-size: 24px;" ng-click="vm.goToJob(c._id)" ng-class="{'md-accent md-raised md-hue-1':c.chosenApp.length > 0}">{{c.title}}</md-button>
+								<div ng-show="c.isConfirmed===true" class="appliedCheck">
+									<i class="zmdi zmdi-check-circle"></i>
+								</div>
+								<md-button ng-show="c.chosenApp.length === 0" style="font-size: 24px;" ng-click="vm.goToJob(c._id)">{{c.title}}</md-button>
+								<div ng-show="c.chosenApp.length > 0">
+									<md-button style="font-size: 24px; background-color: #605768;" ng-click="vm.goToJob(c._id)" class="md-accent md-raised">{{c.title}}</md-button>
+									<span style="font-size: 18px;">Waiting for applicant confirmation</span>
+								</div>
 							</div>
 						</li>
 					</ul>
@@ -47,10 +47,10 @@
 					<ul ng-repeat="r in vm.userArray.applying">
 						<li style="list-style-type: none;">
 							<div layout=row>
-							<div ng-show="r.isConfirmed===true" class="appliedCheck">
-	              <i class="zmdi zmdi-check-circle"></i>
-	            </div>
-							<md-button style="font-size: 24px;" ng-click="vm.goToJob(r._id)" ng-class="{'md-accent md-raised md-hue-1':r.chosenApp.length > 0}">{{r.title}}</md-button>
+								<md-button style="font-size: 24px; background-color: #605768;" ng-click="vm.goToJob(r._id)" ng-class="{'md-accent md-raised':r.chosenApp.length > 0}">{{r.title}}</md-button>
+								<div ng-show="r.isConfirmed===true" class="appliedCheck">
+									<i class="zmdi zmdi-thumb-up"></i><span style="font-size:24px; font-weight:700;"> Handshake Complete!</span>
+								</div>
 							</div>
 						</li>
 					</ul>

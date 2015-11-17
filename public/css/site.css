@@ -99,4 +99,33 @@ p {
   text-align: center;
   color: #605768;
 }
+.noJobs {
+  text-align: center;
+  font-size: 24px;
+  padding-left: 40px;
+  padding-top: 20px;
+}
+.viewAllBtn {
+    margin-left: 180px;
+}
 /*.jobsViewAbove*/
+/*services below*/
+.servicesDiv {
+  padding-top: 40px;
+}
+.tileBtn {
+  margin:20px;
+  padding: 20px 40px 20px 40px;
+  font-size: 24px;
+  border-bottom: 1px solid #DEE5E5;
+  border-right: 1px solid #DEE5E5;
+}
+.btn1 {
+  color: #73956F;
+}
+.btn2, .btn4, .btn6 {
+  color: #08415C;
+}
+.btn3, .btn5 {
+  color: #605768;
+}
