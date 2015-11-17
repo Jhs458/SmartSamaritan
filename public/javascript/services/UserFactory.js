@@ -144,6 +144,15 @@
 			return q.promise;
 		};
 
+		o.jobCurrency = function(posterID, appID , currency){
+			console.log(posterID, appID,currency);
+			var q  = $q.defer();
+			$http.put('/api/users/jobCurrency/', {posterID , appID, currency}).then(function(res){
+				q.resolve();
+			});
+			return q.promise;
+		};
+
 		return o;
 	}
 })();

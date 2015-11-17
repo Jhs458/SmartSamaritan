@@ -115,7 +115,7 @@ router.put('/accept', function(req, res, next) {//auth
 
 router.put('/confirm', function(req, res, next) {//auth
   console.log(req.body.jobID, "119jobroutes");
-  Jobs.update({_id: req.body.jobID}, {$set: {isConfirmed:true}},
+  Jobs.update({_id: req.body.jobID}, {isConfirmed:true},
     function(err, result) {
     if(err) return next(err);
     res.send();
