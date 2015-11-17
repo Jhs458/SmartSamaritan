@@ -5,6 +5,7 @@ var User = mongoose.model('User');
 var Jobs = mongoose.model('Jobs');
 var Applicants = mongoose.model('Applicants');
 var passport = require('passport');
+var jwt = require('express-jwt');
 
 // router.post('/register', function(req, res, next) {
 //   var user = new User(req.body);
@@ -40,10 +41,60 @@ router.get('/dashboard/:id', function(req, res, next){
     res.send(sendBack);
     console.log(sendBack);
   });
-
-
+});
 });
 
+router.put('/jobExp/:id', function(req, res, next) {//auth
+  console.log('jobExp route')
+  console.log(req.params);
+  User.update({_id: req.params.id}, {$inc: {experience: 2}},
+    function(err, result) {
+    if(err) return next(err);
+    res.send();
+  });
 });
+
+
+
+
+// =====================================
+  // FACEBOOK ROUTES =====================
+  // =====================================
+  // route for facebook authentication and login
+  router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+  // handle the callback after facebook has authenticated the user
+  router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: "/splash" }), function(req, res) {
+  	if(req.user) {
+  		var token = { token : req.user.generateJWT() } ;
+  		res.redirect('/#/auth/token' + token.token) ;
+  	} else {
+  		res.send("you are not authenticated") ;
+  	}
+  })
+
+  // route for logging out
+  router.get('/logout', function(req, res) {
+      req.logout();
+      res.redirect('/');
+  });
+
+
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+  // if user is authenticated in the session, carry on
+  if (req.isAuthenticated())
+      return next();
+
+  // if they aren't redirect them to the home page
+  res.redirect('/');
+}
+
+
+
+
+
+
 
 module.exports = router;

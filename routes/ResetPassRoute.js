@@ -43,6 +43,8 @@ router.post('/register', function (req, res) {
 	// run model function, which encrypts password
 	user.setPassword(req.body.password) ;
 
+	//Set Experience
+	user.experience = 0;
 	// save user to collection
 	user.save(function(err, result) {
 		if(err) console.log(err) ;

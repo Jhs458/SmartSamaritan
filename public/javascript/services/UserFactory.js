@@ -38,6 +38,8 @@
       o.status.username = user.username;
       o.status._id = user._id;
 			o.status.id = user._id;
+			o.status.location = user.location;
+			o.status.email = user.email;
     }
 
     function removeUser() {
@@ -133,6 +135,13 @@
     return q.promise ;
   	};
 
+		o.jobExp = function(e){
+			var q = $q.defer();
+			$http.put('/api/users/jobExp/' + e).then(function(res){
+				q.resolve();
+			});
+			return q.promise;
+		};
 
 		return o;
 	}

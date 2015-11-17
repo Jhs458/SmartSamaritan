@@ -5,10 +5,17 @@ var jwt = require('jsonwebtoken');
 var UserSchema = new mongoose.Schema({
 username: {required: true, unique: true, type: String, lowercase: true, trim: true},
 email: {required: true, unique: true, type:String, lowercase: true, trim: true},
+facebook: {
+		id: String,
+		token: String,
+		email: String,
+		name: String,
+		photo: String
+},
 passwordHash: String,
 salt: String,
 review: String,
-experience: Number,
+experience: {type: Number},
 location: {street: String, city: String, state: String, zip: Number},
 jobs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Jobs'}],
 messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Messages'}]
@@ -28,6 +35,8 @@ UserSchema.methods.createToken = function() {
  return jwt.sign({
    _id: this._id,
    username: this.username,
+   location: this.location,
+   email: this.email
 
  }, "SuperSmart"); //Add Passcode here
 };

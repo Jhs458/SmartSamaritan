@@ -12,6 +12,8 @@ require('./models/MsgModel');
 require('./models/JobsModel');
 require('./models/User');
 require('./config/passport');
+require('./config/auth');
+
 
 mongoose.connect('mongodb://localhost/smartsamaritan');
 
