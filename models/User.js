@@ -5,10 +5,10 @@ var jwt = require('jsonwebtoken');
 var UserSchema = new mongoose.Schema({
 username: {sparse: true, unique: true, type: String, lowercase: true, trim: true},
 email: {sparse: true, unique: true, type:String, lowercase: true, trim: true},
+photo: String,
 facebook: {
 		id: String,
-		token: String,
-		photo: String
+		token: String
 },
 passwordHash: String,
 salt: String,
@@ -36,8 +36,9 @@ UserSchema.methods.createToken = function() {
    username: this.username,
    location: this.location,
    email: this.email,
-	 facebook: this.facebook,
-	 experience: this.experience
+	 photo: this.photo,
+	 experience: this.experience,
+	 currency: this.currency
 
  }, "SuperSmart"); //Add Passcode here
 };
