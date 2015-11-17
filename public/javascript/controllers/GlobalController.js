@@ -18,7 +18,6 @@
 
 		vm.registerUser = function() {
 			UserFactory.registerUser(vm.user).then(function() {
-				$state.go('Splash');
 			});
 		};
 

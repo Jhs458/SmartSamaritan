@@ -69,12 +69,15 @@ router.post('/', auth, function(req, res, next){
   });
 });
 
+
+router.post('/dashboard', auth, function(req,res,next){
+  console.log(req.body);
 // router.get('/calendar/:id',function(req,res,next){
 //   Jobs.findOne({},function(err,result){
 //     if(err) return next(err);
 //     res.send(result);
 //   });
-// });
+});
 
 router.post('/calendar',auth,function(req,res,next){
   console.log(req.body,"jobRoutes73");
@@ -82,11 +85,6 @@ router.post('/calendar',auth,function(req,res,next){
   var date = req.body.createdDate;
   var currency = req.body.currency;
   console.log(title,date,currency);
-
-});
-
-router.post('/dashboard', auth, function(req,res,next){
-  console.log(req.body);
 });
 
 router.delete('/:id', function(req, res, next) {//auth

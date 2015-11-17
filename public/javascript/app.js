@@ -36,6 +36,10 @@
 		.state('PassReset',{
 			url: '/passreset/:info',
 			templateUrl: 'views/passReset.html'
+		})
+		.state('Oauth',{
+			url: '/auth/token/:token',
+			templateUrl: 'views/token.html'
 		});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');

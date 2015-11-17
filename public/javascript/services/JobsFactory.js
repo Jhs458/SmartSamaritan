@@ -127,6 +127,7 @@
 			return q.promise;
 		};
 
+
 		// o.appAccept = function(jobID){
 		// 	console.log(jobID);
 		// 	var q = $q.defer();

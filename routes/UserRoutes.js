@@ -7,16 +7,6 @@ var Applicants = mongoose.model('Applicants');
 var passport = require('passport');
 var jwt = require('express-jwt');
 
-// router.post('/register', function(req, res, next) {
-//   var user = new User(req.body);
-//   user.setPassword(req.body.password);
-//   user.save(function(err, result) {
-//     if(err) return next(err);
-//     if(!result) return next('There was an issue registering that user.');
-//     res.send(result.createToken());
-//   });
-// });
-
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user) {
     if(err) return next(err);
@@ -45,8 +35,6 @@ router.get('/dashboard/:id', function(req, res, next){
 });
 
 router.put('/jobExp/:id', function(req, res, next) {//auth
-  console.log('jobExp route')
-  console.log(req.params);
   User.update({_id: req.params.id}, {$inc: {experience: 2}},
     function(err, result) {
     if(err) return next(err);
@@ -72,6 +60,23 @@ router.put('/jobCurrency', function(req,res,next){
 });
 
 
+// =====================================
+  // FACEBOOK ROUTES =====================
+  // =====================================
+  // route for facebook authentication and login
+  router.get('/auth/facebook',
+  passport.authenticate('facebook', { scope:
+  ["email", "public_profile"]}));
+
+  // handle the callback after facebook has authenticated the user
+  router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: "/splash" }), function(req, res) {
+  	if(req.user) {
+  		var token = { token : req.user.createToken() } ;
+  		res.redirect('/#/auth/token/' + token.token) ;
+  	} else {
+  		res.send("you are not authenticated") ;
+  	}
+  })
 
 // =====================================
   // FACEBOOK ROUTES =====================
@@ -106,11 +111,6 @@ function isLoggedIn(req, res, next) {
   // if they aren't redirect them to the home page
   res.redirect('/');
 }
-
-
-
-
-
 
 
 module.exports = router;

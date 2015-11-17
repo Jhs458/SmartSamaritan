@@ -110,7 +110,8 @@
 				});
 					$state.go('Calendar');
 					  //$stateParams
-		}
+					$state.go('Calendar');  //$stateParams
+	}
 			else{
 				JobsFactory.appDecline(c, $stateParams.id).then(function(){
 					console.log(c);
