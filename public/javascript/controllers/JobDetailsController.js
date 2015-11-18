@@ -7,12 +7,13 @@
 		var vm = this;
 		vm.status = UserFactory.status;
 		vm.userType = {};
-
+		vm.showEditJob = false;
 
 		JobsFactory.getJobById($stateParams.id).then(function(res){
 			vm.job = res;
 			vm.determineUser(vm.job, UserFactory.status._id);
 			console.log(vm.job, 'job');
+			console.log(vm.job, 5);
 			var date = vm.job.createdDate; // Method .toLocalDateString turns the date into a method and cannot populate the date-
 			vm.job.createdDate = new Date();// picker in the edit so I had to turn the string back into a date for it to work.
 			vm.job.createdDate.setTime(Date.parse(date)); // http://stackoverflow.com/questions/32469737/angular-material-datepicker-date-tolocaledatestring-is-not-a-function
@@ -45,15 +46,30 @@
 		};
 
 		vm.deleteJob = function(id){
+			if(confirm('Delete this job? This action cannot be undone.')===true){
 			if(vm.userType.isCreator) {
 				JobsFactory.deleteJob(id).then(function() {
 					$state.go('Services');
 				});
 			}
+		}
 		};
 
+		vm.lastEditInfo = {};
+		vm.editJob = function() {
+			vm.lastEditInfo = angular.copy(vm.job);
+			// vm.job = angular.copy(vm.job);
+			vm.showEditJob = !vm.showEditJob;
+		};
+		vm.cancelEditJob = function() {
+			vm.job = vm.lastEditInfo;
+			vm.showEditJob = false;
+			// vm.showEditJob = !vm.showEditJob;
+		};
 
 		vm.updateJob = function(z) {
+			// z = vm.lastEditJob;
+			z = vm.job;
 			if(vm.userType.isCreator) {
 				JobsFactory.updateJob(z, {id:$stateParams.id}).then(function(res) {
 					JobsFactory.getJobById($stateParams.id).then(function(res){
@@ -62,6 +78,11 @@
 				});
 			}
 		};
+
+		vm.goBack = function(_id) {
+			console.log(_id);
+			$state.go('JobDetails', {_id:_id}, {location: true});
+				};
 
 		vm.applyJob = function(a){
 			console.log(a);
@@ -77,16 +98,18 @@
 
 
 		vm.deleteApplicant = function(jobID, appID, index){
+			if(confirm('Delete Application?')===true){
 			JobsFactory.deleteApplicant(jobID, appID).then(function() {
 				vm.job.applicants.splice(index, 1);
 				vm.userType.isApplicant = false;
 				vm.userType.isNobody = true;
 			});
+		}
 		};
 
 
 		vm.chooseApplicant = function(a){
-			if(confirm('You sure to choose this person?')===true){
+			if(confirm('Confirm Applicant?')===true){
 			console.log(a);
 			JobsFactory.chooseApplicant(a, $stateParams.id).then(function(res){
 				vm.userType.isApplicant = false;
@@ -121,8 +144,9 @@
 			}
 		};
 
-
-
+		vm.data = {
+	 	cb5: false
+ 		};
 
 		vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
 		'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +

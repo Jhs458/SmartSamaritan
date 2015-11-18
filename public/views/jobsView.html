@@ -18,6 +18,7 @@
             <div ng-show="vm.isApplicant(j.applicants, nav.status.id)" class="appliedCheckView">
               <i class="zmdi zmdi-check-circle"></i>Applied!
             </div>
+            <div ng-show="j.isConfirmed"><i class="zmdi zmdi-thumb-up"></i></div>
               <h2 class="md-title">{{j.title}}</h2>
             <h3 class="md-title">On {{j.createdDate | date}} At {{j.location.street}}, {{j.location.city}}, {{j.location.state}} {{j.location.zip}}</h3>
           </md-card-content>
