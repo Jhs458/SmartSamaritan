@@ -62,6 +62,7 @@ router.get('/search/:categeory',function(req,res,next){
 router.post('/', auth, function(req, res, next){
   var jobPost = new Jobs(req.body);
   jobPost.createdBy = req.payload._id;
+  jobPost.createdByUsername = req.payload.username;
   jobPost.date = new Date();
   jobPost.save(function(err,result){
     if(err) return next(err);

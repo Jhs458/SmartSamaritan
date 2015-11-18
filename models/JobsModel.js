@@ -4,6 +4,7 @@ var JobsSchema = new mongoose.Schema({
  createdDate: Date,
  location: {street: String, city: String, state: String, zip: Number},
  createdBy: String,
+ createdByUsername: String,
  categeory: String, // [{type:String, enum: ['enumVal1','enumVal2']}]
  currency: Number,
  title: String,
