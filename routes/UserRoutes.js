@@ -16,6 +16,7 @@ router.post('/login', function(req, res, next) {
 
 router.get('/dashboard/:id', function(req, res, next){
   var sendBack ={};
+
   Jobs.find({createdBy:req.params.id})
   .exec(function(err, result){
     if(err) return next(err);
@@ -29,7 +30,6 @@ router.get('/dashboard/:id', function(req, res, next){
     if(!result) return next('Could not find request');
     sendBack.applying = result;
     res.send(sendBack);
-    console.log(sendBack);
   });
 });
 });
@@ -111,6 +111,14 @@ function isLoggedIn(req, res, next) {
   // if they aren't redirect them to the home page
   res.redirect('/');
 }
+
+router.get('/userinfo/:id', function(req, res, next){
+      User.findOne({_id: req.params.id}, function(err, result){
+        if(err) {return next(err);}
+        if(!result) {return next({err: "Error finding user by ID."});}
+        res.send(result);
+      });
+    });
 
 
 module.exports = router;

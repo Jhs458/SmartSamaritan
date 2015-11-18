@@ -58,7 +58,7 @@
 			return q.promise;
 		};
 
-		o.getAllMessages = function() {
+		o.getMessagesById = function() {
 			var q = $q.defer();
 			$http.get('/api/msg').then(function(res) {
 				q.resolve(res.data);

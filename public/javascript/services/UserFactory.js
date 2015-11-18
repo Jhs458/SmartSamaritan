@@ -108,6 +108,14 @@
 			return q.promise;
 		};
 
+		o.getUserInfo = function(id) {
+			var q = $q.defer();
+			$http.get('/api/users/userinfo/' + id).then(function(res) {
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
 
 		function getAuth() {
 		var auth = {

@@ -6,7 +6,7 @@
 	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
 		$stateProvider
 		.state('Dashboard',{
-			url: '/',
+			url: '/dashboard/:id',
 			templateUrl: 'views/dashboard.html'
 		})
 		.state('Splash',{
@@ -14,7 +14,7 @@
 			templateUrl: 'views/splash.html'
 		})
 		.state('Services',{
-			url: '/services',
+			url: '/',
 			templateUrl: 'views/services.html'
 		})
 		.state('JobDetails',{

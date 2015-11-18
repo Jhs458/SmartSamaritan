@@ -12,7 +12,7 @@
 		JobsFactory.getJobById($stateParams.id).then(function(res){
 			vm.job = res;
 			vm.determineUser(vm.job, UserFactory.status._id);
-			console.log(vm.job);
+			console.log(vm.job, 'job');
 			var date = vm.job.createdDate; // Method .toLocalDateString turns the date into a method and cannot populate the date-
 			vm.job.createdDate = new Date();// picker in the edit so I had to turn the string back into a date for it to work.
 			vm.job.createdDate.setTime(Date.parse(date)); // http://stackoverflow.com/questions/32469737/angular-material-datepicker-date-tolocaledatestring-is-not-a-function
