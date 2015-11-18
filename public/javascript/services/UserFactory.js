@@ -7,6 +7,8 @@
 		o.setUser = setUser;
 		o.setToken = setToken;
 		o.status = {};
+		o.removeToken = removeToken;
+		o.getToken = getToken;
 		var token = '';
 
     o.registerUser = function(user) {
@@ -150,6 +152,17 @@
 			var q  = $q.defer();
 			$http.put('/api/users/jobCurrency/', {posterID , appID, currency}).then(function(res){
 				q.resolve();
+			});
+			return q.promise;
+		};
+
+		o.sendpPic = function(pic,id){
+			var q = $q.defer();
+			// console.log("heading to route");
+			 console.log(pic,id);
+			$http.put('/api/user/pic/',pic).then(function(res){
+				console.log(res);
+				q.resolve(res.data);
 			});
 			return q.promise;
 		};
