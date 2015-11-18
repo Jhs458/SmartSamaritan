@@ -6,8 +6,14 @@
       <div >
         <md-card>
           <md-card-content>
+            <div ng-show="r.isConfirmed===true" class="appliedCheck">
+              <i class="zmdi zmdi-thumb-up"></i><span style="font-size:24px; font-weight:700;"> Handshake Complete!</span>
+            </div>
             <div ng-show="vm.userType.isApplicant" class="appliedCheck">
               <i class="zmdi zmdi-check-circle"></i> You Have Applied!
+            </div>
+            <div>
+              <md-button>Message this user
             </div>
             <div ng-show="!editJob">
               <h1 class="md-title">Title: {{vm.job.title}}</h1>
@@ -38,14 +44,13 @@
               </div>
             </div>
           </div>
-
-          <div ng-show="vm.userType.isApplicant">
-            <div ng-show="vm.job.chosenApp.length === 0">
+            <div ng-show="vm.userType.isApplicant">
+              <div ng-show="vm.job.chosenApp.length === 0">
               <div ng-repeat='a in vm.job.applicants' layout='row' layout-align="center center">
                 <md-button ng-show="a.applicant==nav.status.id" flex ng-click="vm.deleteApplicant(vm.job._id, a._id, $index)" class="md-raised" style="background-color:#B0D0D3;">Remove Your Application</md-button>
               </div>
             </div>
-          </div>
+            </div>
           <div ng-show='vm.job.chosenApp.length > 0'>
             <h1>Chosen Applicant: </h1>
             <div ng-repeat='chooser in vm.job.chosenApp' layout='row'>
@@ -56,7 +61,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          <!-- 'c != nav.status.username || c.job.isConfirmed'  -->
           <div class="md-actions" layout="row" layout-align="center center">
             <div ng-hide="editJob">
               <md-button ng-show="vm.userType.isCreator" ng-click="editJob = !editJob" class="md-accent md-raised">Edit</md-button>
