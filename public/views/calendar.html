@@ -1,11 +1,16 @@
 <div ng-controller="CalendarController as vm">
+  <div layout-padding class="viewTitle">
+    In Progress Jobs
+  </div>
   <div ng-repeat='b in vm.calendarPosts | orderBy:"createdDate" '>
     <div layout="row" layout-align="center center">
       <md-card ng-show="b.isConfirmed">
         <md-card-content flex>
-          <h1 class="md-title">Title: {{b.title}}</h1>
-          <h1 class="md-title">Date: {{b.createdDate | date}}</h1>
-          <h1 class="md-title">Currency: {{b.currency}}</h1>
+          <a class="calendarA" ui-sref="JobDetails({id: b._id})">
+            <h2>{{b.title | uppercase}}</h2>
+          </a>
+          <h3 class="md-title"><span class="detailsHeadings">Date: </span>{{b.createdDate | date}}</h3>
+          <h3 class="md-title"><span class="detailsHeadings">Currency: </span>{{b.currency}}</h3>
           <md-button ng-show="b.createdBy === nav.status.id" ng-click='vm.jobCom(b)' class='md-raised md-accent'>Job Completed</md-button>
         </md-card-content>
       </md-card>

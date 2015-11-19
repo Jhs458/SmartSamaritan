@@ -111,7 +111,7 @@
 			}
 		};
 		vm.appAccept = function(c,index){
-			if(confirm('You sure to accept this job?')===true){
+			if(confirm('Are you sure you would like to accept?')===true){
 				console.log($stateParams.id);
 				JobsFactory.getJobByCanlendar(c,$stateParams.id).then(function(res){
 

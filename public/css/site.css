@@ -103,6 +103,7 @@ p {
 .viewTitle {
   font-size: 34px;
   text-align: center;
+  padding-bottom: 20px;
   color: #605768;
 }
 .noJobs {
@@ -117,7 +118,7 @@ p {
 /*.jobsViewAbove*/
 /*services below*/
 .servicesDiv {
-  padding-top: 40px;
+  padding-top: 20px;
 }
 .tileBtn {
   margin:20px;
@@ -174,3 +175,16 @@ p {
   font-weight: 700;
 }
 /*job details above*/
+/*calendar below*/
+.calendarA {
+  text-decoration: none;
+  color: #08415C;
+  text-align: center;
+  font-size: 20px;
+}
+.calendarA:visited {
+  color: #08415C;
+}
+.calendarA:hover{
+  color: #427AA1;
+}
