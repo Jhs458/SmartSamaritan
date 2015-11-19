@@ -23,6 +23,9 @@
 			<md-button ui-sref="Calendar" ng-show="nav.status.username">
 				<span class="navButtonTextColor">Calendar</span>
 			</md-button>
+			<md-button ui-sref="Leaderboard" ng-show="nav.status.username">
+				<span class="navButtonTextColor">Leaderboard</span>
+			</md-button>
 			</div>
 		<div flex="50" layout-wrap>
 			<div ui-sref="Dashboard({id: nav.status._id})" id="smartSamaritan">
@@ -122,6 +125,9 @@
 		   }(document, 'script', 'facebook-jssdk'));
 		</script>
 		<!-- Ext Libs -->
+    <!-- filepicker for image upload -->
+		<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
+
 		<script src="angular/angular.min.js"></script>
 		<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
 		<!-- Material -->

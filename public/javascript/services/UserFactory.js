@@ -7,6 +7,8 @@
 		o.setUser = setUser;
 		o.setToken = setToken;
 		o.status = {};
+		o.removeToken = removeToken;
+		o.getToken = getToken;
 		var token = '';
 
     o.registerUser = function(user) {
@@ -160,6 +162,19 @@
 			});
 			return q.promise;
 		};
+
+		o.sendpPic = function(pic,id){
+			var q = $q.defer();
+			// console.log("heading to route");
+			 console.log(pic,id);
+			$http.put('/api/users/' +id, pic).then(function(res){
+				console.log(res);
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
+
 
 		return o;
 	}

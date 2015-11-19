@@ -40,6 +40,10 @@
 		.state('Oauth',{
 			url: '/auth/token/:token',
 			templateUrl: 'views/token.html'
+		})
+		.state('Leaderboard',{
+			url:'/leaderboard',
+			templateUrl:'views/leaderboard.html'
 		});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');

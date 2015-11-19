@@ -59,6 +59,21 @@ router.put('/jobCurrency', function(req,res,next){
   });
 });
 
+//sending info on the new profile pic to server
+router.put('/:id',function(req,res,next){
+  console.log(req.body,"line64");
+  console.log(req.params,"line65");
+
+  User.update({_id: req.params.id},{
+    photo: req.body.url,
+  },
+  function(err,result){
+  if(err) return next(err);
+  if(!result) return next("Could not create the object. Please check all fields.");
+  res.send(result);
+});
+});
+
 
 // =====================================
   // FACEBOOK ROUTES =====================

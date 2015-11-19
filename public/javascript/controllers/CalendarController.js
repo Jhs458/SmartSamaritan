@@ -8,10 +8,13 @@
 		var posterCurrency = 100;
 		var applicantCurrency =100;
 
-		JobsFactory.getJobs().then(function(res){
-			vm.calendarPosts = res;
-			console.log(res);
-		});
+
+			JobsFactory.getJobs().then(function(res){
+				vm.calendarPosts = res;
+				console.log(res);
+			});
+
+
 
 		vm.jobCom = function(c){
 			if(confirm('Mark this job as completed?')===true){
@@ -32,6 +35,15 @@
 				$state.go('Calendar');
 			}
 		};
+
+
+
+
+
+
+
+
 	}
+
 
 })();
