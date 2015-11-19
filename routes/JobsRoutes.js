@@ -17,22 +17,22 @@ var auth = jwt({
 router.put('/choose/', auth, function(req,res){  //auth
   console.log(req.body);
   console.log(req.body.stateParamsId);
-User.findOne({_id: req.body.userIdToPush}, function(err, userInfo){
-  console.log(userInfo);
-  Jobs.findOne({_id: req.body.stateParamsId},function(err,result){
-    console.log('jobroutes21');
-  result.chosenApp.push(userInfo.username);
-  result.save(function(err,result){
-  res.send(result);
+  User.findOne({_id: req.body.userIdToPush}, function(err, userInfo){
+    console.log(userInfo);
+    Jobs.findOne({_id: req.body.stateParamsId},function(err,result){
+      console.log('jobroutes21');
+      result.chosenApp.push(userInfo.username);
+      result.save(function(err,result){
+        res.send(result);
+      });
+    });
   });
-});
-});
 
-  });
+});
 
 var count = 0;
 router.get('/:id', function(req,res,next){
-console.log(req.params.id, ++count);
+  console.log(req.params.id, ++count);
   Jobs.findOne({_id: req.params.id}, function(err, result){
     if(err) {
       console.log(err);
@@ -73,11 +73,11 @@ router.post('/', auth, function(req, res, next){
 
 router.post('/dashboard', auth, function(req,res,next){
   console.log(req.body);
-// router.get('/calendar/:id',function(req,res,next){
-//   Jobs.findOne({},function(err,result){
-//     if(err) return next(err);
-//     res.send(result);
-//   });
+  // router.get('/calendar/:id',function(req,res,next){
+  //   Jobs.findOne({},function(err,result){
+  //     if(err) return next(err);
+  //     res.send(result);
+  //   });
 });
 
 router.post('/calendar',auth,function(req,res,next){
@@ -99,62 +99,68 @@ router.put('/apply', function(req, res, next) {//auth
   console.log(req.body);
   Jobs.update({_id: req.body.jobID}, {$pull: {applicants: {_id: req.body.appID}}},
     function(err, result) {
-    if(err) return next(err);
-    res.send();
+      if(err) return next(err);
+      res.send();
+    });
   });
-});
 
+  router.put('/accept', auth, function(req, res, next) {//auth
+    sendBack = {};
+    Jobs.update({_id: req.body.jobId}, {$pullAll: {chosenApp: [req.payload.username]}},
+      function(err, result) {
+        if(err) return next(err);
+        sendBack.one = result;
 
-router.put('/accept', function(req, res, next) {//auth
-  console.log(req.body, "90jobroutes");
-  Jobs.update({_id: req.body.jobId}, {$pull: {chosenApp: req.body.c}},
-    function(err, result) {
-    if(err) return next(err);
-    res.send();
-  });
-});
-
-router.put('/confirm', function(req, res, next) {//auth
-  console.log(req.body.jobID, "119jobroutes");
-  Jobs.update({_id: req.body.jobID}, {isConfirmed:true},
-    function(err, result) {
-    if(err) return next(err);
-    res.send();
-  });
-});
-
-router.put('/complete/:id', function(req, res, next) {//auth
-  // console.log(req.params.id, "119jobroutes");
-  Jobs.update({_id: req.params.id}, {isCompleted:true},
-    function(err, result) {
-    if(err) return next(err);
-    res.send();
-  });
-});
-
-router.put('/:id', function (req, res, next) {//auth
-  Jobs.update({_id: req.params.id}, req.body, function (err, result) {
-    if(err) return next(err);
-    if(!result) return next({err: "The post wasn't found for updating"});
-    res.send(result);
-  });
-});
-
-router.put('/apply/:id', auth, function(req, res, next) { //auth,
-  appPost = {};
-  appPost.applicant = req.payload._id;
-  appPost.username = req.payload.username;
-  appPost.created = new Date();
-
-
-      Jobs.findOne({_id:req.params.id},function(err, result){
-        result.applicants.push(appPost);
-        result.save(function(err, result) {
-          res.send(result);
-        });
-        console.log(result, 6);
-        });
+    Jobs.update({_id: req.body.jobId}, {declinedHandshake: req.payload._id},
+      function(err, result) {
+        if(err) return next(err);
+        sendBack.two = result;
+        res.send();
       });
+    });
+  });
+
+      router.put('/confirm', function(req, res, next) {//auth
+        console.log(req.body.jobID, "119jobroutes");
+        Jobs.update({_id: req.body.jobID}, {isConfirmed:true},
+          function(err, result) {
+            if(err) return next(err);
+            res.send();
+          });
+        });
+
+        router.put('/complete/:id', function(req, res, next) {//auth
+          // console.log(req.params.id, "119jobroutes");
+          Jobs.update({_id: req.params.id}, {isCompleted:true},
+            function(err, result) {
+              if(err) return next(err);
+              res.send();
+            });
+          });
+
+          router.put('/:id', function (req, res, next) {//auth
+            Jobs.update({_id: req.params.id}, req.body, function (err, result) {
+              if(err) return next(err);
+              if(!result) return next({err: "The post wasn't found for updating"});
+              res.send(result);
+            });
+          });
+
+          router.put('/apply/:id', auth, function(req, res, next) { //auth,
+            appPost = {};
+            appPost.applicant = req.payload._id;
+            appPost.username = req.payload.username;
+            appPost.created = new Date();
+
+
+            Jobs.findOne({_id:req.params.id},function(err, result){
+              result.applicants.push(appPost);
+              result.save(function(err, result) {
+                res.send(result);
+              });
+              console.log(result, 6);
+            });
+          });
 
 
 
@@ -165,4 +171,4 @@ router.put('/apply/:id', auth, function(req, res, next) { //auth,
 
 
 
-module.exports = router;
+          module.exports = router;

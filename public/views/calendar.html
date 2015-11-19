@@ -11,7 +11,7 @@
           </a>
           <h3 class="md-title"><span class="detailsHeadings">Date: </span>{{b.createdDate | date}}</h3>
           <h3 class="md-title"><span class="detailsHeadings">Currency: </span>{{b.currency}}</h3>
-          <md-button ng-show="b.createdBy === nav.status.id" ng-click='vm.jobCom(b)' class='md-raised md-accent'>Job Completed</md-button>
+          <md-button style="background-color: #E06C9F;" ng-show="b.createdBy === nav.status.id" ng-click='vm.jobCom(b)' class='md-raised md-accent'>Job Completed</md-button>
         </md-card-content>
       </md-card>
     </div>

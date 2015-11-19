@@ -12,7 +12,7 @@
 		JobsFactory.getJobById($stateParams.id).then(function(res){
 			vm.job = res;
 			vm.determineUser(vm.job, UserFactory.status._id);
-			console.log(vm.job, 'job');
+			console.log(vm.userType);
 			console.log(vm.job, 5);
 			var date = vm.job.createdDate; // Method .toLocalDateString turns the date into a method and cannot populate the date-
 			vm.job.createdDate = new Date();// picker in the edit so I had to turn the string back into a date for it to work.
@@ -22,20 +22,38 @@
 			vm.userType = {
 				isCreator: false,
 				isApplicant: false,
+				isBanned: false,
 				isNobody: true
 			};
+
+			if(job.declinedHandshake === userID) {
+				vm.userType.isCreator = false;
+				vm.userType.isApplicant = false;
+				vm.userType.isNobody = false;
+				vm.userType.isBanned = true;
+			}
+			if(job.declinedHandshake == userID) {
+				vm.userType.isCreator = false;
+				vm.userType.isApplicant = false;
+				vm.userType.isNobody = false;
+				vm.userType.isBanned = true;
+			}
+
 			if(job.createdBy == userID) {
 				console.log("creator");
 				vm.userType.isCreator = true;
 				vm.userType.isApplicant = false;
 				vm.userType.isNobody = false;
+				vm.userType.isBanned = false;
 			}
 			if(job.applicants){
 				for (var i = 0; i < job.applicants.length; i++) {
-					if (job.applicants[i].applicant && userID === job.applicants[i].applicant) {
+					if ((job.applicants[i].applicant && userID === job.applicants[i].applicant) &&
+						(job.applicants[i].applicant && userID !== job.declinedHandshake)) {
 						vm.userType.isApplicant = true;
 						vm.userType.isCreator = false;
 						vm.userType.isNobody = false;
+						vm.userType.isBanned = false;
 						break;
 					}
 				}
@@ -77,7 +95,6 @@
 			$state.go('JobDetails', {_id:_id}, {location: true});
 		};
 		vm.applyJob = function(a){
-			console.log(a);
 			JobsFactory.applyJob(a, {id:$stateParams.id}).then(function(res) {
 				vm.job = res;
 				vm.userType.isApplicant = true;
@@ -120,8 +137,9 @@
 			}
 			else{
 				JobsFactory.appDecline(c, $stateParams.id).then(function(){
-					console.log(c);
 					vm.job.chosenApp.splice(index,1);
+					vm.userType.isApplicant = false;
+					vm.userType.isBanned = true;
 				}) ;
 			}
 		};

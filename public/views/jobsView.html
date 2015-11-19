@@ -15,13 +15,16 @@
       </div>
         <md-card flex="90" class="jobViewCard" ng-repeat='j in vm.jobs'<a ui-sref="JobDetails({id: j._id})"></a>
           <md-card-content>
-            <div ng-hide="j.isConfirmed">
+            <div ng-hide="j.isConfirmed || (j.declinedHandshake === nav.status.id)">
               <div ng-show="vm.isApplicant(j.applicants, nav.status.id)" class="appliedCheckView">
                 <i class="zmdi zmdi-check-circle"></i>Applied!
               </div>
             </div>
             <div class="handshakeView" ng-show="j.isConfirmed"><i class="zmdi zmdi-thumb-up"><span style="color: #427AA1">
               Handshake Complete
+            </span></i></div>
+            <div class="handshakeView" ng-show="j.declinedHandshake === nav.status.id"><i class="zmdi zmdi-thumb-down"><span style="color: #E06C9F">
+              Handshake Declined
             </span></i></div>
               <h2 class="md-title">{{j.title}}</h2>
             <h3 class="md-title">On {{j.createdDate | date}} At {{j.location.street}}, {{j.location.city}}, {{j.location.state}} {{j.location.zip}}</h3>
