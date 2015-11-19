@@ -8,13 +8,17 @@
 
 		UserFactory.getAllByUser(vm.status._id).then(function(res){
 			vm.userArray = res;
+			console.log(vm.userArray);
 		});
 
 		vm.goToJob = function(id){
 			$state.go('JobDetails', {id:id}, {location: true});
 		};
 
-
+		UserFactory.getUserInfo($stateParams.id).then(function(res){
+			vm.userInfo = res;
+			// console.log(vm.userInfo);
+		});
 
 //image upload
 console.log("dashcontroller");
@@ -28,26 +32,30 @@ vm.pic = function(){
 				cropRatio: 1/1, /* Perfect squares */
 				services: ['*'] /* All available third-parties */
 		}, function(blob){
+
 				// Returned Stuff
-				var filename = blob.filename;
+				// var filename = blob.filename;
 				var url = blob.url;
-				var id = blob.id;
-				var isWriteable = blob.isWriteable;
-				var mimetype = blob.mimetype;
-				var size = blob.size;
+				// var id = blob.id;
+				// var isWriteable = blob.isWriteable;
+				// var mimetype = blob.mimetype;
+				// var size = blob.size;
+
 
 				console.log("after picking");
+				// window.location.reload();
 
 			UserFactory.sendpPic(blob,vm.status._id).then(function(res){
-				console.log(blob, vm.status._id);
-				console.log(res + "res");
-				vm.user.photo =res;
-				console.log(vm.user.photo +"vm.users2");
-
+				// vm.getUserInformation();
+				UserFactory.getUserInfo($stateParams.id).then(function(res){
+					vm.userInfo = res;
+					// console.log(vm.userInfo);
+				});
 			});
-
 	});
 };
+
+
 
 
 

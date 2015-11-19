@@ -110,6 +110,14 @@
 			return q.promise;
 		};
 
+		o.getUserInfo = function(id) {
+			var q = $q.defer();
+			$http.get('/api/users/userinfo/' + id).then(function(res) {
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
 
 		function getAuth() {
 		var auth = {
@@ -160,12 +168,14 @@
 			var q = $q.defer();
 			// console.log("heading to route");
 			 console.log(pic,id);
-			$http.put('/api/user/pic/',pic).then(function(res){
+			$http.put('/api/users/' +id, pic).then(function(res){
 				console.log(res);
 				q.resolve(res.data);
 			});
 			return q.promise;
 		};
+
+
 
 		return o;
 	}

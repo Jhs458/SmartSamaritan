@@ -23,6 +23,9 @@
 			<md-button ui-sref="Calendar" ng-show="nav.status.username">
 				<span class="navButtonTextColor">Calendar</span>
 			</md-button>
+			<md-button ui-sref="Leaderboard" ng-show="nav.status.username">
+				<span class="navButtonTextColor">Leaderboard</span>
+			</md-button>
 			</div>
 		<div flex="50" layout-wrap>
 			<div ui-sref="Dashboard({id: nav.status._id})" id="smartSamaritan">
@@ -61,7 +64,7 @@
 					</md-button>
 				</div>
 				<div ng-show="nav.status.username">
-					<md-button ng-click="nav.toggleRight()">
+					<md-button ng-click="nav.toggleRight(nav.status.id)">
 						<span class="navButtonTextColor">Messages</span>
 					</md-button>
 				</div>
@@ -73,14 +76,16 @@
 			<md-toolbar class="md-theme-light">
 				<h1 class="md-toolbar-tools" >Messaging</h1>
 			</md-toolbar>
-			<md-content  layout-padding layout="column" md-scroll-y style="max-height: 68%">
+			<md-content  layout-padding layout="column" md-scroll-y style="height: 65%">
 				<md-list >
-					<md-list-item class="md-2-line" ng-repeat="m in nav.messages">
+					<md-list-item class="md-2-line" ng-repeat="f in nav.friends">
+
 						<!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" /> -->
 						<div class="md-list-item-text" layout="column">
-							<h3>{{ m.body }}</h3>
-							<p>{{ m.created }}</p>
+							<h3><a>{{ f }}</a></h3>
+
 						</div>
+
 					</md-list-item>
 				</md-list>
 			</md-content>
@@ -122,7 +127,7 @@
 		<!-- Ext Libs -->
     <!-- filepicker for image upload -->
 		<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
-		
+
 		<script src="angular/angular.min.js"></script>
 		<script src="angular-ui-router/release/angular-ui-router.min.js"></script>
 		<!-- Material -->

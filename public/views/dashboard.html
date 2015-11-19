@@ -1,26 +1,27 @@
 <div ng-controller="DashboardController as vm">
 	<div layout="row" style='margin-left:90px;'>
-		<img height="40" width="40" src='https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/441/aiga_cashier-512.png'><h3> {{nav.status.currency}}</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<img height='40' width="40" src='http://images.wikia.com/farmville/images/b/b4/XP-icon.png'><h3> {{nav.status.exp}}</h3>
+		<img height="40" width="40" src='https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/441/aiga_cashier-512.png'><h3> {{vm.userInfo.currency}}</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<img height='40' width="40" src='http://images.wikia.com/farmville/images/b/b4/XP-icon.png'><h3> {{vm.userInfo.exp}}</h3>
 	</div>
 	<div layout="row" layout-padding style="padding:40px">
 		<div flex="50">
-			<md-card flex="80">
+			<md-card>
 				<md-card-content layout="row">
-					<div flex="40" style="text-align:center; color:#73956F">
+					<div flex="30" style="text-align:center; color:#73956F">
+
 <!-- Facebook image -->
-						<i ng-if='!nav.status.photo' style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
-                        <div ng-if='nav.status.photo'>
-                        <img ng-src="{{nav.status.photo}}" alt="" height="100px" />
-                    </div>
+						<i ng-if='!vm.userInfo.photo' style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
+						<div ng-if='vm.userInfo.photo'>
+							<img ng-src="{{vm.userInfo.photo}}" alt="" height="100px" />
+						</div>
 						<br>
-						<md-button ng-click="vm.pic()" class="md-raised" name="button">Image Uploader</md-button>
+            <md-button style="font-size: .7em" ng-click="vm.pic()" class="md-raised" name="button">Upload Image</md-button>
 					</div>
-					<div flex="60" style="text-align:center;">
-						<h2>{{nav.status.username | uppercase}}</h2>
-						<h3>{{nav.status.email}}</h3>
-						<h3>{{nav.status.location.street}}</h3>
-						<h3>{{nav.status.location.city}} {{nav.status.location.state}}, {{nav.status.location.zip}}</h3>
+					<div flex="70" style="text-align:center;">
+						<h2>{{vm.userInfo.username | uppercase}}</h2>
+						<h3>{{vm.userInfo.email}}</h3>
+						<h3>{{vm.userInfo.location.street}}</h3>
+						<h3>{{vm.userInfo.location.city}} {{vm.userInfo.location.state}}, {{vm.userInfo.location.zip}}</h3>
 					</div>
 				</md-card-content>
 			</md-card>
@@ -32,14 +33,16 @@
 					<ul ng-repeat="c in vm.userArray.posting">
 						<li style="list-style-type: none;">
 							<div layout=row>
-								<div ng-show="c.isConfirmed===true" class="appliedCheck">
-									<i class="zmdi zmdi-check-circle"></i>
-								</div>
 								<md-button ng-show="c.chosenApp.length === 0" style="font-size: 24px;" ng-click="vm.goToJob(c._id)">{{c.title}}</md-button>
-								<div ng-show="c.chosenApp.length > 0">
+								<div ng-show="c.chosenApp.length > 0 && c.isConfirmed===false">
 									<md-button style="font-size: 24px; background-color: #605768;" ng-click="vm.goToJob(c._id)" class="md-accent md-raised">{{c.title}}</md-button>
 									<span style="font-size: 18px;">Waiting for applicant confirmation</span>
 								</div>
+								<div ng-show="c.isConfirmed===true" class="appliedCheck">
+									<md-button style="font-size: 24px; background-color: #605768;" ng-click="vm.goToJob(c._id)" class="md-accent md-raised">{{c.title}}</md-button>
+									<i class="zmdi zmdi-thumb-up"></i><span style="font-size:24px; font-weight:700;"> Handshake Complete!</span>
+								</div>
+
 							</div>
 						</li>
 					</ul>

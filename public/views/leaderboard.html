@@ -1,0 +1,35 @@
+<div ng-controller="CalendarController as vm">
+  <div layout="row" layout-padding style="padding:40px">
+    <md-card flex='33'>
+      <md-card-content>
+        <div layout='row'>
+        <img height="50" width="50" src='http://images.wikia.com/farmville/images/b/b4/XP-icon.png'>
+        <h1>Experience</h1>
+      </div>
+        <ol>
+        <li>{{vm.userInfo.currency}}</li>
+      </ol>
+      </md-card-content>
+    </md-card>
+
+    <md-card flex='33'>
+      <md-card-content>
+        <div layout='row'>
+        <img height="50" width="50" src='https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/441/aiga_cashier-512.png'>
+        <h1>Currency</h1>
+      </div>
+
+      </md-card-content>
+    </md-card>
+
+    <md-card flex='33'>
+      <md-card-content>
+        <div layout='row'>
+        <img height="50" width="50" src='https://cdn2.iconfinder.com/data/icons/rewards-1/512/vote-512.png'>
+        <h1>Rating</h1>
+      </div>
+
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

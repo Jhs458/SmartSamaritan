@@ -24,7 +24,7 @@
 
 		vm.loginUser = function() {
 			UserFactory.loginUser(vm.user).then(function() {
-				$state.go('Dashboard');
+				$state.go('Services');
 				vm.user = {};
 			});
 		};
@@ -33,19 +33,43 @@
 			$mdSidenav('right').toggle();
 		};
 
-		vm.toggleRight = function () {
+		vm.toggleRight = function (sentTo) {
 			$mdSidenav('right').toggle();
-		};
-
+			// console.log(m);
 		vm.sendMsg = function(){
+			vm.msg.sentTo = sentTo
 			JobsFactory.sendMsg(vm.msg).then(function(res) {
 				// vm.close();
 				vm.msg = {};
 			});
 		};
+		};
 
-		JobsFactory.getAllMessages().then(function(res) {
-			vm.messages = res;
+		JobsFactory.getMessagesById().then(function(res) {
+			vm.msgs = res;
+			console.log(vm.msgs);
+			vm.oneArr = [];
+			vm.friends = [];
+			for(var i = 0; i < vm.msgs.createdBy.length; i ++){
+				vm.oneArr.push(vm.msgs.createdBy[i]);
+				if (vm.friends.indexOf(vm.msgs.createdBy[i].sentTo) === -1){
+				          vm.friends.push(vm.msgs.createdBy[i].sentTo);
+				}
+
+			}
+			for(var x = 0; x < vm.msgs.sentTo.length; x ++){
+				vm.oneArr.push(vm.msgs.sentTo[x]);
+				if (vm.friends.indexOf(vm.msgs.sentTo[x].createdBy) === -1){
+				          vm.friends.push(vm.msgs.sentTo[x].createdBy);
+				}
+
+			}
+			// console.log(vm.msgs.createdBy);
+			// console.log(vm.msgs.sentTo);
+			console.log(vm.oneArr, 'oneArr');
+			console.log(vm.friends, 'friends');
+
+
 		});
 
 		vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +

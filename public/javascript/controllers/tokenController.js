@@ -12,7 +12,7 @@
 
   UserFactory.setUser(x)
 
-  	$state.go("Dashboard");
+  	$state.go("Services");
 
 	}
 })();

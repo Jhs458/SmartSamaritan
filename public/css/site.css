@@ -129,3 +129,43 @@ p {
 .btn3, .btn5 {
   color: #605768;
 }
+/*job details below*/
+.jobTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #08415C;
+}
+.currencyIcons {
+  font-size: 24px;
+  color: #73956F;
+}
+.jobDetailsButton {
+  background-color: #605768;
+  color: white;
+  font-size: 16px;
+}
+.jobDetailsButton2 {
+  background-color: #73956F;
+  color: white;
+  font-size: 16px;
+}
+.chosenApplicantName {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: -10px;
+  color: #427AA1;
+}
+.congrats {
+  font-size:24px;
+  font-weight:700;
+  color: #427AA1;
+  /*margin-top:-20px;*/
+  text-align: center;
+
+}
+.applicantH2 {
+  color: #08415C;
+}
+.detailsHeadings {
+  font-weight: 700;
+}
