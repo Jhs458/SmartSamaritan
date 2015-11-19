@@ -37,7 +37,7 @@
 			$mdSidenav('right').toggle();
 			// console.log(m);
 		vm.sendMsg = function(){
-			vm.msg.sentTo = sentTo
+			vm.msg.sentTo = sentTo;
 			JobsFactory.sendMsg(vm.msg).then(function(res) {
 				// vm.close();
 				vm.msg = {};

@@ -8,7 +8,6 @@
 
 		UserFactory.getAllByUser(vm.status._id).then(function(res){
 			vm.userArray = res;
-			console.log(vm.userArray);
 		});
 
 		vm.goToJob = function(id){
@@ -17,7 +16,6 @@
 
 		UserFactory.getUserInfo($stateParams.id).then(function(res){
 			vm.userInfo = res;
-			// console.log(vm.userInfo);
 		});
 
 //image upload
