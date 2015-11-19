@@ -15,17 +15,21 @@
       </div>
         <md-card flex="90" class="jobViewCard" ng-repeat='j in vm.jobs'<a ui-sref="JobDetails({id: j._id})"></a>
           <md-card-content>
-            <div ng-show="vm.isApplicant(j.applicants, nav.status.id)" class="appliedCheckView">
-              <i class="zmdi zmdi-check-circle"></i>Applied!
+            <div ng-hide="j.isConfirmed">
+              <div ng-show="vm.isApplicant(j.applicants, nav.status.id)" class="appliedCheckView">
+                <i class="zmdi zmdi-check-circle"></i>Applied!
+              </div>
             </div>
-            <div ng-show="j.isConfirmed"><i class="zmdi zmdi-thumb-up"></i></div>
+            <div class="handshakeView" ng-show="j.isConfirmed"><i class="zmdi zmdi-thumb-up"><span style="color: #427AA1">
+              Handshake Complete
+            </span></i></div>
               <h2 class="md-title">{{j.title}}</h2>
             <h3 class="md-title">On {{j.createdDate | date}} At {{j.location.street}}, {{j.location.city}}, {{j.location.state}} {{j.location.zip}}</h3>
           </md-card-content>
         </md-card>
     </div>
     <div flex="50">
-      <div flex="90">
+      <div flex="90" class="map">
         <script type="text/ng-template" id="searchbox.tpl.html">
         <input class='form-control' type="text" placeholder="Search Box">
         </script>

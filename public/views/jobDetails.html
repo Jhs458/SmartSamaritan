@@ -88,7 +88,7 @@
                 <!-- 'c != nav.status.username || c.job.isConfirmed'  -->
                 <div class="md-actions" layout="row" layout-align="center center">
                   <md-button class="jobDetailsButton2" ng-show="!vm.job.isConfirmed && vm.userType.isApplicant && vm.job.chosenApp.length > 0" ng-click='vm.appAccept(chooser)' class='md-raised md-primary'>Handshake</md-button>
-                  <md-button class="jobDetailsButton" ng-if="!vm.userType.isCreator" class="md-accent md-raised">Message Job Poster</md-button>
+                  <md-button class="jobDetailsButton" ng-if="!vm.userType.isCreator" class="md-accent md-raised" ng-click="nav.toggleRight(vm.job.createdBy)">Message Job Poster</md-button>
                   <md-button class="jobDetailsButton" ng-if="vm.userType.isNobody" ng-click="vm.applyJob(vm.job);" class="md-accent md-raised">Apply</md-button>
                 </div>
                 <!-- ========= In Line Editing ========= -->

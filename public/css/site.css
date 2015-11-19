@@ -3,6 +3,9 @@
   width:520px;
   margin-top: 8px;
 }
+.map {
+  position: fixed;
+}
 .form-control{
   width:50%;
   height:30px;
@@ -69,10 +72,13 @@ p {
 .appliedCheckView {
   color: #73956F;
   font-size: 20px;
-  text-align: center;
-  background-color: #DEE5E5;
+  text-align: right;
 }
-
+.handshakeView {
+  color: #73956F;
+  font-size: 20px;
+  text-align: right;
+}
 .jobViewCard:hover {
   background-color: #DEE5E5;
  -moz-box-shadow:    0 0 20px #605768;
@@ -159,9 +165,7 @@ p {
   font-size:24px;
   font-weight:700;
   color: #427AA1;
-  /*margin-top:-20px;*/
   text-align: center;
-
 }
 .applicantH2 {
   color: #08415C;
@@ -169,3 +173,4 @@ p {
 .detailsHeadings {
   font-weight: 700;
 }
+/*job details above*/
