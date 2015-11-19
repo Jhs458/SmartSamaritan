@@ -45,7 +45,7 @@ console.log(req.params.id, ++count);
 });
 
 router.get('/',function(req,res,next){
-  Jobs.find({},function(err,result){
+  Jobs.find({isCompleted:false},function(err,result){
     if(err) return next(err);
     res.send(result);
   });
@@ -117,6 +117,15 @@ router.put('/accept', function(req, res, next) {//auth
 router.put('/confirm', function(req, res, next) {//auth
   console.log(req.body.jobID, "119jobroutes");
   Jobs.update({_id: req.body.jobID}, {isConfirmed:true},
+    function(err, result) {
+    if(err) return next(err);
+    res.send();
+  });
+});
+
+router.put('/complete/:id', function(req, res, next) {//auth
+  // console.log(req.params.id, "119jobroutes");
+  Jobs.update({_id: req.params.id}, {isCompleted:true},
     function(err, result) {
     if(err) return next(err);
     res.send();

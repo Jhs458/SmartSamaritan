@@ -17,14 +17,14 @@ router.post('/login', function(req, res, next) {
 router.get('/dashboard/:id', function(req, res, next){
   var sendBack ={};
 
-  Jobs.find({createdBy:req.params.id})
+  Jobs.find({createdBy:req.params.id}).where('isCompleted').equals(false)
   .exec(function(err, result){
     if(err) return next(err);
     if(!result) return next('Could not find request');
     sendBack.posting = result;
 
   Jobs.find()
-  .where('applicants.applicant').equals(req.params.id)
+  .where('applicants.applicant').equals(req.params.id).where('isCompleted').equals(false)
   .exec(function(err, result){
     if(err) return next(err);
     if(!result) return next('Could not find request');
@@ -57,6 +57,21 @@ router.put('/jobCurrency', function(req,res,next){
     res.send();
     });
   });
+});
+
+//sending info on the new profile pic to server
+router.put('/:id',function(req,res,next){
+  console.log(req.body,"line64");
+  console.log(req.params,"line65");
+
+  User.update({_id: req.params.id},{
+    photo: req.body.url,
+  },
+  function(err,result){
+  if(err) return next(err);
+  if(!result) return next("Could not create the object. Please check all fields.");
+  res.send(result);
+});
 });
 
 
