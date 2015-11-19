@@ -19,7 +19,6 @@
       return q.promise;
     };
 
-
     o.loginUser = function(user) {
       var q = $q.defer();
       $http.post('/api/users/login', user).then(function(res) {

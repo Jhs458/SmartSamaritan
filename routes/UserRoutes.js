@@ -17,14 +17,14 @@ router.post('/login', function(req, res, next) {
 router.get('/dashboard/:id', function(req, res, next){
   var sendBack ={};
 
-  Jobs.find({createdBy:req.params.id})
+  Jobs.find({createdBy:req.params.id}).where('isCompleted').equals(false)
   .exec(function(err, result){
     if(err) return next(err);
     if(!result) return next('Could not find request');
     sendBack.posting = result;
 
   Jobs.find()
-  .where('applicants.applicant').equals(req.params.id)
+  .where('applicants.applicant').equals(req.params.id).where('isCompleted').equals(false)
   .exec(function(err, result){
     if(err) return next(err);
     if(!result) return next('Could not find request');

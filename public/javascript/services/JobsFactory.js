@@ -17,9 +17,16 @@
 		};
 
 		o.getJobByCanlendar = function(c,jobID){
-			console.log(c,jobID);
 			var q=$q.defer();
 			$http.put('/api/jobs/confirm/', {jobID: jobID}).then(function(res){
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
+		o.completeJob = function(c){
+			var q=$q.defer();
+			$http.put('/api/jobs/complete/' + c).then(function(res){
 				q.resolve(res.data);
 			});
 			return q.promise;
@@ -67,7 +74,6 @@
 		};
 
 		o.createJobs = function(job){
-			console.log(job);
 			var q  = $q.defer();
 			$http.post('/api/jobs', job).then(function(){
 				q.resolve();
@@ -117,8 +123,6 @@
 
 
 		o.chooseApplicant = function(a, stateParamsId){
-			console.log(stateParamsId);
-			console.log(a.applicant);
 			var userIdToPush = a.applicant;
 			var q = $q.defer();
 			$http.put('/api/jobs/choose/', {userIdToPush, stateParamsId}).then(function(res){
@@ -138,8 +142,6 @@
 		// };
 
 		o.appDecline = function(c, jobId){
-			console.log(c);
-			console.log(jobId);
 			var q =$q.defer();
 			$http.put('/api/jobs/accept', {c, jobId}).then(function(res){
 				q.resolve();
