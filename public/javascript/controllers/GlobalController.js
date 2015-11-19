@@ -10,7 +10,7 @@
 		vm.status = UserFactory.status;
 		vm.msg = {};
 
-		console.log(vm.status);
+		console.log(vm.status, 'status');
 
 		vm.logout = function() {
 			UserFactory.logout();
@@ -45,6 +45,8 @@
 		};
 		};
 
+
+		if(Object.keys(vm.status).length !== 0){
 		JobsFactory.getMessagesById().then(function(res) {
 			vm.msgs = res;
 			console.log(vm.msgs);
@@ -68,9 +70,8 @@
 			// console.log(vm.msgs.sentTo);
 			console.log(vm.oneArr, 'oneArr');
 			console.log(vm.friends, 'friends');
-
-
 		});
+	}
 
 		vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
 		'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
