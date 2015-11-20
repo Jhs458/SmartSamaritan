@@ -95,7 +95,35 @@
     		}) ;
     	} ;
 
+	vm.friendsShow = function(){
+		vm.friends = !vm.friends;
+	}
 
+	vm.friendsShow2 = function(){
+		vm.friends = !vm.friends;
+		if(Object.keys(vm.status).length !== 0){
+		JobsFactory.getMessagesById().then(function(res) {
+			vm.msgs = res;
+			console.log(vm.msgs);
+			vm.oneArr = [];
+			vm.friends = [];
+			for(var i = 0; i < vm.msgs.createdBy.length; i ++){
+				vm.oneArr.push(vm.msgs.createdBy[i]);
+				if (vm.friends.indexOf(vm.msgs.createdBy[i].sentTo) === -1){
+				          vm.friends.push(vm.msgs.createdBy[i].sentTo);
+				}
+
+			}
+			for(var x = 0; x < vm.msgs.sentTo.length; x ++){
+				vm.oneArr.push(vm.msgs.sentTo[x]);
+				if (vm.friends.indexOf(vm.msgs.sentTo[x].createdBy) === -1){
+				          vm.friends.push(vm.msgs.sentTo[x].createdBy);
+				}
+
+			}
+		});
+	}
+	}
 
 
 	}
