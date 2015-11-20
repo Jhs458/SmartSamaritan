@@ -9,7 +9,7 @@
 		vm.user = {};
 		vm.status = UserFactory.status;
 		vm.msg = {};
-
+		vm.oneArr = [];
 		console.log(vm.status, 'status');
 
 		vm.logout = function() {
@@ -50,7 +50,7 @@
 		JobsFactory.getMessagesById().then(function(res) {
 			vm.msgs = res;
 			console.log(vm.msgs);
-			vm.oneArr = [];
+			// oneArr = [];
 			vm.friends = [];
 			for(var i = 0; i < vm.msgs.createdBy.length; i ++){
 				vm.oneArr.push(vm.msgs.createdBy[i]);
@@ -95,8 +95,22 @@
     		}) ;
     	} ;
 
-	vm.friendsShow = function(){
+	vm.friendsShow = function(f){
 		vm.friends = !vm.friends;
+		vm.convo = [];
+		// console.log(f);
+		console.log(vm.oneArr);
+		for(var i = 0; i < vm.oneArr.length; i++) {
+			console.log(vm.oneArr[i])
+			if(vm.oneArr[i].createdBy == f){
+				vm.convo.push(vm.oneArr[i])
+			}
+			if(vm.oneArr[i].sentTo == f){
+				vm.convo.push(vm.oneArr[i])
+			}
+		}
+
+		console.log(vm.convo,"Convo")
 	}
 
 	vm.friendsShow2 = function(){
