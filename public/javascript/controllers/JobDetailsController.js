@@ -140,6 +140,7 @@
 					vm.job.chosenApp.splice(index,1);
 					vm.userType.isApplicant = false;
 					vm.userType.isBanned = true;
+					vm.job.declinedHandshake = vm.status.id;
 				}) ;
 			}
 		};

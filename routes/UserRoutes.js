@@ -136,4 +136,21 @@ router.get('/userinfo/:id', function(req, res, next){
     });
 
 
+router.put('/infoedit/:id',function(req,res,next){
+  console.log(req.body,"edit body");
+  console.log(req.params,"edit params");
+  User.update({_id: req.params.id},
+    {$set: {
+      username: req.body.username,
+      email: req.body.email,
+      location: {street: req.body.location.street, city: req.body.location.city, state: req.body.location.state, zip: req.body.location.zip}
+    }},
+  function(err,result){
+  if(err) return next(err);
+  if(!result) return next("Could not create the object. Please check all fields.");
+  res.send(result);
+});
+});
+
+
 module.exports = router;

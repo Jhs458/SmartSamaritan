@@ -166,9 +166,17 @@
 		o.sendpPic = function(pic,id){
 			var q = $q.defer();
 			// console.log("heading to route");
-			 console.log(pic,id);
+			 console.log(pic, 'pic in factory');
 			$http.put('/api/users/' +id, pic).then(function(res){
 				console.log(res);
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
+		o.infoEdit = function(e, id){
+			var q = $q.defer();
+			$http.put('/api/users/infoedit/' + id, e).then(function(res){
 				q.resolve(res.data);
 			});
 			return q.promise;

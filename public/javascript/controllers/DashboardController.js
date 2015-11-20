@@ -21,7 +21,6 @@
 		});
 
 //image upload
-console.log("dashcontroller");
 vm.pic = function(){
 		filepicker.setKey("AVkaqvPVuQCCSH059S4zQz");
 
@@ -55,7 +54,14 @@ vm.pic = function(){
 	});
 };
 
-
+vm.infoEdit = function(i){
+			// console.log(i, 'infoEdit');
+			UserFactory.infoEdit(i, vm.status._id).then(function(res){
+				UserFactory.getUserInfo($stateParams.id).then(function(res){
+					vm.userInfo = res;
+				});
+			});
+}
 
 
 
