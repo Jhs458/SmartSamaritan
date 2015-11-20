@@ -46,7 +46,7 @@
 		};
 
 
-		if(Object.keys(vm.status).length !== 0){
+		vm.getMessages = function(){
 		JobsFactory.getMessagesById().then(function(res) {
 			vm.msgs = res;
 			console.log(vm.msgs);
@@ -57,20 +57,20 @@
 				if (vm.friends.indexOf(vm.msgs.createdBy[i].sentTo) === -1){
 				          vm.friends.push(vm.msgs.createdBy[i].sentTo);
 				}
-
 			}
 			for(var x = 0; x < vm.msgs.sentTo.length; x ++){
 				vm.oneArr.push(vm.msgs.sentTo[x]);
 				if (vm.friends.indexOf(vm.msgs.sentTo[x].createdBy) === -1){
 				          vm.friends.push(vm.msgs.sentTo[x].createdBy);
 				}
-
 			}
-			// console.log(vm.msgs.createdBy);
-			// console.log(vm.msgs.sentTo);
 			console.log(vm.oneArr, 'oneArr');
 			console.log(vm.friends, 'friends');
 		});
+	}
+
+	if(Object.keys(vm.status).length !== 0){
+		vm.getMessages();
 	}
 
 		vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
@@ -98,14 +98,14 @@
 	vm.friendsShow = function(f){
 		vm.friends = !vm.friends;
 		vm.convo = [];
-		// console.log(f);
+		console.log(f, 'f this');
 		console.log(vm.oneArr);
 		for(var i = 0; i < vm.oneArr.length; i++) {
 			console.log(vm.oneArr[i])
-			if(vm.oneArr[i].createdBy == f){
+			if(vm.oneArr[i].createdBy._id == f._id){
 				vm.convo.push(vm.oneArr[i])
 			}
-			if(vm.oneArr[i].sentTo == f){
+			if(vm.oneArr[i].sentTo._id == f._id){
 				vm.convo.push(vm.oneArr[i])
 			}
 		}

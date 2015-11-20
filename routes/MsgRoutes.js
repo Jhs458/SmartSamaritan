@@ -33,6 +33,7 @@ var auth = jwt({
      console.log(req.payload._id, 'get messages');
 
      Messages.find({createdBy:req.payload._id})
+     .populate('sentTo', 'username')
      .exec(function(err, result){
        if(err) return next(err);
        if(!result) return next('Could not find request');
@@ -40,6 +41,7 @@ var auth = jwt({
 console.log(sendBack.createdBy, 'createdBy');
 
     Messages.find({sentTo:req.payload._id})
+    .populate('createdBy', 'username')
     .exec(function(err, result){
       if(err) return next(err);
       if(!result) return next('Could not find request');

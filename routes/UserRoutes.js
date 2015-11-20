@@ -152,5 +152,16 @@ router.put('/infoedit/:id',function(req,res,next){
 });
 });
 
+router.get('/getall/', function(req, res, next){
+      User.find({}, {
+        _id: req.params.id,
+        username: req.params.username
+      },
+        function(err, result){
+        if(err) {return next(err);}
+        if(!result) {return next({err: "Error finding user by ID."});}
+        res.send(result);
+      });
+    });
 
 module.exports = router;

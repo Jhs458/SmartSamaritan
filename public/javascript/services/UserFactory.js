@@ -182,7 +182,13 @@
 			return q.promise;
 		};
 
-
+		o.getAllUsers = function() {
+			var q = $q.defer();
+			$http.get('/api/users/getall/').then(function(res) {
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
 
 		return o;
 	}
