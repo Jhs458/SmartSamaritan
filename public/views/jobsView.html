@@ -13,7 +13,7 @@
           <md-button class="md-raised viewAllBtn" ng-click="vm.viewAllCat()">View All</md-button>
         </div>
       </div>
-        <md-card flex="90" class="jobViewCard" ng-repeat='j in vm.jobs'<a ui-sref="JobDetails({id: j._id})"></a>
+        <md-card flex="90" class="jobViewCard" ng-repeat='j in vm.jobs | orderBy:"createdDate"'<a ui-sref="JobDetails({id: j._id})"></a>
           <md-card-content>
             <div ng-hide="j.isConfirmed || (j.declinedHandshake === nav.status.id)">
               <div ng-show="vm.isApplicant(j.applicants, nav.status.id)" class="appliedCheckView">

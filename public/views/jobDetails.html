@@ -65,7 +65,7 @@
                         <md-switch class="md-primary md-block" aria-label="Switch 6" ng-model="data.cb5">
                           <div ng-show="data.cb5">
                             <md-button style="background-color: #DFD9E2;"
-                            flex class='md-raised md-primary' style='max-width: 600px'> View {{a.username}}'s Profile
+                            flex class='md-raised md-primary' style='max-width: 600px' ng-click="profile()"> View {{a.username}}'s Profile
                           </md-button>
                         </div>
                         <div ng-hide="data.cb5">
@@ -88,7 +88,7 @@
                 </div>
               </div>
             </div>
-            <div ng-show='vm.job.chosenApp.length > 0' style="text-align: center;">
+            <div ng-show='vm.job.chosenApp.length > 0 && vm.userType.isCreator' style="text-align: center;">
               <h2 class="applicantH2">Chosen Applicant: </h2>
               <div ng-repeat='chooser in vm.job.chosenApp' layout='row' layout-align="center center">
                 <p class="chosenApplicantName">{{chooser | uppercase}}</p>
