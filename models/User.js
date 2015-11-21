@@ -17,7 +17,9 @@ experience: {type: Number},
 currency:{type:Number},
 location: {street: String, city: String, state: String, zip: Number},
 jobs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Jobs'}],
-messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Messages'}]
+messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Messages'}],
+computedRating: Number,
+rating: [Number]
 });
 
 UserSchema.methods.setPassword = function(password) {

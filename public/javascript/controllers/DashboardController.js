@@ -17,7 +17,7 @@
 
 		UserFactory.getUserInfo($stateParams.id).then(function(res){
 			vm.userInfo = res;
-			// console.log(vm.userInfo, 'userInfo');
+			console.log(vm.userInfo, 'userInfo');
 		});
 
 //image upload

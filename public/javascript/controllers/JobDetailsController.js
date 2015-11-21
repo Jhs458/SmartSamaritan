@@ -12,8 +12,6 @@
 		JobsFactory.getJobById($stateParams.id).then(function(res){
 			vm.job = res;
 			vm.determineUser(vm.job, UserFactory.status._id);
-			console.log(vm.userType);
-			console.log(vm.job, 5);
 			var date = vm.job.createdDate; // Method .toLocalDateString turns the date into a method and cannot populate the date-
 			vm.job.createdDate = new Date();// picker in the edit so I had to turn the string back into a date for it to work.
 			vm.job.createdDate.setTime(Date.parse(date)); // http://stackoverflow.com/questions/32469737/angular-material-datepicker-date-tolocaledatestring-is-not-a-function
@@ -40,7 +38,6 @@
 			}
 
 			if(job.createdBy == userID) {
-				console.log("creator");
 				vm.userType.isCreator = true;
 				vm.userType.isApplicant = false;
 				vm.userType.isNobody = false;
@@ -91,7 +88,6 @@
 			}
 		};
 		vm.goBack = function(_id) {
-			console.log(_id);
 			$state.go('JobDetails', {_id:_id}, {location: true});
 		};
 		vm.applyJob = function(a){
@@ -115,7 +111,6 @@
 		};
 		vm.chooseApplicant = function(a){
 			if(confirm('Confirm Applicant?')===true){
-				console.log(a);
 				JobsFactory.chooseApplicant(a, $stateParams.id).then(function(res){
 					vm.userType.isApplicant = false;
 					vm.userType.isCreator = true;
@@ -129,7 +124,6 @@
 		};
 		vm.appAccept = function(c,index){
 			if(confirm('Are you sure you would like to accept?')===true){
-				console.log($stateParams.id);
 				JobsFactory.getJobByCanlendar(c,$stateParams.id).then(function(res){
 
 				});
