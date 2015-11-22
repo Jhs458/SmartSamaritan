@@ -3,11 +3,21 @@
     Job Details
   </div>
   <div layout="row" layout-wrap layout-align="center center">
+    <div ng-show="vm.job.isCompleted" id="wrapper">
+      <ul id="rating">
+        <li><a class="ball" ng-click="vm.setRating(1)">1</a></li>
+        <li><a class="ball" ng-click="vm.setRating(2)">2</a></li>
+        <li><a class="ball" ng-click="vm.setRating(3)">3</a></li>
+        <li><a class="ball" ng-click="vm.setRating(4)">4</a></li>
+        <li><a class="ball" ng-click="vm.setRating(5)">5</a></li>
+        <md-button type="button" ng-click="vm.submitRating()">Submit</md-button>
+      </ul>
+    </div>
     <div flex="50">
       <div>
         <md-card>
           <md-card-content>
-            <div layout="row">
+            <div layout="row" ng-hide="vm.job.isConfirmed">
               <md-menu class="md-menu-toolbar" ng-show="vm.userType.isCreator && !vm.showEditJob">
                 <md-button class="md-icon-button" ng-click="$mdOpenMenu()">
                   <i class="zmdi zmdi-menu zmdi-hc-2x"></i>
@@ -24,7 +34,10 @@
               </md-menu>
             </div>
             <div ng-show="vm.job.isConfirmed" style="text-align: center;" class="appliedCheck">
-              <i class="zmdi zmdi-thumb-up"></i><span style="font-size:24px; font-weight:700;"> Handshake Complete!</span>
+              <i class="zmdi zmdi-thumb-up"></i><span style="font-size:24px; font-weight:700; color: #427AA1"> Handshake Complete!</span>
+            </div>
+            <div ng-show="vm.job.declinedHandshake === nav.status.id" style="text-align: center;" class="appliedCheck">
+              <i class="zmdi zmdi-thumb-down"></i><span style="font-size:24px; font-weight:700; color:#E06C9F;"> Handshake Declined</span>
             </div>
             <div ng-show='vm.job.chosenApp.length > 0 && vm.userType.isApplicant && !vm.job.isConfirmed'>
               <p class="congrats">Congratulations, you have been selected!</p>
@@ -34,7 +47,7 @@
             </div>
             <div ng-show="!vm.showEditJob" style="text-align: center;">
               <h2 class="md-title jobTitle">{{vm.job.title | uppercase}}</h1>
-                <h3 class="md-title"><span class="detailsHeadings">Posted By: </span>{{vm.job.createdByUsername | uppercase}}</h3>
+                <h3 class="md-title"><span class="detailsHeadings">Posted By: </span><a ng-click="vm.showAdvanced2($event, vm.job.createdBy)">{{vm.job.createdByUsername | uppercase}}</a></h3>
                 <h3 class="md-title"><span class="detailsHeadings">Job Date: </span>{{vm.job.createdDate | date}}</h3>
                 <h3 class="md-title"><span class="detailsHeadings">Details: </span>{{vm.job.details}}</h3>
                 <h3 class="md-title"><span class="detailsHeadings">Location: </span>{{vm.job.location.street}}, {{vm.job.location.city}}, {{vm.job.location.state}}, {{vm.job.location.zip}}</h3>
@@ -42,6 +55,7 @@
                 <h3 class="md-title">
                   <div class="currencyIcons"><i class="zmdi zmdi-plus-circle"></i> {{vm.job.currency}} points </div></h3>
                 </div>
+
                 <!-- <label>Rating</label>
                 <md-select ng-model="vm.job.rating" ng-required="true">
                 <md-option value='5'>5 Excellent</md-option>
@@ -58,18 +72,21 @@
                     <h2 class="applicantH2">Applicants:</h2>
                     <h4 ng-show="vm.job.applicants.length === 0">There are no current applicants</h4>
                     <div ng-repeat='a in vm.job.applicants' layout='row' style="padding-left: 140px;">
-                      <md-switch class="md-primary md-block" aria-label="Switch 6" ng-model="data.cb5">
-                        <div ng-show="data.cb5">
-                          <md-button style="background-color: #DFD9E2;"
-                          flex class='md-raised md-primary' style='max-width: 600px'> View {{a.username}}'s Profile
-                        </md-button>
-                      </div>
-                      <div ng-hide="data.cb5">
-                        <md-button style="background-color: #427AA1;" ng-click='vm.chooseApplicant(a)' ng-disabled='vm.job.chosenApp.length > 0'
-                          flex class='md-raised md-primary' style='max-width: 200px'> Select {{a.username}}
-                        </md-button>
-                      </div>
-                    </md-switch>
+                        <md-switch class="md-primary md-block" aria-label="Switch 6" ng-model="data.cb5">
+                          <div ng-show="data.cb5">
+                            <md-button style="background-color: #DFD9E2;"
+                            flex class='md-raised md-primary' style='max-width: 600px' ng-click="vm.showAdvanced($event, a)"> View {{a.username}}'s Profile
+                          </md-button>
+                        </div>
+                        <div ng-hide="data.cb5">
+                          <md-button ng-if="vm.job.declinedHandshake != a.applicant" style="background-color: #427AA1;" ng-click='vm.chooseApplicant(a)' ng-disabled='vm.job.chosenApp.length > 0'
+                            flex class='md-raised md-primary' style='max-width: 200px'> Select {{a.username}}
+                          </md-button>
+                          <md-button style='max-width: 300px; background-color: #FFCEBA;' ng-if="vm.job.declinedHandshake === a.applicant" style="background-color: #427AA1;" ng-disabled='true'
+                            flex class='md-raised md-primary'> {{a.username}} declined handshake
+                          </md-button>
+                        </div>
+                      </md-switch>
                   </div>
                 </div>
               </div>
@@ -81,7 +98,7 @@
                 </div>
               </div>
             </div>
-            <div ng-show='vm.job.chosenApp.length > 0' style="text-align: center;">
+            <div ng-show='vm.job.chosenApp.length > 0 && vm.userType.isCreator' style="text-align: center;">
               <h2 class="applicantH2">Chosen Applicant: </h2>
               <div ng-repeat='chooser in vm.job.chosenApp' layout='row' layout-align="center center">
                 <p class="chosenApplicantName">{{chooser | uppercase}}</p>

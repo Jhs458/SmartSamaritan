@@ -28,11 +28,11 @@
 				}
 		 );
 
-		 google.maps.event.addListener(markers, 'click', function(){
-			 return function(){
-				 infoWindow.setContent()
-			 }
-		 });
+		//  google.maps.event.addListener(markers, 'click', function(){
+		// 	 return function(){
+		// 		 infoWindow.setContent()
+		// 	 }
+		//  });
 
 
 

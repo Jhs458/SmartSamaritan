@@ -8,6 +8,7 @@
 
 		UserFactory.getAllByUser(vm.status._id).then(function(res){
 			vm.userArray = res;
+			// console.log(vm.userArray, 'userArray');
 		});
 
 		vm.goToJob = function(id){
@@ -16,10 +17,10 @@
 
 		UserFactory.getUserInfo($stateParams.id).then(function(res){
 			vm.userInfo = res;
+			console.log(vm.userInfo, 'userInfo');
 		});
 
 //image upload
-console.log("dashcontroller");
 vm.pic = function(){
 		filepicker.setKey("AVkaqvPVuQCCSH059S4zQz");
 
@@ -53,7 +54,14 @@ vm.pic = function(){
 	});
 };
 
-
+vm.infoEdit = function(i){
+			// console.log(i, 'infoEdit');
+			UserFactory.infoEdit(i, vm.status._id).then(function(res){
+				UserFactory.getUserInfo($stateParams.id).then(function(res){
+					vm.userInfo = res;
+				});
+			});
+}
 
 
 

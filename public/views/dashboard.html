@@ -1,10 +1,13 @@
 <div ng-controller="DashboardController as vm">
 	<div layout="row" style='margin-left:90px;'>
-		<img height="40" width="40" src='https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/441/aiga_cashier-512.png'><h3> {{vm.userInfo.currency}}</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<img height='40' width="40" src='http://images.wikia.com/farmville/images/b/b4/XP-icon.png'><h3> {{vm.userInfo.exp}}</h3>
+		<img height="40" width="40" src='https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/441/aiga_cashier-512.png'><h3> {{vm.userInfo.currency}}</h3>
+		<img height='40' width="40" src='http://images.wikia.com/farmville/images/b/b4/XP-icon.png'><h3> {{vm.userInfo.experience}}</h3>
+		<br>
+		<h3 style="padding: 30px; ">Rating: {{vm.userInfo.computedRating | number: 2}}</h3>
 	</div>
 	<div layout="row" layout-padding style="padding:40px">
 		<div flex="50">
+			<!-- user info dashboard -->
 			<md-card>
 				<md-card-content layout="row">
 					<div flex="30" style="text-align:center; color:#73956F">
@@ -12,19 +15,66 @@
 <!-- Facebook image -->
 						<i ng-if='!vm.userInfo.photo' style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
 						<div ng-if='vm.userInfo.photo'>
-							<img ng-src="{{vm.userInfo.photo}}" alt="" height="100px" />
+							<img ng-src="{{vm.userInfo.photo}}" alt="" height="200px" />
 						</div>
 						<br>
-            <md-button style="font-size: .7em" ng-click="vm.pic()" class="md-raised" name="button">Upload Image</md-button>
+            <md-button ng-show='editInfo' style="font-size: .7em" ng-click="vm.pic()" class="md-raised" type="button">Edit Image</md-button>
 					</div>
-					<div flex="70" style="text-align:center;">
+					<div flex="70">
+						<md-button class="md-icon-button" ng-click="editInfo = !editInfo" type='button' style="float: right">
+							<i class="zmdi zmdi-menu zmdi-hc-2x"></i>
+						</md-button>
+						<!-- show info -->
+						<div ng-show='!editInfo' flex="70" style="text-align:center;">
 						<h2>{{vm.userInfo.username | uppercase}}</h2>
 						<h3>{{vm.userInfo.email}}</h3>
 						<h3>{{vm.userInfo.location.street}}</h3>
 						<h3>{{vm.userInfo.location.city}} {{vm.userInfo.location.state}}, {{vm.userInfo.location.zip}}</h3>
 					</div>
+					<!-- edit info -->
+					<div layout="column" ng-show='editInfo'>
+			      <form ng-submit="vm.infoEdit(vm.userInfo)" style="padding-left: 35px">
+			        <md-input-container>
+			          <label class="md-hue-1">Username</label>
+			          <input ng-model="vm.userInfo.username" ng-required="true">
+			        </md-input-container>
+			        <md-input-container>
+			          <label class="md-hue-1">Email</label>
+			          <input ng-model="vm.userInfo.email" type="email" ng-required="true">
+			        </md-input-container>
+							<p>Your Address:</p>
+			        <md-input-container>
+			          <label>Street</label>
+			          <input ng-model="vm.userInfo.location.street" type="text" placeholder="Street...">
+			        </md-input-container>
+			        <div layout="row">
+			          <md-input-container flex>
+			            <label>City</label>
+			            <input ng-model="vm.userInfo.location.city" type="text" placeholder="City...">
+			          </md-input-container>
+			          <md-input-container flex>
+			            <label>State</label>
+			            <md-select ng-model="vm.userInfo.location.state" >
+			              <md-option ng-repeat="state in nav.states" value="{{state.abbrev}}">
+			                {{state.abbrev}}
+			              </md-option>
+			            </md-select>
+			          </md-input-container>
+			          <md-input-container flex>
+			            <label>Zip</label>
+			            <input ng-model="vm.userInfo.location.zip" placeholder="Zipcode..." ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+			          </md-input-container>
+			        </div>
+
+			          <md-button type="submit" class="loginButton md-raised" ng-click="editInfo = !editInfo">Edit Info</md-button>
+			        </form>
+						</div>
+<!-- end edit -->
+					</div>
 				</md-card-content>
 			</md-card>
+			<!-- user info dashboard -->
+
 		</div>
 		<div flex="50">
 			<div layout="column">
@@ -33,6 +83,7 @@
 					<ul ng-repeat="c in vm.userArray.posting">
 						<li style="list-style-type: none;">
 							<div layout=row>
+								<h3>{{c.applicants.length}}</h3>
 								<md-button ng-show="c.chosenApp.length === 0" style="font-size: 24px;" ng-click="vm.goToJob(c._id)">{{c.title}}</md-button>
 								<div ng-show="c.chosenApp.length > 0 && c.isConfirmed===false">
 									<md-button style="font-size: 24px; background-color: #605768;" ng-click="vm.goToJob(c._id)" class="md-accent md-raised">{{c.title}}</md-button>

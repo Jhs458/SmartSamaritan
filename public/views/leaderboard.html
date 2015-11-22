@@ -34,7 +34,9 @@
         <img height="50" width="50" src='https://cdn2.iconfinder.com/data/icons/rewards-1/512/vote-512.png'>
         <h1>Rating</h1>
       </div>
-
+      <ol id='listicon'>
+      <li ng-repeat="leader in vm.leaderboardPosts | orderBy:'-rating'"><h2>{{leader.username}}: {{leader.rating.computedRating}}</h2></li>
+    </ol>
       </md-card-content>
     </md-card>
   </div>

@@ -34,6 +34,21 @@ passport.use(new LocalStrategy(function(username, password, done) {
 // =========================================================================
   // FACEBOOK ================================================================
   // =========================================================================
+
+  function generateFacebookPhotoUrl(id, token, height, width) {
+  	var picUrl = "https://graph.facebook.com/" ;
+  	picUrl += id ;
+  	picUrl += "/picture?width=" ;
+  	picUrl += width ;
+  	picUrl += "&height=" ;
+  	picUrl += height ;
+  	picUrl += "&access_token=" ;
+  	picUrl += token ;
+  	return picUrl ;
+  }
+
+
+
   passport.use(new FacebookStrategy({
 
       // pull in our app id and secret from our auth.js file
@@ -71,7 +86,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
                   newUser.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
                   newUser.experience = 0;
                   newUser.currency = 200;
-                  newUser.photo = profile.photos[0].value;
+                  newUser.photo = generateFacebookPhotoUrl(profile.id, token, 300, 300) ;
 
                   // save our user to the database
                   newUser.save(function(err) {

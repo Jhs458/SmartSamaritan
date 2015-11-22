@@ -12,7 +12,7 @@
 </head>
 
 <body ng-controller="GlobalController as nav">
-
+<div ng-hide="nav.hideTheThing">
 	<md-subheader style="background-color: #F1FFFA; width:100%;">
 	</md-subheader>
 	<md-toolbar class="md-toolbar-tools md-toolbar-tools-bottom" id="navBar">
@@ -70,26 +70,41 @@
 				</div>
 			</div>
 		</md-toolbar>
+	</div>
 
 		<ui-view></ui-view>
 		<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
-			<md-toolbar class="md-theme-light">
-				<h1 class="md-toolbar-tools" >Messaging</h1>
-			</md-toolbar>
-			<md-content  layout-padding layout="column" md-scroll-y style="height: 65%">
-				<md-list >
-					<md-list-item class="md-2-line" ng-repeat="f in nav.friends">
+			<md-toolbar class="md-theme-light" ng-show="nav.friends">
+        <h3 class="md-toolbar-tools" >Messaging</h3>
+	    </md-toolbar>
+	            <md-toolbar class="md-theme-light" ng-show="!nav.friends">
+	                <md-button ng-click="nav.friendsShow2()" class="md-toolbar-tools" >Back to Inbox</md-button>
+	            </md-toolbar>
 
-						<!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.who}}" /> -->
-						<div class="md-list-item-text" layout="column">
-							<h3><a>{{ f }}</a></h3>
+	            <md-content  layout-padding layout="column" md-scroll-y style="height: 65%" >
 
-						</div>
+	                        <md-list ng-show="nav.friends">
+	                            <md-list-item class="md-2-line" ng-repeat="f in nav.friends">
+	                                <div class="md-list-item-text" layout="column">
+	                                    <md-button ng-click="nav.friendsShow(f)">
+	                                        <h3>{{ f.username }}</h3>
+	                                    </md-button>
+	                                </div>
+	                            </md-list-item>
+	                        </md-list>
 
-					</md-list-item>
-				</md-list>
-			</md-content>
-			<md-content layout>
+	                        <!-- conversation -->
+
+	                        <md-list ng-show="!nav.friends">
+	                            <md-list-item ng-repeat="c in nav.convo" class="md-2-line">
+	                                <div class="md-list-item-text" layout="column">
+	                                    <h3>{{ c.body }}</h3>
+																			<h5>{{ c.created }}</h5>
+	                                </div>
+	                            </md-list-item>
+	                        </md-list>
+	            </md-content>
+			<md-content  ng-show="!nav.friends" layout>
 				<div class="msgBox">
 					<form ng-submit="nav.sendMsg()" >
 						<md-input-container>
@@ -104,6 +119,7 @@
 				</div>
 			</md-content>
 		</md-sidenav>
+
 
 
 
@@ -125,6 +141,8 @@
 		   }(document, 'script', 'facebook-jssdk'));
 		</script>
 		<!-- Ext Libs -->
+		<!-- jquery -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
     <!-- filepicker for image upload -->
 		<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
 
@@ -163,6 +181,8 @@
 		<script src="/javascript/controllers/CalendarController.js"></script>
 		<script src="/javascript/controllers/tokenController.js"></script>
 		<script src="/javascript/controllers/LeaderboardController.js"></script>
+		<script src="/javascript/controllers/RatingController.js"></script>
+
 
 
 
