@@ -43,13 +43,17 @@ router.put('/jobExp/:id', function(req, res, next) {//auth
   });
 
   router.put('/jobCurrency', function(req,res,next){
+    console.log(req.body.rating, 6);
     User.update({_id: req.body.posterID},{$inc:{currency: - req.body.currency}},
       function(err, result) {
         if(err) return next(err);
         User.update({_id: req.body.appID},{$inc:{currency: req.body.currency}},
           function(err, result) {
             if(err) return next(err);
-            res.send();
+            User.update({_id: req.body.appID}, {$push: {rating: req.body.rating}},
+            function(err, result){
+              res.send();
+            });
           });
         });
       });
@@ -75,6 +79,17 @@ router.put('/jobExp/:id', function(req, res, next) {//auth
         });
       });
 
+router.get('/getall/', function(req, res, next){
+      User.find({}, {
+        _id: req.params.id,
+        username: req.params.username
+      },
+        function(err, result){
+        if(err) {return next(err);}
+        if(!result) {return next({err: "Error finding user by ID."});}
+        res.send(result);
+      });
+    });
 
       // =====================================
       // FACEBOOK ROUTES =====================

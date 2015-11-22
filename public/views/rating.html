@@ -1,0 +1,15 @@
+<div ng-controller="RatingController as vm">
+  <div layout-padding class="viewTitle">
+    Please Rate Your Satifaction
+  </div>
+  <div id="wrapper">
+    <ul id="rating">
+      <li><a class="ball" ng-click="vm.setRating(1)">1</a></li>
+      <li><a class="ball" ng-click="vm.setRating(2)">2</a></li>
+      <li><a class="ball" ng-click="vm.setRating(3)">3</a></li>
+      <li><a class="ball" ng-click="vm.setRating(4)">4</a></li>
+      <li><a class="ball" ng-click="vm.setRating(5)">5</a></li>
+      <md-button type="button" ng-click="vm.submitRating()">Submit</md-button>
+    </ul>
+  </div>
+</div>

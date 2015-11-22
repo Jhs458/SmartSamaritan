@@ -3,7 +3,7 @@
 	angular.module('app')
 	.controller('JobDetailsController', JobDetailsController);
 
-	function JobDetailsController(JobsFactory, UserFactory, $mdSidenav, $state, $stateParams) {
+	function JobDetailsController(JobsFactory, UserFactory, $mdSidenav, $state, $stateParams, $mdDialog) {
 		var vm = this;
 		vm.status = UserFactory.status;
 		vm.userType = {};
@@ -23,7 +23,6 @@
 				isBanned: false,
 				isNobody: true
 			};
-
 			if(job.declinedHandshake === userID) {
 				vm.userType.isCreator = false;
 				vm.userType.isApplicant = false;
@@ -36,7 +35,6 @@
 				vm.userType.isNobody = false;
 				vm.userType.isBanned = true;
 			}
-
 			if(job.createdBy == userID) {
 				vm.userType.isCreator = true;
 				vm.userType.isApplicant = false;
@@ -46,7 +44,7 @@
 			if(job.applicants){
 				for (var i = 0; i < job.applicants.length; i++) {
 					if ((job.applicants[i].applicant && userID === job.applicants[i].applicant) &&
-						(job.applicants[i].applicant && userID !== job.declinedHandshake)) {
+					(job.applicants[i].applicant && userID !== job.declinedHandshake)) {
 						vm.userType.isApplicant = true;
 						vm.userType.isCreator = false;
 						vm.userType.isNobody = false;
@@ -68,16 +66,13 @@
 		vm.lastEditInfo = {};
 		vm.editJob = function() {
 			vm.lastEditInfo = angular.copy(vm.job);
-			// vm.job = angular.copy(vm.job);
 			vm.showEditJob = !vm.showEditJob;
 		};
 		vm.cancelEditJob = function() {
 			vm.job = vm.lastEditInfo;
 			vm.showEditJob = false;
-			// vm.showEditJob = !vm.showEditJob;
 		};
 		vm.updateJob = function(z) {
-			// z = vm.lastEditJob;
 			z = vm.job;
 			if(vm.userType.isCreator) {
 				JobsFactory.updateJob(z, {id:$stateParams.id}).then(function(res) {
@@ -146,6 +141,56 @@
 		'WY').split(' ').map(function(state) {
 			return {abbrev: state};
 		});
-	}
+		vm.showAdvanced = function(ev, a) {
+			UserFactory.getUserInfo(a.applicant).then(function(res){
+				vm.viewApp = res;
+				$mdDialog.show({
+					controller: JobDetailsController,
+					template: [
+						'<md-dialog layout-padding style="margin: 60px; text-align:center; width:400px;">',
+						'<h2>', vm.viewApp.username, '</h2>',
+						'<img ng-src="',vm.viewApp.photo,'" style="height:200px; width: 200px; padding-left: 100px;">',
+						'<h2>', 'Rating:', '</h2>',
+						'<h3>', vm.viewApp.computedRating,'</h3>',
+						'<h2>', 'Experience:', '</h2>',
+						'<h3>', vm.viewApp.experience,'</h3>',
+						'<h2>', 'Location:', '</h2>',
+						'<h3>', vm.viewApp.location.street, '</h3>',
+						'<h3>', vm.viewApp.location.city,' ' , ' ',vm.viewApp.location.state,' , ',' ',vm.viewApp.location.zip, '</h3>',
+						'</md-dialog>',
+					].join(''),
+					parent: angular.element(document.body),
+					targetEvent: ev,
+					clickOutsideToClose:true
+				});
+			});
+		};
+		vm.showAdvanced2 = function(ev, a) {
+			console.log(a);
+			UserFactory.getUserInfo(a).then(function(res){
+				vm.viewApp = res;
+				$mdDialog.show({
+					controller: JobDetailsController,
+					template: [
+						'<md-dialog layout-padding style="margin: 60px; text-align:center; width:400px;">',
+						'<h2>', vm.viewApp.username, '</h2>',
+						'<img ng-src="',vm.viewApp.photo,'" style="height:200px; width: 200px; padding-left: 100px;">',
+						'<h2>', 'Rating:', '</h2>',
+						'<h3>', vm.viewApp.computedRating,'</h3>',
+						'<h2>', 'Experience:', '</h2>',
+						'<h3>', vm.viewApp.experience,'</h3>',
+						'<h2>', 'Location:', '</h2>',
+						'<h3>', vm.viewApp.location.street, '</h3>',
+						'<h3>', vm.viewApp.location.city,' ' , ' ',vm.viewApp.location.state,' , ',' ',vm.viewApp.location.zip, '</h3>',
+						'</md-dialog>',
+					].join(''),
+					parent: angular.element(document.body),
+					targetEvent: ev,
+					clickOutsideToClose:true
+				});
+			});
+		};
 
+
+	}
 })();

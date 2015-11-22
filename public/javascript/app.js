@@ -44,6 +44,10 @@
 		.state('Leaderboard',{
 			url:'/leaderboard',
 			templateUrl:'views/leaderboard.html'
+		})
+		.state('Rate',{
+			url: '/rating/:id',
+			templateUrl: 'views/rating.html'
 		});
 		$urlRouterProvider.otherwise('/');
 		$httpProvider.interceptors.push('AuthInterceptor');

@@ -7,14 +7,15 @@
     md-cols-gt-md="4" md-cols-sm="2" md-cols-md="3"
     md-row-height-gt-md="1:1" md-row-height="4:3"
     md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
-      <md-grid-tile style="max-height: 600px; max-width: 600px;" class="gridButton gridButty" ng-repeat="tile in vm.colorTiles | orderBy:'calendarPosts.createdDate'" ui-sref="JobDetails({id: tile.calendarPosts._id})" ng-style="{'background-color': tile.color}" md-colspan-gt-sm="{{tile.colspan}}" md-rowspan-gt-sm="{{tile.rowspan}}">
+      <md-grid-tile style="max-height: 600px; max-width: 600px;" class="gridButty" ng-repeat="tile in vm.colorTiles | orderBy:'calendarPosts.createdDate'" ng-style="{'background-color': tile.color}" md-colspan-gt-sm="{{tile.colspan}}" md-rowspan-gt-sm="{{tile.rowspan}}">
         <div layout="column" layout-align="center center">
-          <h2 flex class="calendarTitle">{{tile.calendarPosts.title | uppercase}}</h2>
+          <a ui-sref="JobDetails({id: tile.calendarPosts._id})"><h2 flex class="calendarTitle">{{tile.calendarPosts.title | uppercase}}</h2></a>
           <h3 flex class=""><span class="detailsHeadings">Date: </span>{{tile.calendarPosts.createdDate | date}}</h3>
           <h3 flex class=""><span class="detailsHeadings">Currency: </span>{{tile.calendarPosts.currency}}</h3>
-          <md-button type="button" style="background-color: #E06C9F;" ng-show="tile.calendarPosts.createdBy === nav.status.id" ng-click='vm.jobCom(tile.calendarPosts)' class='md-raised md-accent'>Job Completed</md-button>
+          <md-button type="button" style="background-color: #E06C9F;" ng-show="tile.calendarPosts.createdBy === nav.status.id" ng-click="vm.completeJob(tile.calendarPosts._id)" class='md-raised md-accent'>Job Completed</md-button>
         </div>
       </md-grid-tile>
     </md-grid-list>
   </md-content>
+
 </div>
