@@ -1,4 +1,8 @@
-<div ng-controller="CalendarController as vm">
+<div ng-controller="LeaderboardController as vm">
+  <div layout-padding class="viewTitle">
+    Find You Here
+  </div>
+  <!-- <div style="margin-top:20px"> -->
   <div layout="row" layout-padding style="padding:40px">
     <md-card flex='33'>
       <md-card-content>
@@ -6,8 +10,8 @@
         <img height="50" width="50" src='http://images.wikia.com/farmville/images/b/b4/XP-icon.png'>
         <h1>Experience</h1>
       </div>
-        <ol>
-        <li>{{vm.userInfo.currency}}</li>
+        <ol id='listicon'>
+        <li ng-repeat="leader in vm.leaderboardPosts | orderBy:'-experience' "><h2>{{leader.username}}: {{leader.experience}}</h2></li>
       </ol>
       </md-card-content>
     </md-card>
@@ -18,7 +22,9 @@
         <img height="50" width="50" src='https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/441/aiga_cashier-512.png'>
         <h1>Currency</h1>
       </div>
-
+        <ol id='listicon'>
+        <li ng-repeat="leader in vm.leaderboardPosts | orderBy:'-currency'"><h2>{{leader.username}}: {{leader.currency}}</h2></li>
+      </ol>
       </md-card-content>
     </md-card>
 
@@ -32,4 +38,5 @@
       </md-card-content>
     </md-card>
   </div>
+<!-- </div> -->
 </div>

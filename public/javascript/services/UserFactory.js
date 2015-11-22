@@ -117,6 +117,14 @@
 			return q.promise;
 		};
 
+		o.getAllUser = function(){
+			var q = $q.defer();
+			$http.get('/api/users/leaderboard').then(function(res){
+				q.resolve(res.data);
+			});
+			return q.promise;
+		};
+
 
 		function getAuth() {
 		var auth = {

@@ -45,8 +45,9 @@
           visible="c.visible" geodesic="c.geodesic" editable="c.editable" draggable="c.draggable" clickable="c.clickable" control="c.control">
         </ui-gmap-circle>
 
-        <!-- <ui-gmap-markers model='randomMarkers' coords='self' icon='icon'>
-        </ui-gmap-markers> -->
+        <ui-gmap-markers models='vm.places' coords='"coords"'>
+        </ui-gmap-markers>
+
         </ui-gmap-google-map>
       </div>
       </div>

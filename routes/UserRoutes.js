@@ -14,6 +14,15 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
+router.get('/leaderboard',function(req,res,next){
+  console.log(req.body,"line18");
+  console.log("userroute line19");
+  User.find({}).limit(5).exec(function(err, result){
+    if(err) return next(err);
+    res.send(result);
+  });
+});
+
 router.get('/dashboard/:id', function(req, res, next){
   var sendBack ={};
 
