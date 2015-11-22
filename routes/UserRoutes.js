@@ -43,7 +43,6 @@ router.put('/jobExp/:id', function(req, res, next) {//auth
   });
 
   router.put('/jobCurrency', function(req,res,next){
-    console.log(req.body.rating, 6);
     User.update({_id: req.body.posterID},{$inc:{currency: - req.body.currency}},
       function(err, result) {
         if(err) return next(err);
@@ -63,6 +62,7 @@ router.put('/jobExp/:id', function(req, res, next) {//auth
           {_id: req.body.appID},
           {computedRating: req.body.rating},
           function(err, model) {
+            res.send();
           }
         );
       });

@@ -164,7 +164,6 @@
 			};
 
 			o.rateUser = function(appID, ratingNum){
-				console.log(appID, ratingNum, "here2");
 				var q  = $q.defer();
 				$http.put('/api/users/rating/', {appID, ratingNum}).then(function(res){
 					q.resolve();
@@ -189,7 +188,6 @@
 			};
 
 			o.addRating = function(appID, rating) {
-				console.log("here66");
 				var q = $q.defer();
 				$http.put('/api/users/computedRating', {appID, rating}).then(function(res){
 					q.resolve();
