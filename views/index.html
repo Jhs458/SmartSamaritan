@@ -80,7 +80,7 @@
 	                <md-button ng-click="nav.friendsShow2()" class="md-toolbar-tools" >Back to Inbox</md-button>
 	            </md-toolbar>
 
-	            <md-content  layout-padding layout="column" md-scroll-y style="height: 65%" >
+	            <md-content  layout-padding layout="column" md-scroll-y>
 
 	                        <md-list ng-show="nav.friends">
 	                            <md-list-item class="md-2-line" ng-repeat="f in nav.friends">
@@ -91,10 +91,11 @@
 	                                </div>
 	                            </md-list-item>
 	                        </md-list>
-
+</md-content>
 	                        <!-- conversation -->
-
-	                        <md-list ng-show="!nav.friends">
+											<!-- <div > -->
+<md-content  layout-padding layout="column" md-scroll-y style="height: 65%" ng-show="!nav.friends">
+	                        <md-list>
 	                            <md-list-item ng-repeat="c in nav.convo" class="md-2-line">
 	                                <div class="md-list-item-text" layout="column">
 	                                    <h3>{{ c.body }}</h3>
@@ -103,9 +104,10 @@
 	                            </md-list-item>
 	                        </md-list>
 	            </md-content>
-			<md-content  ng-show="!nav.friends" layout>
+
+			<md-content layout ng-show="!nav.friends">
 				<div class="msgBox">
-					<form ng-submit="nav.sendMsg()" >
+					<form ng-submit="nav.sendMsg(nav.thatUser._id)" >
 						<md-input-container>
 							<label>Message...</label>
 							<textarea rows="3" ng-model="nav.msg.body" md-maxlength="300"></textarea>
@@ -117,6 +119,8 @@
 					</form>
 				</div>
 			</md-content>
+
+		<!-- </div> -->
 		</md-sidenav>
 
 

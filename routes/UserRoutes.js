@@ -42,7 +42,7 @@ router.put('/jobExp/:id', function(req, res, next) {//auth
   });
 });
 
-console.log("userroutes57");
+// console.log("userroutes57");
 
 router.put('/jobCurrency', function(req,res,next){
   console.log(req.body.posterID, "posterid58");
@@ -93,21 +93,6 @@ router.put('/:id',function(req,res,next){
   	}
   })
 
-// =====================================
-  // FACEBOOK ROUTES =====================
-  // =====================================
-  // route for facebook authentication and login
-  router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
-
-  // handle the callback after facebook has authenticated the user
-  router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: "/splash" }), function(req, res) {
-  	if(req.user) {
-  		var token = { token : req.user.generateJWT() } ;
-  		res.redirect('/#/auth/token' + token.token) ;
-  	} else {
-  		res.send("you are not authenticated") ;
-  	}
-  })
 
   // route for logging out
   router.get('/logout', function(req, res) {

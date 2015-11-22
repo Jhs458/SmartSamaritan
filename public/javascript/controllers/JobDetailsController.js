@@ -3,7 +3,7 @@
 	angular.module('app')
 	.controller('JobDetailsController', JobDetailsController);
 
-	function JobDetailsController(JobsFactory, UserFactory, $mdSidenav, $state, $stateParams) {
+	function JobDetailsController(JobsFactory, UserFactory, $mdSidenav, $state, $stateParams, $mdToast) {
 		var vm = this;
 		vm.status = UserFactory.status;
 		vm.userType = {};
@@ -152,6 +152,16 @@
 		'WY').split(' ').map(function(state) {
 			return {abbrev: state};
 		});
-	}
 
+		vm.sendMsg2 = function(id){
+			console.log(id, 'msg2');
+			vm.msg.sentTo = id;
+			JobsFactory.sendMsg(vm.msg).then(function(res) {
+				vm.msg = {};
+				vm.sendPMsg = !vm.sendPMsg
+			});
+		};
+
+
+}
 })();

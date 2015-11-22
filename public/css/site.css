@@ -198,3 +198,13 @@ p {
   transform: scale(1.02);
 
 }
+
+md-toast{
+  height: 50% !important;
+  width: 60% !important;
+  max-width: none !important;
+  border-radius: 25px 25px 25px 25px;
+  opacity: 0.9 !important;
+  /*color: black !important;*/
+  margin-left: 20% !important;
+}
