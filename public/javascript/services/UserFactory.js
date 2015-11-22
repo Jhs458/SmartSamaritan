@@ -163,9 +163,9 @@
 				return q.promise;
 			};
 
-			o.rateUser = function(appID, ratingNum){
+			o.jobCurrency = function(posterID, appID , currency){
 				var q  = $q.defer();
-				$http.put('/api/users/rating/', {appID, ratingNum}).then(function(res){
+				$http.put('/api/users/jobCurrency/', {posterID , appID, currency}).then(function(res){
 					q.resolve();
 				});
 				return q.promise;
@@ -187,11 +187,10 @@
 				return q.promise;
 			};
 
-			o.addRating = function(appID, rating) {
+			o.addRating = function(appID, rating, newRating) {
 				var q = $q.defer();
-				$http.put('/api/users/computedRating', {appID, rating}).then(function(res){
+				$http.put('/api/users/computedRating', {appID, rating, newRating}).then(function(res){
 					q.resolve();
-
 				});
 				return q.promise;
 			};
