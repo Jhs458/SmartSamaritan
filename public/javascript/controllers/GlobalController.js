@@ -3,14 +3,22 @@
 	angular.module('app')
 	.controller('GlobalController', GlobalController);
 
-	function GlobalController(UserFactory, $mdSidenav, $state, JobsFactory, $stateParams, jwtHelper) {
+	function GlobalController(UserFactory, $mdSidenav, $state, JobsFactory, $stateParams, jwtHelper, $rootScope) {
 		var vm = this;
 		vm.isLogin = true;
 		vm.user = {};
 		vm.status = UserFactory.status;
 		vm.msg = {};
 		vm.oneArr = [];
-		console.log(vm.status, 'status');
+		vm.hideTheThing = false;
+
+		$rootScope.$on('$locationChangeSuccess', function(e, newUrl) {
+			if ((/rating/i).test(newUrl) === true) {
+				vm.hideTheThing = true;
+			} else{
+				vm.hideTheThing = false;
+			}
+		});
 
 		vm.logout = function() {
 			UserFactory.logout();
@@ -69,21 +77,18 @@
 				if (vm.friendsId.indexOf(vm.msgs.sentTo[x].createdBy._id) === -1){
 				          vm.friendsId.push(vm.msgs.sentTo[x].createdBy._id);
 									vm.friends.push(vm.msgs.sentTo[x].createdBy);
-
+								}
 				}
-			}
-			console.log(vm.oneArr, 'oneArr');
-			console.log(vm.friends, 'friends');
-		});
-	}
+				console.log(vm.oneArr, 'oneArr');
+				console.log(vm.friends, 'friends');
+			});
+		}
 
-	// vm.imID = vm.setImmediate(vm.getMessages());
-	// if(Object.keys(vm.status).length !== 0){
-	// if(vm.status._id){
-	// 	// vm.getMessages();
-	// 	vm.imID = vm.setImmediate(vm.getMessages());
-	// 	console.log("run messaging");
-	// }
+
+		// if(vm.status._id){
+		// 	vm.getMessages();
+		// }
+
 
 		vm.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
 		'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +

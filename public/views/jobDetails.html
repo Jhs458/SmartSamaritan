@@ -3,6 +3,16 @@
     Job Details
   </div>
   <div layout="row" layout-wrap layout-align="center center">
+    <div ng-show="vm.job.isCompleted" id="wrapper">
+      <ul id="rating">
+        <li><a class="ball" ng-click="vm.setRating(1)">1</a></li>
+        <li><a class="ball" ng-click="vm.setRating(2)">2</a></li>
+        <li><a class="ball" ng-click="vm.setRating(3)">3</a></li>
+        <li><a class="ball" ng-click="vm.setRating(4)">4</a></li>
+        <li><a class="ball" ng-click="vm.setRating(5)">5</a></li>
+        <md-button type="button" ng-click="vm.submitRating()">Submit</md-button>
+      </ul>
+    </div>
     <div flex="50">
       <div>
         <md-card>
@@ -37,7 +47,7 @@
             </div>
             <div ng-show="!vm.showEditJob" style="text-align: center;">
               <h2 class="md-title jobTitle">{{vm.job.title | uppercase}}</h1>
-                <h3 class="md-title"><span class="detailsHeadings">Posted By: </span>{{vm.job.createdByUsername | uppercase}}</h3>
+                <h3 class="md-title"><span class="detailsHeadings">Posted By: </span><a ng-click="vm.showAdvanced2($event, vm.job.createdBy)">{{vm.job.createdByUsername | uppercase}}</a></h3>
                 <h3 class="md-title"><span class="detailsHeadings">Job Date: </span>{{vm.job.createdDate | date}}</h3>
                 <h3 class="md-title"><span class="detailsHeadings">Details: </span>{{vm.job.details}}</h3>
                 <h3 class="md-title"><span class="detailsHeadings">Location: </span>{{vm.job.location.street}}, {{vm.job.location.city}}, {{vm.job.location.state}}, {{vm.job.location.zip}}</h3>
@@ -65,7 +75,7 @@
                         <md-switch class="md-primary md-block" aria-label="Switch 6" ng-model="data.cb5">
                           <div ng-show="data.cb5">
                             <md-button style="background-color: #DFD9E2;"
-                            flex class='md-raised md-primary' style='max-width: 600px' ng-click="profile()"> View {{a.username}}'s Profile
+                            flex class='md-raised md-primary' style='max-width: 600px' ng-click="vm.showAdvanced($event, a)"> View {{a.username}}'s Profile
                           </md-button>
                         </div>
                         <div ng-hide="data.cb5">

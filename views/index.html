@@ -12,7 +12,7 @@
 </head>
 
 <body ng-controller="GlobalController as nav">
-
+<div ng-hide="nav.hideTheThing">
 	<md-subheader style="background-color: #F1FFFA; width:100%;">
 	</md-subheader>
 	<md-toolbar class="md-toolbar-tools md-toolbar-tools-bottom" id="navBar">
@@ -70,6 +70,7 @@
 				</div>
 			</div>
 		</md-toolbar>
+	</div>
 
 		<ui-view></ui-view>
 		<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
@@ -125,6 +126,7 @@
 
 
 
+
 		<script>
 		  window.fbAsyncInit = function() {
 		    FB.init({
@@ -143,6 +145,8 @@
 		   }(document, 'script', 'facebook-jssdk'));
 		</script>
 		<!-- Ext Libs -->
+		<!-- jquery -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
     <!-- filepicker for image upload -->
 		<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
 
@@ -180,6 +184,9 @@
 		<script src="/javascript/controllers/ServicesController.js"></script>
 		<script src="/javascript/controllers/CalendarController.js"></script>
 		<script src="/javascript/controllers/tokenController.js"></script>
+		<script src="/javascript/controllers/RatingController.js"></script>
+
+
 
 
 

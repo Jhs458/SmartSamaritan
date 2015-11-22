@@ -3,7 +3,8 @@
 	angular.module('app')
 	.controller('JobDetailsController', JobDetailsController);
 
-	function JobDetailsController(JobsFactory, UserFactory, $mdSidenav, $state, $stateParams, $mdToast) {
+
+	function JobDetailsController(JobsFactory, UserFactory, $mdSidenav, $state, $stateParams, $mdToast, $mdDialog) {
 		var vm = this;
 		vm.status = UserFactory.status;
 		vm.userType = {};
@@ -12,8 +13,6 @@
 		JobsFactory.getJobById($stateParams.id).then(function(res){
 			vm.job = res;
 			vm.determineUser(vm.job, UserFactory.status._id);
-			console.log(vm.userType);
-			console.log(vm.job, 5);
 			var date = vm.job.createdDate; // Method .toLocalDateString turns the date into a method and cannot populate the date-
 			vm.job.createdDate = new Date();// picker in the edit so I had to turn the string back into a date for it to work.
 			vm.job.createdDate.setTime(Date.parse(date)); // http://stackoverflow.com/questions/32469737/angular-material-datepicker-date-tolocaledatestring-is-not-a-function
@@ -25,7 +24,6 @@
 				isBanned: false,
 				isNobody: true
 			};
-
 			if(job.declinedHandshake === userID) {
 				vm.userType.isCreator = false;
 				vm.userType.isApplicant = false;
@@ -38,9 +36,7 @@
 				vm.userType.isNobody = false;
 				vm.userType.isBanned = true;
 			}
-
 			if(job.createdBy == userID) {
-				console.log("creator");
 				vm.userType.isCreator = true;
 				vm.userType.isApplicant = false;
 				vm.userType.isNobody = false;
@@ -49,7 +45,7 @@
 			if(job.applicants){
 				for (var i = 0; i < job.applicants.length; i++) {
 					if ((job.applicants[i].applicant && userID === job.applicants[i].applicant) &&
-						(job.applicants[i].applicant && userID !== job.declinedHandshake)) {
+					(job.applicants[i].applicant && userID !== job.declinedHandshake)) {
 						vm.userType.isApplicant = true;
 						vm.userType.isCreator = false;
 						vm.userType.isNobody = false;
@@ -71,16 +67,13 @@
 		vm.lastEditInfo = {};
 		vm.editJob = function() {
 			vm.lastEditInfo = angular.copy(vm.job);
-			// vm.job = angular.copy(vm.job);
 			vm.showEditJob = !vm.showEditJob;
 		};
 		vm.cancelEditJob = function() {
 			vm.job = vm.lastEditInfo;
 			vm.showEditJob = false;
-			// vm.showEditJob = !vm.showEditJob;
 		};
 		vm.updateJob = function(z) {
-			// z = vm.lastEditJob;
 			z = vm.job;
 			if(vm.userType.isCreator) {
 				JobsFactory.updateJob(z, {id:$stateParams.id}).then(function(res) {
@@ -91,7 +84,6 @@
 			}
 		};
 		vm.goBack = function(_id) {
-			console.log(_id);
 			$state.go('JobDetails', {_id:_id}, {location: true});
 		};
 		vm.applyJob = function(a){
@@ -115,7 +107,6 @@
 		};
 		vm.chooseApplicant = function(a){
 			if(confirm('Confirm Applicant?')===true){
-				console.log(a);
 				JobsFactory.chooseApplicant(a, $stateParams.id).then(function(res){
 					vm.userType.isApplicant = false;
 					vm.userType.isCreator = true;
@@ -129,7 +120,6 @@
 		};
 		vm.appAccept = function(c,index){
 			if(confirm('Are you sure you would like to accept?')===true){
-				console.log($stateParams.id);
 				JobsFactory.getJobByCanlendar(c,$stateParams.id).then(function(res){
 
 				});
@@ -153,6 +143,7 @@
 			return {abbrev: state};
 		});
 
+
 		vm.sendMsg2 = function(id){
 			console.log(id, 'msg2');
 			vm.msg.sentTo = id;
@@ -163,5 +154,56 @@
 		};
 
 
-}
+		vm.showAdvanced = function(ev, a) {
+			UserFactory.getUserInfo(a.applicant).then(function(res){
+				vm.viewApp = res;
+				$mdDialog.show({
+					controller: JobDetailsController,
+					template: [
+						'<md-dialog layout-padding style="margin: 60px; text-align:center; width:400px;">',
+						'<h2>', vm.viewApp.username, '</h2>',
+						'<img ng-src="',vm.viewApp.photo,'" style="height:200px; width: 200px; padding-left: 100px;">',
+						'<h2>', 'Rating:', '</h2>',
+						'<h3>', vm.viewApp.computedRating,'</h3>',
+						'<h2>', 'Experience:', '</h2>',
+						'<h3>', vm.viewApp.experience,'</h3>',
+						'<h2>', 'Location:', '</h2>',
+						'<h3>', vm.viewApp.location.street, '</h3>',
+						'<h3>', vm.viewApp.location.city,' ' , ' ',vm.viewApp.location.state,' , ',' ',vm.viewApp.location.zip, '</h3>',
+						'</md-dialog>',
+					].join(''),
+					parent: angular.element(document.body),
+					targetEvent: ev,
+					clickOutsideToClose:true
+				});
+			});
+		};
+		vm.showAdvanced2 = function(ev, a) {
+			console.log(a);
+			UserFactory.getUserInfo(a).then(function(res){
+				vm.viewApp = res;
+				$mdDialog.show({
+					controller: JobDetailsController,
+					template: [
+						'<md-dialog layout-padding style="margin: 60px; text-align:center; width:400px;">',
+						'<h2>', vm.viewApp.username, '</h2>',
+						'<img ng-src="',vm.viewApp.photo,'" style="height:200px; width: 200px; padding-left: 100px;">',
+						'<h2>', 'Rating:', '</h2>',
+						'<h3>', vm.viewApp.computedRating,'</h3>',
+						'<h2>', 'Experience:', '</h2>',
+						'<h3>', vm.viewApp.experience,'</h3>',
+						'<h2>', 'Location:', '</h2>',
+						'<h3>', vm.viewApp.location.street, '</h3>',
+						'<h3>', vm.viewApp.location.city,' ' , ' ',vm.viewApp.location.state,' , ',' ',vm.viewApp.location.zip, '</h3>',
+						'</md-dialog>',
+					].join(''),
+					parent: angular.element(document.body),
+					targetEvent: ev,
+					clickOutsideToClose:true
+				});
+			});
+		};
+
+
+	}
 })();
