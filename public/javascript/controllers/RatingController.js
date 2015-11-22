@@ -35,11 +35,11 @@
 								function add(a, b){return a + b}
 								compRating = (sum / (vm.userInfo.rating.length += 1));
 								UserFactory.addRating(vm.userInfo._id, compRating).then(function(){
-									$state.go('Dashboard', {id: vm.c.createdBy});
 								});
 							});
 						}
 					}
+					$state.go('Dashboard', {id: vm.c.createdBy});
 				}
 				else{
 					alert('You Must Choose a Rating');
