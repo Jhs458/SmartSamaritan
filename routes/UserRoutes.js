@@ -13,13 +13,18 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
+
 router.get('/leaderboard',function(req,res,next){
-  console.log(req.body,"line18");
-  console.log("userroute line19");
-  User.find({}).limit(5).exec(function(err, result){
-    if(err) return next(err);
-    res.send(result);
-  });
+ console.log(req.body,"line18");
+ console.log("userroute line19");
+ User.find({}).select('username currency experience computedRating').exec(function(err, result){
+   if(err) return next(err);
+   var arrays = {};
+   arrays.currency = result.sort(function(a, b) { return b.currency - a.currency;}).slice(0, 11);
+   arrays.computedRating = result.sort(function(a, b) { return b.computedRating - a.computedRating;}).slice(0, 11);
+   arrays.experience = result.sort(function(a, b) { return b.experience - a.experience;}).slice(0, 11);
+   res.send(arrays);
+ });
 });
 
 

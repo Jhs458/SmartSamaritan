@@ -430,3 +430,9 @@ list-style-image: url('http://www.healthcareplusbeauty.com/App_Themes/Sample/ima
 #listicon li:nth-child(5){
 list-style-image: url('http://www.healthcareplusbeauty.com/App_Themes/Sample/images/5.gif');
 }
+
+.modal-photo{
+  height: 90px;
+  width: 90px;
+  padding-left: 4cm;
+}

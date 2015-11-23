@@ -15,7 +15,14 @@ require('./config/passport');
 require('./config/auth');
 
 
-mongoose.connect('mongodb://localhost/smartsamaritan');
+mongoose.connect('mongodb://presentation:presentation@ds053874.mongolab.com:53874/townshare', function (err) {
+	if (err){
+		return console.log("Error database");
+	}
+	else {
+		console.log("Connected to lab");
+	}
+});
 
 
 app.set('views', path.join(__dirname, 'views'));

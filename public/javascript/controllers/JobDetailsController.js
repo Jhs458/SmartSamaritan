@@ -162,10 +162,10 @@
 					template: [
 						'<md-dialog layout-padding style="margin: 60px; text-align:center; width:400px;">',
 						'<h2>', vm.viewApp.username, '</h2>',
-						'<img ng-src="',vm.viewApp.photo,'" style="height:200px; width: 200px; padding-left: 100px;">',
-						'<h2>', 'Rating:', '</h2>',
+						'<img ng-src="',vm.viewApp.photo,'" class="modal-photo">',
+						'<h2><i class="zmdi zmdi-star"></i>', ' Rating:', '</h2>',
 						'<h3>', vm.viewApp.computedRating,'</h3>',
-						'<h2>', 'Experience:', '</h2>',
+						'<h2><i class="zmdi zmdi-wrench"></i>', ' Experience:', '</h2>',
 						'<h3>', vm.viewApp.experience,'</h3>',
 						'<h2>', 'Location:', '</h2>',
 						'<h3>', vm.viewApp.location.street, '</h3>',
@@ -182,15 +182,17 @@
 			console.log(a);
 			UserFactory.getUserInfo(a).then(function(res){
 				vm.viewApp = res;
+				console.log(vm.viewApp);
+				console.log(vm.viewApp.photo);
 				$mdDialog.show({
 					controller: JobDetailsController,
 					template: [
 						'<md-dialog layout-padding style="margin: 60px; text-align:center; width:400px;">',
 						'<h2>', vm.viewApp.username, '</h2>',
-						'<img ng-src="',vm.viewApp.photo,'" style="height:200px; width: 200px; padding-left: 100px;">',
-						'<h2>', 'Rating:', '</h2>',
+						'<img ng-src="',vm.viewApp.photo,'" class="modal-photo">',
+						'<h2><i class="zmdi zmdi-star"></i>', ' Rating:', '</h2>',
 						'<h3>', vm.viewApp.computedRating,'</h3>',
-						'<h2>', 'Experience:', '</h2>',
+						'<h2><i class="zmdi zmdi-wrench"></i>', 'Experience:', '</h2>',
 						'<h3>', vm.viewApp.experience,'</h3>',
 						'<h2>', 'Location:', '</h2>',
 						'<h3>', vm.viewApp.location.street, '</h3>',
