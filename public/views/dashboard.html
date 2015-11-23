@@ -1,117 +1,170 @@
 <div ng-controller="DashboardController as vm">
-	<div layout="row" style='margin-left:90px; margin-top:50px'>
-		<img height="40" width="40" src='https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/441/aiga_cashier-512.png'><h3> {{vm.userInfo.currency}}</h3>
-		<img height='40' width="40" src='http://images.wikia.com/farmville/images/b/b4/XP-icon.png'><h3> {{vm.userInfo.experience}}</h3>
-		<br>
-		<h3 style="padding: 30px; ">Rating: {{vm.userInfo.computedRating | number: 2}}</h3>
+	<div flex class="dashMainHeader">
+		<h1>Dashboard</h1>
 	</div>
-	<div layout="row" layout-padding style="padding:40px">
-		<div flex="50">
-			<!-- user info dashboard -->
-			<md-card>
-				<md-card-content layout="row">
-					<div flex="30" style="text-align:center; color:#73956F">
-
-<!-- Facebook image -->
-						<i ng-if='!vm.userInfo.photo' style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
-						<div ng-if='vm.userInfo.photo'>
-							<img ng-src="{{vm.userInfo.photo}}" alt="" height="200px" />
-						</div>
-						<br>
-            <md-button ng-show='editInfo' style="font-size: .7em" ng-click="vm.pic()" class="md-raised" type="button">Edit Image</md-button>
-					</div>
-					<div flex="70">
-						<md-button class="md-icon-button" ng-click="editInfo = !editInfo" type='button' style="float: right">
-							<i class="zmdi zmdi-menu zmdi-hc-2x"></i>
+	<div class="dash" layout="row" layout-padding>
+		<div layout="column" flex="30" layout-align="start center">
+			<div class="photoNameDiv">
+				<i ng-if='!vm.userInfo.photo' style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
+				<img ng-if='vm.userInfo.photo' ng-src="{{vm.userInfo.photo}}"/>
+				<h2>{{vm.userInfo.username | uppercase}}</h2>
+			</div>
+			<div ng-hide='editInfo' class="profile" layout="column">
+				<div class="profHeader">
+					<p>Profile
+						<md-button id="editButton" class="md-icon-button" ng-click="editInfo = !editInfo" type='button' style="float: right">
+							<i class="zmdi zmdi-menu"></i>
 						</md-button>
-						<!-- show info -->
-						<div ng-show='!editInfo' flex="70" style="text-align:center;">
-						<h2>{{vm.userInfo.username | uppercase}}</h2>
-						<h3>{{vm.userInfo.email}}</h3>
-						<h3>{{vm.userInfo.location.street}}</h3>
-						<h3>{{vm.userInfo.location.city}} {{vm.userInfo.location.state}}, {{vm.userInfo.location.zip}}</h3>
-					</div>
-					<!-- edit info -->
-					<div layout="column" ng-show='editInfo'>
-			      <form ng-submit="vm.infoEdit(vm.userInfo)" style="padding-left: 35px">
-			        <md-input-container>
-			          <label class="md-hue-1">Username</label>
-			          <input ng-model="vm.userInfo.username" ng-required="true">
-			        </md-input-container>
-			        <md-input-container>
-			          <label class="md-hue-1">Email</label>
-			          <input ng-model="vm.userInfo.email" type="email" ng-required="true">
-			        </md-input-container>
-							<p>Your Address:</p>
-			        <md-input-container>
-			          <label>Street</label>
-			          <input ng-model="vm.userInfo.location.street" type="text" placeholder="Street...">
-			        </md-input-container>
-			        <div layout="row">
-			          <md-input-container flex>
-			            <label>City</label>
-			            <input ng-model="vm.userInfo.location.city" type="text" placeholder="City...">
-			          </md-input-container>
-			          <md-input-container flex>
-			            <label>State</label>
-			            <md-select ng-model="vm.userInfo.location.state" >
-			              <md-option ng-repeat="state in nav.states" value="{{state.abbrev}}">
-			                {{state.abbrev}}
-			              </md-option>
-			            </md-select>
-			          </md-input-container>
-			          <md-input-container flex>
-			            <label>Zip</label>
-			            <input ng-model="vm.userInfo.location.zip" placeholder="Zipcode..." ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
-			          </md-input-container>
-			        </div>
-
-			          <md-button type="submit" class="loginButton md-raised" ng-click="editInfo = !editInfo">Edit Info</md-button>
-			        </form>
-						</div>
-<!-- end edit -->
-					</div>
-				</md-card-content>
-			</md-card>
-			<!-- user info dashboard -->
-
-		</div>
-		<div flex="50">
-			<div layout="column">
-				<div flex>
-					<h3 style="text-align: center; background-color: #DEE5E5">You Posted:</h3>
-					<ul ng-repeat="c in vm.userArray.posting">
-						<li style="list-style-type: none;">
-							<div layout=row>
-								<h3>{{c.applicants.length}}</h3>
-								<md-button ng-show="c.chosenApp.length === 0" style="font-size: 24px;" ng-click="vm.goToJob(c._id)">{{c.title}}</md-button>
-								<div ng-show="c.chosenApp.length > 0 && c.isConfirmed===false">
-									<md-button style="font-size: 24px; background-color: #605768;" ng-click="vm.goToJob(c._id)" class="md-accent md-raised">{{c.title}}</md-button>
-									<span style="font-size: 18px;">Waiting for applicant confirmation</span>
-								</div>
-								<div ng-show="c.isConfirmed===true" class="appliedCheck">
-									<md-button style="font-size: 24px; background-color: #605768;" ng-click="vm.goToJob(c._id)" class="md-accent md-raised">{{c.title}}</md-button>
-									<i class="zmdi zmdi-thumb-up"></i><span style="font-size:24px; font-weight:700;"> Handshake Complete!</span>
-								</div>
-
-							</div>
-						</li>
-					</ul>
+					</p>
+				</div>
+				<div flex class="profileDeets">
+					<h4>Email</h4>
+					<p>{{vm.userInfo.email}}</p>
+				</div>
+				<div flex class="profileDeets">
+					<h4>Location</h4>
+					<p>{{vm.userInfo.location.street}}</p>
+					<p>{{vm.userInfo.location.city}} {{vm.userInfo.location.state}}, {{vm.userInfo.location.zip}}</p>
 				</div>
 			</div>
-			<div layout="column">
-				<div flex>
-					<h3 style="text-align: center; background-color: #DEE5E5">You Applied To:</h3>
-					<ul ng-repeat="r in vm.userArray.applying">
-						<li style="list-style-type: none;">
-							<div layout=row>
-								<md-button style="font-size: 24px; background-color: #605768;" ng-click="vm.goToJob(r._id)" ng-class="{'md-accent md-raised':r.chosenApp.length > 0}">{{r.title}}</md-button>
-								<div ng-show="r.isConfirmed===true" class="appliedCheck">
-									<i class="zmdi zmdi-thumb-up"></i><span style="font-size:24px; font-weight:700;"> Handshake Complete!</span>
-								</div>
+			<div ng-show='editInfo' class="profile" layout="column">
+				<div class="profHeader">
+					<p>Edit Profile
+						<md-button id="editButton2" class="md-icon-button" ng-click="editInfo = !editInfo" type='button' style="float: right">
+							<i class="zmdi zmdi-menu"></i>
+						</md-button>
+					</p>
+				</div>
+				<form ng-submit="vm.infoEdit(vm.userInfo)" style="padding-left: 35px">
+					<md-input-container>
+						<label class="md-hue-1">Email</label>
+						<input ng-model="vm.userInfo.email" type="email" ng-required="true">
+					</md-input-container>
+					<p>Your Address:</p>
+					<md-input-container>
+						<label>Street</label>
+						<input ng-model="vm.userInfo.location.street" type="text" placeholder="Street...">
+					</md-input-container>
+					<md-input-container flex>
+						<label>City</label>
+						<input ng-model="vm.userInfo.location.city" type="text" placeholder="City...">
+					</md-input-container>
+					<md-input-container flex>
+						<label>State</label>
+						<md-select ng-model="vm.userInfo.location.state" >
+							<md-option ng-repeat="state in nav.states" value="{{state.abbrev}}">
+								{{state.abbrev}}
+							</md-option>
+						</md-select>
+					</md-input-container>
+					<md-input-container flex>
+						<label>Zip</label>
+						<input ng-model="vm.userInfo.location.zip" placeholder="Zipcode..." ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+					</md-input-container>
+					<md-button type="submit" class="loginButton md-raised" ng-click="editInfo = !editInfo">Edit Info</md-button>
+				</form>
+			</div>
+		</div>
+		<div flex="70" layout="column" style="padding-left: 40px;" layout-align="start start">
+			<div layout="row">
+				<div class="stat" layout="column">
+					<div class="dashHeader" flex>
+						<p>Statistics</p>
+					</div>
+					<div layout="row" layout-padding layout-align"center center">
+						<div flex="30" layout-align="center center">
+							<div flex class="currencyIconsDash"><i class="zmdi zmdi-plus-circle"></i> Points
 							</div>
-						</li>
-					</ul>
+							<div flex class="currencyNum">
+								{{vm.userInfo.currency}}
+							</div>
+						</div>
+						<div flex="40" layout-align="center center">
+							<div flex class="expIcon"><i class="zmdi zmdi-wrench"></i> Experience
+							</div>
+							<div flex class="currencyNum">
+								{{vm.userInfo.experience}}
+							</div>
+						</div>
+						<div flex="30" layout-align="center center">
+							<div flex class="rateIcon"><i class="zmdi zmdi-star"></i> Rating
+							</div>
+							<div flex class="currencyNum">
+								{{vm.userInfo.computedRating | number: 2}}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div layout="column" class="notifications">
+					<div class="dashHeader">
+						<p>Notifications</p>
+					</div>
+					<div flex>
+						<div style="padding-left: 55px; padding-top: 20px">
+							<i style="color: #427AA1; font-size: 30px;" class="zmdi zmdi-notifications"> <span style="color:#6B6D76;">{{vm.userInfo.rating.length}}</span></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div layout="column" class="activeJobs">
+				<div class="dashHeader" flex>
+					<p>Handshake Complete <i class="zmdi zmdi-thumb-up"></i></p>
+				</div>
+				<div class="grid">
+					<md-grid-list style="margin: 30px"
+					md-cols-gt-md="3" md-cols-sm="2" md-cols-md="3"
+					md-row-height-gt-md="1:1" md-row-height="4:3"
+					md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+					<md-grid-tile style="max-height: 600px; max-width: 600px;" class="gridButty" ng-repeat="c in vm.activeArr | orderBy:'vm.activeArr.createdDate'" ng-style="{'background-color': tile.color}">
+						<div layout="column" layout-align="center center">
+							<a ui-sref="JobDetails({id: c._id})"><h2 flex class="calendarTitle">{{c.title | uppercase}}</h2>
+								<h3 style="margin-top: 5px;" flex class=""><span class="detailsHeadings">Date: </span>{{c.createdDate | date}}</h3>
+							</a>
+							<h3 ng-show="c.createdBy != nav.status.id">Job For: {{c.createdByUsername | uppercase}}</h3>
+							<md-button type="button" style="background-color: #E06C9F;" ng-show="c.createdBy === nav.status.id" ng-click="vm.completeJob(c._id)" class='md-raised md-accent'>Job Completed</md-button>
+						</div>
+					</md-grid-tile>
+				</md-grid-list>
+			</div>
+		</div>
+		<div layout="row">
+			<div layout="column" class="inactiveJobsPost">
+				<div class="dashHeader">
+					<p>Posted Jobs</p>
+				</div>
+				<md-content>
+					<md-list>
+						<md-list-item class="md-3-line" ng-repeat="d in vm.inactiveArrPost">
+							<img ng-src="{{nav.status.photo}}" class="md-avatar"/>
+							<div class="md-list-item-text inactiveList" layout="column">
+								<a ui-sref="JobDetails({id: d._id})"><h3>{{d.title | uppercase}}</h3>
+									<h4>{{d.createdDate | date}}</h4>
+								</a>
+								<h4 ng-if="(d.applicants.length > 0 && d.chosenApp.length === 0)">Applicants: {{d.applicants.length}}</h4>
+								<h4 ng-if="(d.chosenApp.length > 0)">Waiting for Confirmation</h4>
+								<md-divider></md-divider>
+							</div>
+						</md-list-item>
+					</md-list>
+				</md-content>
+			</div>
+			<div layout="column" class="inactiveJobsApply">
+				<div class="dashHeader">
+					<p>Applied Jobs</p>
+				</div>
+				<md-content>
+					<md-list>
+						<md-list-item class="md-3-line" ng-repeat="e in vm.inactiveArrApply">
+							<img ng-src="http://cliparts101.com/files/847/B1FA31E255B773664D4CB088497245C2/female_user_icon.png" class="md-avatar"/>
+							<div class="md-list-item-text inactiveList" layout="column">
+								<a ui-sref="JobDetails({id: e._id})"><h3>{{e.title | uppercase}}</h3>
+									<h4>{{e.createdDate | date}}</h4></a>
+									<h4 ng-if="(e.chosenApp == nav.status.username)">You Have Been Selected!</h4>
+									<md-divider></md-divider>
+								</div>
+							</md-list-item>
+						</md-list>
+					</md-content>
 				</div>
 			</div>
 		</div>
