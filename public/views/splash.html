@@ -63,14 +63,26 @@
 
         <!-- experiment -->
         <div layout='row'>
-          <div ng-password-strength="nav.user.password;" strength="passStrength" inner-class="meter"></div>
+          <div ng-password-strength="nav.user.password;"></div>
           <!-- inner-class="progress-bar" inner-class-prefix="progress-bar-" -->
           <div flex style="padding-top:12px;">Current password strength is <strong>{{nav.passStrength}}</strong>% </div>
           <md-button flex ng-click="showHints = !showHints">Password Hints</md-button>
         </div>
 
         <div ng-show='showHints'>
-          <p>Like this, Like that</p>
+          <p style='text-align:right'>Number of Characters + n*4
+            <br>
+            Uppercase Letters (if any uppercase) + (len-n)*2
+            <br>
+            Lowercase Letters (if any lowercase) + (len-n)*2
+            <br>
+            Numbers (if any letter) + n*4
+            <br>
+            Symbols + n*6
+            <br>
+            Middle Numbers or Symbols + n*2
+            <br>
+            Requirements + n*2</p>
         </div>
 
         <p>Your Address:</p>
