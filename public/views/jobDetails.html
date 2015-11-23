@@ -182,11 +182,13 @@
                   <md-input-container flex="60">
                     <label>Points Offered</label>
                     <md-select ng-model="vm.job.currency" required placeholder="Points Offered..." ng-required="true">
-                      <md-option value="5">5</md-option>
-                      <md-option value="10">10</md-option>
-                      <md-option value="20">20</md-option>
-                      <md-option value="50">50</md-option>
-                      <md-option value="100">100</md-option>
+                      <md-option value="5" ng-disabled="nav.status.currency < 5">5</md-option>
+                      <md-option value="10" ng-disabled="nav.status.currency < 10">10</md-option>
+                      <md-option value="20" ng-disabled="nav.status.currency < 20">20</md-option>
+                      <md-option value="50" ng-disabled="nav.status.currency < 50">50</md-option>
+                      <md-option value="100" ng-disabled="nav.status.currency < 100">100</md-option>
+                      <md-option value="200" ng-disabled="nav.status.currency < 200">200</md-option>
+                      <md-option value="300" ng-disabled="nav.status.currency < 300">300</md-option>
                     </md-select>
                   </md-input-container>
                   <div layout="row" layout-align="center center">
