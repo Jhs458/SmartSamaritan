@@ -123,7 +123,7 @@
 				JobsFactory.getJobByCanlendar(c,$stateParams.id).then(function(res){
 
 				});
-				$state.go('Calendar');
+				$state.go('Dashboard', {id: vm.status.id}, {location: true});
 			}
 			else{
 				JobsFactory.appDecline(c, $stateParams.id).then(function(){

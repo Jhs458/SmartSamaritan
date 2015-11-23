@@ -8,6 +8,7 @@
 				<i ng-if='!vm.userInfo.photo' style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
 				<img ng-if='vm.userInfo.photo' ng-src="{{vm.userInfo.photo}}"/>
 				<h2>{{vm.userInfo.username | uppercase}}</h2>
+				<md-button ng-if="editInfo" type="button" ng-click="vm.pic()">Edit Image</md-button>
 			</div>
 			<div ng-hide='editInfo' class="profile" layout="column">
 				<div class="profHeader">
@@ -107,7 +108,7 @@
 				</div>
 			</div>
 			<div layout="column" class="activeJobs">
-				<div class="dashHeader" flex>
+				<div class="dashHeader">
 					<p>Handshake Complete <i class="zmdi zmdi-thumb-up"></i></p>
 				</div>
 				<div class="grid">
@@ -121,7 +122,7 @@
 								<h3 style="margin-top: 5px;" flex class=""><span class="detailsHeadings">Date: </span>{{c.createdDate | date}}</h3>
 							</a>
 							<h3 ng-show="c.createdBy != nav.status.id">Job For: {{c.createdByUsername | uppercase}}</h3>
-							<md-button type="button" style="background-color: #E06C9F;" ng-show="c.createdBy === nav.status.id" ng-click="vm.completeJob(c._id)" class='md-raised md-accent'>Job Completed</md-button>
+							<md-button type="button" style="background-color: #E06C9F; margin-top: -14px;" ng-show="c.createdBy === nav.status.id" ng-click="vm.completeJob(c._id)" class='md-raised md-accent'>Job Completed</md-button>
 						</div>
 					</md-grid-tile>
 				</md-grid-list>
