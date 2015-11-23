@@ -33,9 +33,9 @@
 								compRating = ((sum + ratingNum) / (vm.userInfo.rating.length += 1));
 								UserFactory.addRating(vm.userInfo._id, compRating, ratingNum).then(function(){
 								});
-							});
-						}
+							});	
 					}
+				}
 					$state.go('Dashboard', {id: vm.c.createdBy});
 				}
 				else{

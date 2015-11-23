@@ -6,6 +6,37 @@
 	function JobsViewController(JobsFactory, $mdSidenav, $state, $stateParams) {
 		var vm = this;
 
+		console.log();
+		vm.places = [];
+		vm.places.push(
+			 {
+				 id: 0,
+				 name:"feed my cat",
+				 coords: {
+					latitude: 46.7682,
+					longitude: -71.3234
+				 },
+				 data: "title"
+			 },
+			 {
+				id: 1,
+				name:"charge my phone",
+				coords: {latitude: 37.79,
+				longitude: -122.42
+				},
+					data: 'house'
+				}
+		 );
+
+		//  google.maps.event.addListener(markers, 'click', function(){
+		// 	 return function(){
+		// 		 infoWindow.setContent()
+		// 	 }
+		//  });
+
+
+
+
 		vm.viewAllCat = function(){
 			$state.go("JobsView", {cat: "allCategeories"});
 		};
@@ -73,6 +104,10 @@ vm.isApplicant =  function(applicants, userID) {
 										latitude: place[0].geometry.location.lat(),
 										longitude: place[0].geometry.location.lng(),
 				};
+
+
+
+
 
 
 //Markers
@@ -165,8 +200,8 @@ vm.isApplicant =  function(applicants, userID) {
 
 
 
-				}
-			};
+	} //end of places changed()
+			}; //end of vm.events
 
 
 

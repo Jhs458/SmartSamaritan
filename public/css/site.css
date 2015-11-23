@@ -28,7 +28,7 @@ body {
   font-size: 34px;
   font-weight: 700;
   text-align: center;
-  /*padding-left: 80px;*/
+  color: #427AA1;
 }
 .navButtonTextColor {
   color: black;
@@ -175,33 +175,11 @@ p {
   font-weight: 700;
 }
 /*job details above*/
-/*calendar below*/
-.calendarTitle {
-  text-decoration: none;
-  color: #08415C;
-  text-align: center;
-  font-size: 20px;
-}
-.gridButty {
-  border-radius: 10px;
-  background-image: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
-  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2) inset;
-}
-.gridButton:hover {
-  -moz-box-shadow:    0 0 5px #605768;
-  -webkit-box-shadow: 0 0 5px #605768;
-  box-shadow:         0 0 5px #605768;
-  -webkit-transform: scale(1.02);
-  -moz-transform: scale(1.02);
-  -ms-transform: scale(1.02);
-  -o-transform: scale(1.02);
-  transform: scale(1.02);
-
-}
-
 /*rating below*/
-
 /* COMMON CLASSES */
+.ratingContainer {
+margin-top: 100px; 
+}
 .break { clear:both; }
 
 /* WRAPPER */
@@ -241,4 +219,214 @@ p {
   -webkit-box-shadow: 0 0 2px #605768;
   box-shadow:         0 0 2px #605768;
 
+}
+/*dasheboard belwo*/
+.dash{
+  background-color: #F4F4F4;
+}
+.photoNameDiv{
+  border-radius: 10px;
+  border: 1px solid #BCBCBC;
+  background-color: white;
+  text-align: center;
+  overflow: hidden;
+  max-width: 300px;
+  min-width: 200px;
+}
+.photoNameDiv img {
+  border-radius: 10px 10px 0px 0px;
+  width: 100%;
+}
+.stat {
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #BCBCBC;
+  width: 380px;
+}
+.dashHeader p {
+  font-size: 24px;
+  margin-top: 11px;
+  margin-left: 12px;
+}
+.dashHeader {
+  border-radius: 10px 10px 0px 0px;
+  background-color: #DEE5E5;
+  height: 40px;
+  border-bottom: 1px solid #BCBCBC;
+}
+.currencyNum {
+  text-align: center;
+  font-size: 20px;
+  color: #5E5E5E;
+}
+.currencyIconsDash {
+  text-align: center;
+  font-size: 20px;
+  color: #73956F;
+  font-weight: 700;
+}
+.rateIcon {
+  text-align: center;
+  font-size: 20px;
+  color: #E06C9F;
+  font-weight: 700;
+}
+.expIcon {
+  text-align: center;
+  font-size: 20px;
+  color: #546A7B;
+  font-weight: 700;
+}
+.newJobButton {
+  background-color: #427AA1;
+}
+.profile {
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #BCBCBC;
+  margin-top: 20px;
+}
+.profile form{
+  margin-right: 25px;
+}
+.profHeader {
+  border-radius: 10px 10px 0px 0px;
+  width: 100%;
+  background-color: #DEE5E5;
+  height: 40px;
+  border-bottom: 1px solid #BCBCBC;
+}
+.profHeader p {
+  font-size: 24px;
+  margin-top: 11px;
+  margin-left: 12px;
+}
+#editButton {
+  color: #E06C9F;
+  font-size: 30px;
+  margin-top: -10px;
+}
+#editButton2 {
+  color: #E06C9F;
+  font-size: 30px;
+  margin-top: -10px;
+}
+.profileDeets{
+  font-size: 16px;
+  margin-left: 12px;
+  margin-right: 12px;
+  max-width: 300px;
+  min-width: 100px;
+}
+.activeJobs {
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #BCBCBC;
+  margin-top: 20px;
+  min-width: 600px;
+  height: 440px;
+}
+.grid {
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.notifications {
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid #BCBCBC;
+    min-width: 200px;
+    margin-left: 20px;
+}
+.dashHeader2 p {
+  font-size: 24px;
+  margin-top: 11px;
+  margin-left: 12px;
+}
+.dashHeader2 {
+  border-radius: 10px 10px 0px 0px;
+  background-color: #DEE5E5;
+  height: 26px;
+  border-bottom: 1px solid #BCBCBC;
+}
+.dashMainHeader {
+  height: 40px;
+  background-color: #5E5E5E;
+}
+.dashMainHeader {
+  padding-left: 70px;
+  color: #DEE5E5;
+}
+.dashHeader i {
+  color: #73956F;
+}
+.gridButty a {
+  text-decoration: none;
+  color: #08415C;
+  text-align: center;
+  font-size: 16px;
+}
+.gridButty {
+  border-radius: 10px;
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+  box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.2) inset;
+  background-color: #E0F5FF;
+}
+.gridButton:hover {
+  -moz-box-shadow:    0 0 5px #605768;
+  -webkit-box-shadow: 0 0 5px #605768;
+  box-shadow:         0 0 5px #605768;
+  -webkit-transform: scale(1.02);
+  -moz-transform: scale(1.02);
+  -ms-transform: scale(1.02);
+  -o-transform: scale(1.02);
+  transform: scale(1.02);
+}
+.inactiveJobsPost {
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #BCBCBC;
+  margin-top: 20px;
+  width: 280px;
+  height: 300px;
+  overflow: hidden;
+  overflow-x: scroll;
+
+}
+.inactiveList {
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.inactiveList a {
+  font-size: 20px;
+  text-decoration: none;
+}
+.inactiveJobsApply {
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #BCBCBC;
+  margin-top: 20px;
+  width: 280px;
+  height: 300px;
+  margin-left: 40px;
+  overflow: hidden;
+}
+/*dashboard above*/
+#listicon li:nth-child(1){
+list-style-image: url('http://icons.iconarchive.com/icons/umar123/build/48/0041-Medal-Gold-icon.png');
+}
+
+#listicon li:nth-child(2){
+list-style-image: url('http://icons.iconarchive.com/icons/umar123/build/48/0040-Medal-Silver-icon.png');
+}
+
+#listicon li:nth-child(3){
+list-style-image: url('http://icons.iconarchive.com/icons/umar123/build/48/0039-Medal-Bronze-icon.png');
+}
+
+#listicon li:nth-child(4){
+list-style-image: url('http://www.healthcareplusbeauty.com/App_Themes/Sample/images/4.gif');
+}
+
+#listicon li:nth-child(5){
+list-style-image: url('http://www.healthcareplusbeauty.com/App_Themes/Sample/images/5.gif');
 }

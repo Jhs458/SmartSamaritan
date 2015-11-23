@@ -2,68 +2,72 @@
 	'use strict';
 	angular.module('app')
 	.controller('DashboardController', DashboardController);
-	function DashboardController($stateParams, UserFactory, $state, $scope) {
+	function DashboardController($stateParams, UserFactory, JobsFactory, $state, $scope) {
 		var vm = this;
 		vm.status = UserFactory.status;
-
+		vm.jobType = {};
 		UserFactory.getAllByUser(vm.status._id).then(function(res){
 			vm.userArray = res;
-			// console.log(vm.userArray, 'userArray');
+			vm.determineActive(vm.userArray, UserFactory.status._id);
 		});
-
+		vm.determineActive = function(jobs, userID){
+			vm.activeArr = [];
+			vm.inactiveArrPost = [];
+			vm.inactiveArrApply = [];
+			for (var i = 0; i < jobs.posting.length; i++){
+				if(jobs.posting[i].isConfirmed === true){
+					vm.activeArr.push(jobs.posting[i]);
+				} else {
+					vm.inactiveArrPost.push(jobs.posting[i]);
+				}
+			}
+			for (var j = 0; j < jobs.applying.length; j++){
+				console.log(jobs.applying[j]);
+				if(jobs.applying[j].isConfirmed === true){
+					vm.activeArr.push(jobs.applying[j]);
+				} else {
+					vm.inactiveArrApply.push(jobs.applying[j]);
+				}
+			}
+			console.log(vm.inactiveArrApply);
+		};
+		vm.completeJob = function(id) {
+			if(confirm('Mark this job as completed?')===true){
+				JobsFactory.completeJob(id).then(function(res){
+				});
+				$state.go('Rate', {id: id}, {location: true});
+			}
+		};
 		vm.goToJob = function(id){
 			$state.go('JobDetails', {id:id}, {location: true});
 		};
-
 		UserFactory.getUserInfo($stateParams.id).then(function(res){
 			vm.userInfo = res;
-			console.log(vm.userInfo, 'userInfo');
 		});
-
-//image upload
-vm.pic = function(){
-		filepicker.setKey("AVkaqvPVuQCCSH059S4zQz");
-
-		filepicker.pick({
+		//image upload
+		vm.pic = function(){
+			filepicker.setKey("AVkaqvPVuQCCSH059S4zQz");
+			filepicker.pick({
 				mimetype: 'image/*', /* Images only */
 				maxSize: 1024 * 1024 * 5, /* 5mb */
 				imageMax: [1500, 1500], /* 1500x1500px */
 				cropRatio: 1/1, /* Perfect squares */
 				services: ['*'] /* All available third-parties */
-		}, function(blob){
-
-				// Returned Stuff
-				// var filename = blob.filename;
+			}, function(blob){
 				var url = blob.url;
-				// var id = blob.id;
-				// var isWriteable = blob.isWriteable;
-				// var mimetype = blob.mimetype;
-				// var size = blob.size;
-
-
-				console.log("after picking");
-				// window.location.reload();
-
-			UserFactory.sendpPic(blob,vm.status._id).then(function(res){
-				// vm.getUserInformation();
-				UserFactory.getUserInfo($stateParams.id).then(function(res){
-					vm.userInfo = res;
-					// console.log(vm.userInfo);
+				UserFactory.sendpPic(blob,vm.status._id).then(function(res){
+					UserFactory.getUserInfo($stateParams.id).then(function(res){
+						vm.userInfo = res;
+					});
 				});
 			});
-	});
-};
-
-vm.infoEdit = function(i){
-			// console.log(i, 'infoEdit');
+		};
+		vm.infoEdit = function(i){
 			UserFactory.infoEdit(i, vm.status._id).then(function(res){
 				UserFactory.getUserInfo($stateParams.id).then(function(res){
 					vm.userInfo = res;
 				});
 			});
-}
-
-
-
+		};
 	}
 })();
