@@ -199,7 +199,6 @@ p {
 
 }
 
-
 /*rating below*/
 
 /* COMMON CLASSES */
@@ -241,6 +240,7 @@ p {
   -moz-box-shadow:    0 0 2px #605768;
   -webkit-box-shadow: 0 0 2px #605768;
   box-shadow:         0 0 2px #605768;
+
 }
 
 

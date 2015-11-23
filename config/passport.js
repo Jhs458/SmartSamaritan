@@ -75,6 +75,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
               // if the user is found, then log them in
               if (user) {
                   return done(null, user); // user found, return that user
+
               } else {
                   // if there is no user found with that facebook id, create them
                   var newUser = new User();

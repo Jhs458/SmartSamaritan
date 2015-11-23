@@ -107,9 +107,25 @@
             <!-- 'c != nav.status.username || c.job.isConfirmed'  -->
             <div class="md-actions" layout="row" layout-align="center center">
               <md-button class="jobDetailsButton2" ng-show="!vm.job.isConfirmed && vm.userType.isApplicant && vm.job.chosenApp.length > 0" ng-click='vm.appAccept(chooser)' class='md-raised md-primary'>Handshake</md-button>
-              <md-button class="jobDetailsButton" ng-if="!vm.userType.isCreator" class="md-accent md-raised" ng-click="nav.toggleRight(vm.job.createdBy)">Message Job Poster</md-button>
+              <md-button class="jobDetailsButton" ng-if="!vm.userType.isCreator" class="md-accent md-raised" ng-click="vm.sendPMsg = !vm.sendPMsg" type="button">Message Job Poster</md-button>
               <md-button class="jobDetailsButton" ng-if="vm.userType.isNobody" ng-click="vm.applyJob(vm.job);" class="md-accent md-raised">Apply</md-button>
             </div>
+            <!-- Send Message -->
+            <div ng-show="vm.sendPMsg">
+            <form ng-submit="vm.sendMsg2(vm.job.createdBy)">
+      <md-input-container layout-padding>
+        <label class="inputs">Write message here...</label>
+        <input ng-model="vm.msg.body" />
+      </md-input-container>
+
+     <div layout="row">
+       <md-button type="submit" class="md-raised">Send a Message</md-button>
+       <md-button type="button" class="md-raised" ng-click="vm.sendPMsg = !vm.sendPMsg">Cancel</md-button>
+     </div>
+ </form>
+ </div>
+
+
             <!-- ========= In Line Editing ========= -->
             <div>
               <form ng-submit='vm.updateJob()' ng-show="vm.showEditJob">

@@ -18,7 +18,7 @@ currency:{type:Number},
 location: {street: String, city: String, state: String, zip: Number},
 jobs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Jobs'}],
 messages: [{type: mongoose.Schema.Types.ObjectId, ref: 'Messages'}],
-computedRating: Number,
+computedRating: {type:Number,default:0},
 rating: [Number]
 });
 
