@@ -8,15 +8,20 @@
   },
   "license": "MIT",
   "dependencies": {
+    "async": "^1.5.0",
     "body-parser": "^1.12.4",
     "crypto": "0.0.3",
     "ejs": "^2.3.1",
     "express": "^4.12.4",
+    "express-flash": "0.0.2",
     "express-jwt": "^3.3.0",
+    "express-session": "^1.12.1",
     "filepicker-js": "^2.3.0",
     "jsonwebtoken": "^5.4.1",
     "mongoose": "^4.2.4",
+    "nodemailer": "^1.10.0",
     "passport": "^0.3.0",
+    "passport-facebook": "^2.0.0",
     "passport-local": "^1.0.0"
   }
 }
