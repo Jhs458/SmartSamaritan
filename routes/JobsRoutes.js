@@ -6,7 +6,6 @@ var Jobs = mongoose.model('Jobs');
 var Applicants = mongoose.model('Applicants');
 var jwt = require('express-jwt');
 var passport = require('passport');
-var jwt = require('express-jwt');
 var auth = jwt({
   userProperty: "payload", //req.payload._id in the Route
   secret: "SuperSmart" //matches the secret in model

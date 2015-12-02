@@ -5,7 +5,6 @@ var Messages = mongoose.model('Messages');
 var User = mongoose.model('User');
 var jwt = require('express-jwt');
 var passport = require('passport');
-var jwt = require('express-jwt');
 var auth = jwt({
   userProperty: "payload", //req.payload._id in the Route
   secret: "SuperSmart" //matches the secret in model

@@ -7,7 +7,6 @@ var passport = require('passport') ;
 var nodemailer = require('nodemailer') ;
 var flash = require('express-flash') ;
 var jwt2 = require("jsonwebtoken");
-
 var async = require("async");
 var crypto = require('crypto') ;
 
