@@ -22,14 +22,12 @@
 				}
 			}
 			for (var j = 0; j < jobs.applying.length; j++){
-				console.log(jobs.applying[j]);
 				if(jobs.applying[j].isConfirmed === true){
 					vm.activeArr.push(jobs.applying[j]);
 				} else {
 					vm.inactiveArrApply.push(jobs.applying[j]);
 				}
 			}
-			console.log(vm.inactiveArrApply);
 		};
 		vm.completeJob = function(id) {
 			if(confirm('Mark this job as completed?')===true){

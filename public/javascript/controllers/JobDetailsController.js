@@ -121,7 +121,6 @@
 		vm.appAccept = function(c,index){
 			if(confirm('Are you sure you would like to accept?')===true){
 				JobsFactory.getJobByCanlendar(c,$stateParams.id).then(function(res){
-
 				});
 				$state.go('Dashboard', {id: vm.status.id}, {location: true});
 			}
@@ -142,18 +141,13 @@
 		'WY').split(' ').map(function(state) {
 			return {abbrev: state};
 		});
-
-
 		vm.sendMsg2 = function(id){
-			console.log(id, 'msg2');
 			vm.msg.sentTo = id;
 			JobsFactory.sendMsg(vm.msg).then(function(res) {
 				vm.msg = {};
-				vm.sendPMsg = !vm.sendPMsg
+				vm.sendPMsg = !vm.sendPMsg;
 			});
 		};
-
-
 		vm.showAdvanced = function(ev, a) {
 			UserFactory.getUserInfo(a.applicant).then(function(res){
 				vm.viewApp = res;
@@ -179,11 +173,8 @@
 			});
 		};
 		vm.showAdvanced2 = function(ev, a) {
-			console.log(a);
 			UserFactory.getUserInfo(a).then(function(res){
 				vm.viewApp = res;
-				console.log(vm.viewApp);
-				console.log(vm.viewApp.photo);
 				$mdDialog.show({
 					controller: JobDetailsController,
 					template: [
@@ -205,7 +196,6 @@
 				});
 			});
 		};
-
 
 	}
 })();

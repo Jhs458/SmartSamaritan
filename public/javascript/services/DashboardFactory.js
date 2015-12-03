@@ -5,9 +5,6 @@
 	function DashboardFactory($http, $q) {
 		var o = {};
 
-
-
-
 		return o;
 	}
 })();

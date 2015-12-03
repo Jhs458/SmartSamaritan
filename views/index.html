@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
-	<title>Smart Sumaritan</title>
+	<title>Town Share</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.4/angular-material.min.css" >
 	<link rel="stylesheet" type="text/css" href="/css/site.css">
@@ -11,7 +11,7 @@
 
 </head>
 
-<body ng-controller="GlobalController as nav">
+<body ng-controller="GlobalController as nav" ng-cloak>
 <div ng-hide="nav.hideTheThing">
 	<md-subheader style="background-color: #F1FFFA; width:100%;">
 	</md-subheader>
@@ -143,7 +143,7 @@
 		</script>
 		<!-- Ext Libs -->
 		<!-- jquery -->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
     <!-- filepicker for image upload -->
 		<script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
 
@@ -170,7 +170,7 @@
 		<script src="/javascript/app.js"></script>
 
 		<!-- google map -->
-		<script src='http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en&v=3.20'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/angular-google-maps/2.2.1/angular-google-maps.min.js'></script>
 		<!--<script src='/path/to/angular[.min].js'></script>-->
 		<script src='/angular-simple-logger.min.js'></script>
 		<!-- <script src='angular-google-maps/dist/angular-google-maps.js'></script> -->

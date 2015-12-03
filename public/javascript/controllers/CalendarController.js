@@ -11,7 +11,6 @@
 
 		JobsFactory.getJobs().then(function(res){
 			vm.calendarPosts = res;
-
 			vm.colorTiles = (function() {
 				var tiles = [];
 				for (var i = 0; i < vm.calendarPosts.length; i++) {
@@ -27,13 +26,10 @@
 				return tiles;
 			})();
 		});
-
 		var COLORS = ['#788AA3', '#FFCEBA', '#E06C9F', '#73956F', '#DEE5E5', '#427AA1', '#CF9893', '#BC7C9C', '#F46036'];
-
 		function randomColor() {
 			return COLORS[Math.floor(Math.random() * COLORS.length)];
 		}
-
 		function randomSpan() {
 			var r = Math.random();
 			if (r < 0.8) {
@@ -44,17 +40,13 @@
 				return 3;
 			}
 		}
-
 		vm.completeJob = function(id) {
 			if(confirm('Mark this job as completed?')===true){
-			JobsFactory.completeJob(id).then(function(res){
-			});
-			$state.go('Rate', {id: id}, {location: true});
-		}
+				JobsFactory.completeJob(id).then(function(res){
+				});
+				$state.go('Rate', {id: id}, {location: true});
+			}
 		};
-
-
-
 
 	}
 })();

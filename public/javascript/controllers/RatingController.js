@@ -10,7 +10,6 @@
 		JobsFactory.getJobById($stateParams.id).then(function(res){
 			vm.c = res;
 		});
-
 		vm.setRating = function(rating){
 			ratingNum = rating;
 			vm.submitRating = function() {
@@ -19,7 +18,6 @@
 						if(vm.c.applicants[i].username == vm.c.chosenApp[0]){        //pulls the chosenUsers id from applicants
 							UserFactory.jobExp(vm.c.applicants[i].applicant);    // +2 to experience
 							UserFactory.jobCurrency(vm.c.createdBy, vm.c.applicants[i].applicant, vm.c.currency);
-
 							UserFactory.getUserInfo(vm.c.applicants[i].applicant).then(function(res) {
 								vm.userInfo = res;
 								vm.ratingArr = [];
@@ -43,14 +41,12 @@
 				}
 			};
 		};
-
 		$(function() {
 			$("#rating li a").click(function() {
 				$('li a.active').removeClass('active');
 				$(this).addClass("active");
 			});
 		});
-
 
 	}
 })();
