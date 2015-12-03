@@ -10,46 +10,32 @@ var auth = jwt({
   secret: "SuperSmart" //matches the secret in model
 });
 
+router.post('/send/', auth, function(req, res, next) { //auth,
+  var messages = new Messages(req.body);
+  messages.createdBy = req.payload._id;
+  messages.created = new Date();
+  messages.save(function(err, result) {
+    res.send(result);
+  });
+});
 
-
-  router.post('/send/', auth, function(req, res, next) { //auth,
-     var messages = new Messages(req.body);
-     messages.createdBy = req.payload._id;
-     messages.created = new Date();
-     messages.save(function(err, result) {
-       res.send(result);
-     });
-   });
-
-  // router.get('/', auth, function(req, res, next) {
-  //    Messages.find({_id: req.payload._id}, function(err, result) {
-  //      res.send(result);
-  //    });
-  //  });
-
-   router.get('/', auth, function(req, res, next){
-     var sendBack ={};
-     console.log(req.payload._id, 'get messages');
-
-     Messages.find({createdBy:req.payload._id})
-     .populate('sentTo', 'username')
-     .exec(function(err, result){
-       if(err) return next(err);
-       if(!result) return next('Could not find request');
-       sendBack.createdBy = result;
-console.log(sendBack.createdBy, 'createdBy');
-
+router.get('/', auth, function(req, res, next){
+  var sendBack ={};
+  Messages.find({createdBy:req.payload._id})
+  .populate('sentTo', 'username')
+  .exec(function(err, result){
+    if(err) return next(err);
+    if(!result) return next('Could not find request');
+    sendBack.createdBy = result;
     Messages.find({sentTo:req.payload._id})
     .populate('createdBy', 'username')
     .exec(function(err, result){
       if(err) return next(err);
       if(!result) return next('Could not find request');
       sendBack.sentTo = result;
-console.log(sendBack.sentTo, 'sentTo');
-
-       res.send(sendBack);
-     });
-   });
-   });
+      res.send(sendBack);
+    });
+  });
+});
 
 module.exports = router;

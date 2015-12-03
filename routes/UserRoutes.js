@@ -15,8 +15,6 @@ router.post('/login', function(req, res, next) {
 
 
 router.get('/leaderboard',function(req,res,next){
- console.log(req.body,"line18");
- console.log("userroute line19");
  User.find({}).select('username currency experience computedRating').exec(function(err, result){
    if(err) return next(err);
    var arrays = {};

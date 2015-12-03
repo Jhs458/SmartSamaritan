@@ -25,7 +25,7 @@
 				},
 				data: 'house'
 			}
-		);	
+		);
 		vm.viewAllCat = function(){
 			$state.go("JobsView", {cat: "allCategeories"});
 		};
@@ -161,7 +161,7 @@
 				// vm.randomMarkers=[];
 			} //end of places changed()
 		}; //end of vm.events
-		vm.searchbox = {template:'searchbox.tpl.html', events:events};
+		// vm.searchbox = {template:'searchbox.tpl.html', events:events};
 	}
 
 })();

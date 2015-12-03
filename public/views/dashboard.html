@@ -5,9 +5,10 @@
 	<div class="dash" layout="row" layout-padding>
 		<div layout="column" flex="30" layout-align="start center">
 			<div class="photoNameDiv">
-				<i ng-if='!vm.userInfo.photo' style="font-size:100px" class="zmdi zmdi-face zmdi-hc-5x"></i>
+				<i ng-if='!vm.userInfo.photo' style="font-size:100px; color: #08415C;" class="zmdi zmdi-face"></i>
 				<img ng-if='vm.userInfo.photo' ng-src="{{vm.userInfo.photo}}"/>
 				<h2>{{vm.userInfo.username | uppercase}}</h2>
+				<md-button ng-if='!vm.userInfo.photo' type="button" ng-click="vm.pic()">Add Photo</md-button>
 				<md-button ng-if="editInfo" type="button" ng-click="vm.pic()">Edit Image</md-button>
 			</div>
 			<div ng-hide='editInfo' class="profile" layout="column">
@@ -112,11 +113,23 @@
 					<p>Handshake Complete <i class="zmdi zmdi-thumb-up"></i></p>
 				</div>
 				<div class="grid">
+					<div ng-if="!vm.activeArr.length" style="text-align: center;">
+						<h4>No Active Handshakes</h4>
+						<p>
+							A Handshake occurs when you and another member agree to work together.
+							Posting and Completing jobs are great ways to earn points, gain experience, and get to know your neighbors!<br>
+							<i class="zmdi zmdi-home zmdi-hc-2x"></i><span style="color: #08415C; font-size: 18px;"> Happy Town Sharing!</span>
+						</p>
+						<div style="display: block;">
+							<md-button type="button" style="background-color: #E06C9F;" ui-sref="CreateJob" class='md-raised md-accent'>Post A Job</md-button>
+							<md-button type="button" style="background-color: #E06C9F;" ui-sref="JobsView" class='md-raised md-accent'>Browse Jobs</md-button>
+						</div>
+					</div>
 					<md-grid-list style="margin: 30px"
 					md-cols-gt-md="2" md-cols-sm="2" md-cols-md="2"
 					md-row-height-gt-md="1:1" md-row-height="4:3"
 					md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
-					<md-grid-tile style="max-height: 600px; max-width: 600px;" class="gridButty" ng-repeat="c in vm.activeArr | orderBy:'vm.activeArr.createdDate'" ng-style="{'background-color': tile.color}">
+					<md-grid-tile ng-if="vm.activeArr.length" style="max-height: 600px; max-width: 600px;" class="gridButty" ng-repeat="c in vm.activeArr | orderBy:'vm.activeArr.createdDate'" ng-style="{'background-color': tile.color}">
 						<div layout="column" layout-align="center center">
 							<a ui-sref="JobDetails({id: c._id})"><h2 flex class="calendarTitle">{{c.title | uppercase}}</h2>
 								<h3 style="margin-top: 5px;" flex class=""><span class="detailsHeadings">Date: </span>{{c.createdDate | date}}</h3>
@@ -134,8 +147,12 @@
 					<p>Posted Jobs</p>
 				</div>
 				<md-content>
+					<div ng-if="!vm.inactiveArrPost.length" style="text-align: center;">
+						<h4>No Current Jobs</h4>
+						<md-button type="button" style="background-color: #E06C9F;" ui-sref="CreateJob" class='md-raised md-accent'>Post A Job</md-button>
+					</div>
 					<md-list>
-						<md-list-item class="md-3-line" ng-repeat="d in vm.inactiveArrPost">
+						<md-list-item ng-if="vm.inactiveArrPost.length" class="md-3-line" ng-repeat="d in vm.inactiveArrPost">
 							<img ng-src="{{nav.status.photo}}" class="md-avatar"/>
 							<div class="md-list-item-text inactiveList" layout="column">
 								<a ui-sref="JobDetails({id: d._id})"><h3>{{d.title | uppercase}}</h3>
@@ -154,9 +171,14 @@
 					<p>Applied Jobs</p>
 				</div>
 				<md-content>
+					<div ng-if="!vm.inactiveArrApply.length" style="text-align: center;">
+						<h4>No Current Applications</h4>
+						<md-button type="button" style="background-color: #E06C9F;" ui-sref="JobsView" class='md-raised md-accent'>Browse Jobs</md-button>
+					</div>
 					<md-list>
-						<md-list-item class="md-3-line" ng-repeat="e in vm.inactiveArrApply">
-							<img ng-src="http://cliparts101.com/files/847/B1FA31E255B773664D4CB088497245C2/female_user_icon.png" class="md-avatar"/>
+						<md-list-item ng-if="vm.inactiveArrApply.length" class="md-3-line" ng-repeat="e in vm.inactiveArrApply">
+							<img ng-show="e.createdByImage" ng-src="{{e.createdByImage}}" class="md-avatar"/>
+							<span ng-hide="e.createdByImage" class="zmdi zmdi-face md-avatar" style="font-size:50px;"></span>
 							<div class="md-list-item-text inactiveList" layout="column">
 								<a ui-sref="JobDetails({id: e._id})"><h3>{{e.title | uppercase}}</h3>
 									<h4>{{e.createdDate | date}}</h4></a>

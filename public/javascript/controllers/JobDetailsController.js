@@ -12,6 +12,7 @@
 
 		JobsFactory.getJobById($stateParams.id).then(function(res){
 			vm.job = res;
+			console.log(vm.job);
 			vm.determineUser(vm.job, UserFactory.status._id);
 			var date = vm.job.createdDate; // Method .toLocalDateString turns the date into a method and cannot populate the date-
 			vm.job.createdDate = new Date();// picker in the edit so I had to turn the string back into a date for it to work.

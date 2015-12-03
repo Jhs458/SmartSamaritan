@@ -323,7 +323,7 @@ margin-top: 100px;
   background-color: white;
   border: 1px solid #BCBCBC;
   margin-top: 20px;
-  min-width: 600px;
+  width: 600px;
   height: 440px;
 }
 .grid {
@@ -410,27 +410,59 @@ margin-top: 100px;
   margin-left: 40px;
   overflow: hidden;
 }
+.grid p {
+  padding-left: 50px;
+  padding-right: 50px;
+}
 /*dashboard above*/
-#listicon li:nth-child(1){
-list-style-image: url('http://icons.iconarchive.com/icons/umar123/build/48/0041-Medal-Gold-icon.png');
+.icon-color-0 {
+  color: #E5C100;
 }
-
-#listicon li:nth-child(2){
-list-style-image: url('http://icons.iconarchive.com/icons/umar123/build/48/0040-Medal-Silver-icon.png');
+.icon-color-1 {
+  color: #D9D9D9;
 }
-
-#listicon li:nth-child(3){
-list-style-image: url('http://icons.iconarchive.com/icons/umar123/build/48/0039-Medal-Bronze-icon.png');
+.icon-color-2 {
+  color: #cd7f32;
 }
-
-#listicon li:nth-child(4){
-list-style-image: url('http://www.healthcareplusbeauty.com/App_Themes/Sample/images/4.gif');
+.icon-list {
+  list-style-type: none;
 }
-
-#listicon li:nth-child(5){
-list-style-image: url('http://www.healthcareplusbeauty.com/App_Themes/Sample/images/5.gif');
+.icon-list,
+.icon-list > li {
+  margin: 0;
+  padding: 0;
 }
-
+.icon-list > li h2 {
+  display: inline-block;
+}
+.icon-list > li .number {
+  margin: 0 0.4em;
+  min-width: 1em;
+}
+.icon-list > li .zmdi {
+  margin: 0 0.4em;
+  min-width: 1em;
+  font-size: 24px;
+  text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3);
+}
+.currencyIconsDashLead {
+  text-align: center;
+  font-size: 28px;
+  color: #73956F;
+  font-weight: 700;
+}
+.rateIconLead {
+  text-align: center;
+  font-size: 28px;
+  color: #E06C9F;
+  font-weight: 700;
+}
+.expIconLead {
+  text-align: center;
+  font-size: 28px;
+  color: #546A7B;
+  font-weight: 700;
+}
 .modal-photo{
   height: 90px;
   width: 90px;

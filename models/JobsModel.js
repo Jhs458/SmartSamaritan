@@ -5,19 +5,17 @@ var JobsSchema = new mongoose.Schema({
  location: {street: String, city: String, state: String, zip: Number},
  createdBy: String,
  createdByUsername: String,
- categeory: String, // [{type:String, enum: ['enumVal1','enumVal2']}]
+ createdByImage: String,
+ categeory: String, 
  currency: Number,
  title: String,
  details: String,
- // status: [{type:String, enum: ['pending','inProgress', 'completed']}],
  rating: Number,
  chosenApp: [
    {type: mongoose.Schema.Types.String, ref: 'User'},
    {boolean: false}
  ],
  applicants: [{
-  //  { type: String }
-  //  {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
    applicant: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
    username: { type: mongoose.Schema.Types.String, ref: 'User'},
    created: Date

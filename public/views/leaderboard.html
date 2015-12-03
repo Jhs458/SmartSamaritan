@@ -6,39 +6,49 @@
   <div layout="row" layout-padding style="padding:40px">
     <md-card flex='33'>
       <md-card-content>
-        <div layout='row'>
-        <img height="50" width="50" src='http://images.wikia.com/farmville/images/b/b4/XP-icon.png'>
-        <h1>Experience</h1>
-      </div>
-        <ol id='listicon'>
-        <li ng-repeat="leader in vm.leaderboardPosts.experience | orderBy:'-experience'  | limitTo:5"><h2>{{leader.username}}: {{leader.experience}}</h2></li>
-      </ol>
+        <div layout='row' style="text-align:center">
+          <div flex class="expIconLead"><i class="zmdi zmdi-wrench"></i> Experience
+          </div>
+        </div>
+        <ol class="icon-list">
+          <li ng-repeat="leader in vm.leaderboardPosts.experience | orderBy:'-experience' | limitTo:5">
+            <span class="zmdi icon-color-{{$index}} {{vm.icons[$index]}}"></span>
+            <span class="number">{{$index +1}}</span>
+            <h2 style="display: inline-block">{{leader.username | uppercase}}: {{leader.experience}}</h2>
+          </li>
+        </ol>
       </md-card-content>
     </md-card>
 
     <md-card flex='33'>
       <md-card-content>
         <div layout='row'>
-        <img height="50" width="50" src='https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/441/aiga_cashier-512.png'>
-        <h1>Currency</h1>
-      </div>
-        <ol id='listicon'>
-        <li ng-repeat="leader in vm.leaderboardPosts.currency | orderBy:'-currency' | limitTo:5"><h2>{{leader.username}}: {{leader.currency}}</h2></li>
-      </ol>
+          <div flex class="currencyIconsDashLead"><i class="zmdi zmdi-plus-circle"></i> Currency
+          </div>
+        </div>
+        <ol class="icon-list">
+          <li ng-repeat="leader in vm.leaderboardPosts.currency | orderBy:'-currency' | limitTo:5">
+            <span class="zmdi icon-color-{{$index}} {{vm.icons[$index]}}"></span>
+            <span class="number">{{$index +1}}</span>
+            <h2 style="display: inline-block">{{leader.username | uppercase}}: {{leader.currency}}</h2></li>
+        </ol>
       </md-card-content>
     </md-card>
 
     <md-card flex='33'>
       <md-card-content>
         <div layout='row'>
-        <img height="50" width="50" src='https://cdn2.iconfinder.com/data/icons/rewards-1/512/vote-512.png'>
-        <h1>Rating/5</h1>
-      </div>
-      <ol id='listicon'>
-      <li ng-repeat="leader in vm.leaderboardPosts.computedRating | orderBy:'-computedRating' | limitTo:5"><h2>{{leader.username}}: {{leader.computedRating}}</h2></li>
-    </ol>
+          <div flex class="rateIconLead"><i class="zmdi zmdi-star"></i> Rating
+          </div>
+        </div>
+        <ol class="icon-list">
+          <li ng-repeat="leader in vm.leaderboardPosts.computedRating | orderBy:'-computedRating' | limitTo:5">
+            <span class="zmdi icon-color-{{$index}} {{vm.icons[$index]}}"></span>
+            <span class="number">{{$index +1}}</span>
+            <h2 style="display: inline-block">{{leader.username | uppercase}}: {{leader.computedRating}}</h2></li>
+        </ol>
       </md-card-content>
     </md-card>
   </div>
-<!-- </div> -->
+  <!-- </div> -->
 </div>

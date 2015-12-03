@@ -124,9 +124,7 @@ router.post('/forgot', function(req, res, next) {
 	var rand, mailOptions, host, link ;
 
 	rand = Math.floor((Math.random() * 100) + 54) ;
-	console.log(req.body, "req.body");
 	username = req.body.username;
-	console.log(username, "username");
 
 	// Look for user on db
 	User.findOne({ username : username }, function(err, user) {

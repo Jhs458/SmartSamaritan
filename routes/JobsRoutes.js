@@ -22,7 +22,6 @@ router.put('/choose/', auth, function(req,res){  //auth
   });
 
 });
-
 var count = 0;
 router.get('/:id', function(req,res,next){
   Jobs.findOne({_id: req.params.id}, function(err, result){
@@ -52,6 +51,7 @@ router.post('/', auth, function(req, res, next){
   var jobPost = new Jobs(req.body);
   jobPost.createdBy = req.payload._id;
   jobPost.createdByUsername = req.payload.username;
+  jobPost.createdByImage = req.payload.photo;
   jobPost.date = new Date();
   jobPost.save(function(err,result){
     if(err) return next(err);
@@ -74,7 +74,6 @@ router.delete('/:id', function(req, res, next) {//auth
 });
 
 router.put('/apply', function(req, res, next) {//auth
-  console.log(req.body);
   Jobs.update({_id: req.body.jobID}, {$pull: {applicants: {_id: req.body.appID}}},
     function(err, result) {
       if(err) return next(err);

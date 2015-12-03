@@ -12,8 +12,6 @@ var auth = jwt({
 
 router.post('/apply/:id', auth, function(req,res,next){
   var appPost = new Applicants();
-  console.log(req.body, 1);
-  console.log(req.payload, 2);
   appPost.applicant = req.payload._id;
   appPost.username = req.payload.username;
   appPost.created = new Date();
@@ -26,7 +24,6 @@ router.post('/apply/:id', auth, function(req,res,next){
     result.save(function(err, result) {
       res.send(result.applicants);
     });
-    console.log(result, 6);
   });
   });
 });
