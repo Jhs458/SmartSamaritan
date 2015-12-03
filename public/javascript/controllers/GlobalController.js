@@ -3,7 +3,7 @@
 	angular.module('app')
 	.controller('GlobalController', GlobalController);
 
-	function GlobalController(UserFactory, $mdSidenav, $state, JobsFactory, $stateParams, jwtHelper, $rootScope) {
+	function GlobalController(UserFactory, $mdSidenav, $state, JobsFactory, $stateParams, jwtHelper, $rootScope, $filter, $scope) {
 		var vm = this;
 		vm.isLogin = true;
 		vm.user = {};
@@ -19,6 +19,9 @@
 				vm.hideTheThing = false;
 			}
 		});
+		$scope.$watch('nav.user.username', function (val) {
+					 $scope.nav.user.username = $filter('lowercase')(val);
+			 }, true);
 		vm.logout = function() {
 			UserFactory.logout();
 			$state.go('Splash');
@@ -28,6 +31,8 @@
 			});
 		};
 		vm.loginUser = function() {
+
+			console.log(vm.user.username);
 			UserFactory.loginUser(vm.user).then(function() {
 				$state.go('Services');
 				vm.user = {};
