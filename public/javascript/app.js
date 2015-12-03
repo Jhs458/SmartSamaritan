@@ -10,11 +10,11 @@
 			templateUrl: 'views/dashboard.html'
 		})
 		.state('Splash',{
-			url: '/splash',
+			url: '/',
 			templateUrl: 'views/splash.html'
 		})
 		.state('Services',{
-			url: '/',
+			url: '/services',
 			templateUrl: 'views/services.html'
 		})
 		.state('JobDetails',{
