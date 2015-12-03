@@ -13,7 +13,7 @@
 			<div ng-hide='editInfo' class="profile" layout="column">
 				<div class="profHeader">
 					<p>Profile
-						<md-button id="editButton" class="md-icon-button" ng-click="editInfo = !editInfo" type='button' style="float: right">
+						<md-button id="editButton" class="md-icon-button" aria-label="editButton" ng-click="editInfo = !editInfo" type='button' style="float: right">
 							<i class="zmdi zmdi-menu"></i>
 						</md-button>
 					</p>
@@ -31,7 +31,7 @@
 			<div ng-show='editInfo' class="profile" layout="column">
 				<div class="profHeader">
 					<p>Edit Profile
-						<md-button id="editButton2" class="md-icon-button" ng-click="editInfo = !editInfo" type='button' style="float: right">
+						<md-button id="editButton2" class="md-icon-button" aria-label="editButton" ng-click="editInfo = !editInfo" type='button' style="float: right">
 							<i class="zmdi zmdi-menu"></i>
 						</md-button>
 					</p>
