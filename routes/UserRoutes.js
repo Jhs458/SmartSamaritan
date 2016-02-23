@@ -6,8 +6,10 @@ var Jobs = mongoose.model('Jobs');
 var Applicants = mongoose.model('Applicants');
 var passport = require('passport');
 var jwt = require('express-jwt');
+
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user) {
+    // console.log(user, 'user in user routes');
     if(err) return next(err);
     res.send(user.createToken());
   })(req, res, next);

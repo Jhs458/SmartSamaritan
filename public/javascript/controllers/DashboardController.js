@@ -46,7 +46,7 @@
 		});
 		//image upload
 		vm.pic = function(){
-			filepicker.setKey("AVkaqvPVuQCCSH059S4zQz");
+			filepicker.setKey("AXtsVeAGCRWKWuWVfxqDRz");
 			filepicker.pick({
 				mimetype: 'image/*', /* Images only */
 				maxSize: 1024 * 1024 * 5, /* 5mb */
