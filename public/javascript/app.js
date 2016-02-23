@@ -1,6 +1,6 @@
 (function() {
 	'use strict';
-	angular.module('app', ['ui.router', 'ngMaterial', 'ngPasswordStrength', 'uiGmapgoogle-maps', 'angular-jwt'])
+	angular.module('app', ['ui.router', 'ngMaterial', 'uiGmapgoogle-maps', 'angular-jwt'])
 	.config(Config);
 
 	function Config($stateProvider, $urlRouterProvider, $httpProvider) {
